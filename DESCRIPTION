@@ -11,6 +11,8 @@ Authors@R: c(person('Phil', 'Chalmers',
     role=c('ctb')))
 Maintainer: Rob Cribbie <cribbie@yorku.ca>
 Description: Provides tools for equivalence testing.
+Depends:
+    sem
 Imports:
     testthat
 ByteCompile: no
@@ -21,3 +23,6 @@ License: GPL (>= 2)
 URL: https://github.com/cribbie/equivalence_tests
 Collate:
     'equivalencetests-package.R'
+    'equiv_corr.R'
+    'normcomp.R'
+    'subsmed_equiv_boot.R'
