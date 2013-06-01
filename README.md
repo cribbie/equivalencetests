@@ -17,3 +17,8 @@ library('devtools')
 install_github('equivalence_tests', 'cribbie')
 ```
 
+3) Load the newly installed package by calling
+
+```r
+library(equivalencetests)
+```
