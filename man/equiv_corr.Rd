@@ -1,9 +1,6 @@
 \name{equiv_corr}
 \alias{equiv_corr}
-\title{Run several equivalence based correlation tests
-The following function was created to run a traditional Pearson correlation test, an equivalence based test of lack
-of association, an equivalence based test of lack of association using a Fisher's z transformation, and an
-equivalence based test of lack of association with resampling.}
+\title{Run several equivalence based correlation tests}
 \usage{
   equiv_corr(x, y, equivint, alpha = 0.05, na.rm = TRUE,
     ...)
@@ -24,8 +21,7 @@ equivalence based test of lack of association with resampling.}
   \item{...}{additional arguments to be passed}
 }
 \description{
-  Run several equivalence based correlation tests The
-  following function was created to run a traditional
+  The following function was created to run a traditional
   Pearson correlation test, an equivalence based test of
   lack of association, an equivalence based test of lack of
   association using a Fisher's z transformation, and an

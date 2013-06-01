@@ -1,5 +1,5 @@
 #' Run several equivalence based correlation tests
-
+#' 
 #' The following function was created to run a traditional Pearson correlation test, an equivalence based test of lack
 #' of association, an equivalence based test of lack of association using a Fisher's z transformation, and an
 #' equivalence based test of lack of association with resampling. 

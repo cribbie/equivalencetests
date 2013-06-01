@@ -47,9 +47,9 @@
 \examples{
 \dontrun{
 #equivalence interval of .1, a standardized solution, 1000 bootstrap samples, and the default alpha level (.05)
-m<-rnorm(500)
-x<-m+rnorm(500)
-y<-m+rnorm(500)
+m <- rnorm(500)
+x <- m + rnorm(500)
+y <- m + rnorm(500)
 subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE)
 }
 }
