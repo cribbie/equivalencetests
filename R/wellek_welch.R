@@ -33,6 +33,6 @@ wellek_welch <- function(dv, group, eps, alpha = .05) {
     crit_psisq<-((ng-1)/mean(size)) * 
         qf(p=alpha,df1=ng-1,df2=oneway.test(dv ~ group)$parameter[2],ncp=mean(size)*eps^2)
     ret$Wellek_Welch <- c(stat=as.numeric(psisq), df1=ng-1, 
-                          df2=oneway.test(dv ~ group)$parameter[2], p=crit_psisq)
+                          df2=as.numeric(oneway.test(dv ~ group)$parameter[2]), p=crit_psisq)
     ret    
 } 
