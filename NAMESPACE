@@ -1,3 +1,4 @@
 export(equiv_corr)
 export(normcomp)
 export(subsmed_equiv_boot)
+export(wellek_welch)
