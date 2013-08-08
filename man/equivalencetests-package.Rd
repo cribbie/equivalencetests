@@ -1,5 +1,6 @@
 \docType{package}
 \name{equivalencetests-package}
+\alias{equivalencetests}
 \alias{equivalencetests-package}
 \title{Equivalence tests}
 \description{

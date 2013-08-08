@@ -4,6 +4,7 @@
 #'
 #'
 #' @name equivalencetests-package
+#' @aliases equivalencetests
 #' @docType package
 #' @title Equivalence tests
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and
