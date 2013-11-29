@@ -14,7 +14,7 @@ install.packages('devtools')
  
 ```r
 library('devtools')
-install_github('equivalencetests', 'cribbie')
+install_github('equivalencetests/cribbie')
 ```
 
 3) Load the newly installed package by calling
