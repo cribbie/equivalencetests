@@ -1,9 +1,12 @@
 \name{equiv_corr}
 \alias{equiv_corr}
+\alias{print.equiv_corr}
 \title{Run several equivalence based correlation tests}
 \usage{
   equiv_corr(x, y, equivint, alpha = 0.05, na.rm = TRUE,
     ...)
+
+  \method{print}{equiv_corr} (x)
 }
 \arguments{
   \item{x}{a numeric variable to be correlated with
@@ -19,6 +22,8 @@
   \item{na.rm}{logical; remove missing values?}
 
   \item{...}{additional arguments to be passed}
+
+  \item{x}{object of class \code{equiv_corr}}
 }
 \description{
   The following function was created to run a traditional
