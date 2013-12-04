@@ -1,4 +1,6 @@
 S3method(print,equiv_corr)
+S3method(print,normcomp)
+S3method(print,subsmed_equiv_boot)
 export(equiv_corr)
 export(normcomp)
 export(subsmed_equiv_boot)

@@ -43,11 +43,10 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
     probt1 <- c(0, 0, 0)
     probt2 <- c(0, 0, 0)
     decis <- c(0, 0, 0)
-    preresults <- matrix(0, nrow = 4, ncol = 1, dimnames = list(c("t-test", "df", "p-value", "Decision"), c("Value")))
+    preresults <- data.frame(matrix(0, nrow = 1, ncol = 3, dimnames = list(c("Value"), c("t-test", "df", "p-value"))))
     results <- matrix(0, nrow = 6, ncol = 3, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2"), 
         c("EI=.5*sd", "EI=sd", "EI=1.5*sd")))
-    results_kendall <- matrix(0, nrow = 7, ncol = 1, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2", 
-        "Decision"), c("EI=sd")))
+    results_kendall <- matrix(0, nrow = 6, ncol = 1, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2"), c("EI=sd")))
     pret <- (premean - normmean)/sqrt((presd^2/pren) + (normsd^2/normn))
     df_pret <- (((presd^2/pren) + (normsd^2/normn))^2)/((presd^4/(pren^2 * (pren - 1))) + (normsd^4/(normn^2 * (normn - 
         1))))
@@ -77,9 +76,9 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
     title1 <- "Normative Comparison Tests for Assessing Clinical Significance using the Cribbie and Arpin-Cribbie (2009) and Kendall et al. (1999) Procedures"
     title2 <- "Comparison of Pretest Results to Normative Data"
     preresults[1, 1] <- pret
-    preresults[2, 1] <- df_pret
-    preresults[3, 1] <- pval_pret
-    preresults[4, 1] <- decis_pret
+    preresults[1, 2] <- df_pret
+    preresults[1, 3] <- pval_pret
+    #preresults[1, 4] <- decis_pret
     title3 <- "Test Statistics for the Cribbie & Arpin-Cribbie Method at Equivalence Intervals (EI) of .5, 1 and 1.5 times the SD of the Normal Comparison Group"
     for (j in 1:length(equivint)) {
         results[1, j] <- t1[j]
@@ -98,10 +97,32 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
     results_kendall[4, 1] <- dfk2
     results_kendall[5, 1] <- pvalk1
     results_kendall[6, 1] <- pvalk2
-    results_kendall[7, 1] <- decisk
+    #results_kendall[7, 1] <- decisk
     decism <- as.matrix(decis)
     rownames(decism) <- c("EI=.5*sd", "EI=sd", "EI=1.5*sd")
-    rownames(results_kendall) <- c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2", "Decision")
-    out <- list(title1, title2, preresults, title3, results, title4, decism, title5, title6, results_kendall)
+    rownames(results_kendall) <- c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2")
+    out <- list(title1, title2, preresults, decis_pret, title3, results, title4, decism, title5, title6, results_kendall, decisk)
+    class(out) <- 'normcomp'
     out
+}
+
+#' @S3method print normcomp
+#' @rdname normcomp
+#' @method print normcomp
+#' @param x object of class \code{normcomp}
+print.normcomp <- function(x){
+    cat(x[[1]], "\n")
+    cat( "-----------------------------------------------------\n\n")
+    cat(x[[2]], "\n")
+    print(x[[3]])
+    cat(x[[4]], "\n\n")
+    cat(x[[5]], "\n")
+    print(round(x[[6]], 4))
+    cat(x[[7]], "\n")
+    colnames(x[[8]]) <- ''
+    print(x[[8]])
+    cat('\n\n', x[[9]], '\n')
+    cat(x[[10]], '\n')
+    print(round(x[[11]],4))
+    cat(x[[12]])    
 }

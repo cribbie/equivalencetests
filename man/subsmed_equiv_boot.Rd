@@ -1,9 +1,12 @@
 \name{subsmed_equiv_boot}
+\alias{print.subsmed_equiv_boot}
 \alias{subsmed_equiv_boot}
 \title{Computes the equivalence and bootstrap-based test of substantial mediation}
 \usage{
   subsmed_equiv_boot(x, y, m, ei, standardize = FALSE,
     nboot = 10000, alpha = 0.05)
+
+  \method{print}{subsmed_equiv_boot} (x)
 }
 \arguments{
   \item{x}{independent variable}
@@ -22,6 +25,8 @@
   \item{nboot}{number of bootstraps}
 
   \item{alpha}{the appropriate alpha level}
+
+  \item{x}{object of class \code{subsmed_equiv_boot}}
 }
 \description{
   This function computes the equivalence and

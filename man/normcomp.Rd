@@ -1,9 +1,12 @@
 \name{normcomp}
 \alias{normcomp}
+\alias{print.normcomp}
 \title{Normative comparison tests for evaluating clinical significance}
 \usage{
   normcomp(premean, presd, pren, postmean, postsd, postn,
     normmean, normsd, normn, alpha = 0.05, ...)
+
+  \method{print}{normcomp} (x)
 }
 \arguments{
   \item{premean}{pretest mean}
@@ -27,6 +30,8 @@
   \item{alpha}{desired alpha level}
 
   \item{...}{additional arguments to be passed}
+
+  \item{x}{object of class \code{normcomp}}
 }
 \description{
   The following function conducts normative comparison

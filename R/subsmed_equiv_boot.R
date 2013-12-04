@@ -38,7 +38,6 @@
 #' }
 #' 
 subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, alpha = 0.05) {
-    print("Computing Bootstrap")
     require(sem)
     x <- x[is.na(x) == F & is.na(y) == F & is.na(m) == F]
     y <- y[is.na(x) == F & is.na(y) == F & is.na(m) == F]
@@ -53,7 +52,7 @@ subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, 
     newdat <- data.frame(x, y, m)
     semmod <- structure(c("x->m", "m->y", "m<->m", "y<->y", "x<->x", "bmx", "bym", "erm", "ery", "erx", NA, NA, NA, NA, 
         NA), .Dim = c(5L, 3L), class = "semmod")
-    moments <- sem::rawMoments(~(-1) + m + x + y)
+    moments <- rawMoments(~(-1) + m + x + y)
     semout <- sem(semmod, moments, n)
     covyx1 <- lm(y ~ x)$coeff[2]
     covyx2 <- semout$coeff[1] * semout$coeff[2]
@@ -69,7 +68,7 @@ subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, 
         mb <- newdatb[, 3]
         semmodb <- structure(c("xb->mb", "mb->yb", "mb<->mb", "yb<->yb", "xb<->xb", "bmx", "bym", "erm", "ery", "erx", NA, 
             NA, NA, NA, NA), .Dim = c(5L, 3L), class = "semmod")
-        momentsb <- sem::rawMoments(~(-1) + mb + xb + yb)
+        momentsb <- rawMoments(~(-1) + mb + xb + yb)
         semoutb <- sem(semmodb, momentsb, n)
         covyx1b <- lm(yb ~ xb)$coeff[2]
         covyx2b <- semoutb$coeff[1] * semoutb$coeff[2]
@@ -100,5 +99,21 @@ subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, 
     colnames(results) <- c("alpha%CI", "1-alpha%CI")
     title5 <- "Decision"
     out <- list(title1, title2, input, title3, covs, title4, results, title5, decis)
+    class(out) <- 'subsmed_equiv_boot'
     out
+}
+
+#' @S3method print subsmed_equiv_boot
+#' @rdname subsmed_equiv_boot
+#' @method print subsmed_equiv_boot
+#' @param x object of class \code{subsmed_equiv_boot}
+print.subsmed_equiv_boot <- function(x){
+    cat(x[[1]], '\n\n')
+    cat(x[[2]], '\n')
+    print(x[[3]])
+    cat('\n', x[[4]], '\n')
+    print(x[[5]])
+    cat('\n', x[[6]], '\n')
+    print(x[[7]])
+    cat('\n', x[[9]], '\n')
 }
