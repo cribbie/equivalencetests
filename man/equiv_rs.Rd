@@ -1,28 +1,31 @@
 \name{equiv_rs}
 \alias{equiv_rs}
-\title{Test whether correlations are independent}
+\title{Test whether correlations or covariances are equivalent}
 \usage{
   equiv_rs(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL,
-    alpha = 0.05)
+    betas = FALSE, alpha = 0.05)
 }
 \arguments{
   \item{dat1}{a matrix or data.frame containing raw data
-  used to compute the first correlation.  A scalar input
-  may be used as well specifying the sample correlation
-  directly}
+  used to compute the first correlation/ covariance. A
+  scalar input may be used as well specifying the sample
+  correlation directly}
 
   \item{dat2}{a matrix or data.frame containing raw data
-  used to compute the second correlation.  A scalar input
-  may be used as well specifying the sample correlation
-  directly}
+  used to compute the second correlation/ covariance. A
+  scalar input may be used as well specifying the sample
+  correlation directly}
 
-  \item{equiv_int}{equivalence interval for correlation}
+  \item{equiv_int}{equivalence interval}
 
-  \item{n1}{sample size for first correlation (required
-  when input is correlation)}
+  \item{n1}{sample size for first covariance set (required
+  when input is a correlation)}
 
-  \item{n2}{sample size for second correlation (required
-  when input is correlation)}
+  \item{n2}{sample size for second covariance set (required
+  when input is a correlation)}
+
+  \item{betas}{logical; compare raw beta regression
+  coefficients rather than correlations?}
 
   \item{alpha}{desired alpha level}
 
@@ -30,9 +33,9 @@
 }
 \description{
   Given raw data or known sample correlations, test whether
-  correlation values are equivalent within a specified
-  interval. The null hypothesis is that the groups are not
-  equivalent.
+  correlation/covariance values are equivalent within a
+  specified interval. The null hypothesis is that the
+  groups are not equivalent.
 }
 \details{
   Function uses Anderson and Hauck's (1983) equivalence
@@ -51,10 +54,11 @@ set.seed(1234)
 dat1 <- cbind(rnorm(100), rnorm(100))
 dat2 <- cbind(rnorm(200), rnorm(200))
 equiv_rs(dat1, dat2, .2)
+equiv_rs(dat1, dat2, .2, betas = TRUE)
 
 #correlations input
-r1 <- cor(dat1)
-r2 <- cor(dat2)
+r1 <- cor(dat1)[2,1]
+r2 <- cor(dat2)[2,1]
 equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 }
 }

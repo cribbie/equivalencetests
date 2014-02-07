@@ -1,6 +1,6 @@
-#' Test whether correlations are independent
+#' Test whether correlations or covariances are equivalent
 #' 
-#' Given raw data or known sample correlations, test whether correlation values
+#' Given raw data or known sample correlations, test whether correlation/covariance values
 #' are equivalent within a specified interval. The null hypothesis is that the groups
 #' are not equivalent.
 #' 
@@ -12,19 +12,20 @@
 #' the null hypothesis.
 #' 
 #' @aliases equiv_rs
-#' @param dat1 a matrix or data.frame containing raw data used to compute the first correlation. 
-#'   A scalar input may be used as well specifying the sample correlation directly
-#' @param dat2 a matrix or data.frame containing raw data used to compute the second correlation. 
-#'   A scalar input may be used as well specifying the sample correlation directly
-#' @param equiv_int equivalence interval for correlation
-#' @param n1 sample size for first correlation (required when input is correlation)
-#' @param n2 sample size for second correlation (required when input is correlation)
+#' @param dat1 a matrix or data.frame containing raw data used to compute the first correlation/
+#'   covariance. A scalar input may be used as well specifying the sample correlation directly
+#' @param dat2 a matrix or data.frame containing raw data used to compute the second correlation/
+#'  covariance. A scalar input may be used as well specifying the sample correlation directly
+#' @param equiv_int equivalence interval
+#' @param n1 sample size for first covariance set (required when input is a correlation)
+#' @param n2 sample size for second covariance set (required when input is a correlation)
+#' @param betas logical; compare raw beta regression coefficients rather than correlations?
 #' @param alpha desired alpha level
 #' @param ... additional arguments to be passed
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
-#' @export equiv_corr
+#' @export equiv_rs
 #' @examples
 #' \dontrun{
 #' #raw data
@@ -32,16 +33,25 @@
 #' dat1 <- cbind(rnorm(100), rnorm(100))
 #' dat2 <- cbind(rnorm(200), rnorm(200))
 #' equiv_rs(dat1, dat2, .2)
+#' equiv_rs(dat1, dat2, .2, betas = TRUE)
 #' 
 #' #correlations input
-#' r1 <- cor(dat1)
-#' r2 <- cor(dat2)
+#' r1 <- cor(dat1)[2,1]
+#' r2 <- cor(dat2)[2,1]
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 #' }
-equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, alpha = 0.05) {
+equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, alpha = 0.05) {
+    if(betas && (length(dat1) == 1L || length(dat2) == 1L))
+        stop('beta comparisons require raw data inputs')
     if(length(dat1) > 1L){
         dat1 <- na.omit(dat1)
-        r1 <- cor(dat1)[1,2]
+        if(betas){
+            mod1 <- lm(dat1[,2] ~ dat1[,1])
+            r1 <- summary.lm(mod1)$coefficients[2, 1]
+            se1 <- summary.lm(mod1)$coefficients[2, 2]
+        } else {
+            r1 <- cor(dat1)[1,2]
+        }
         n1 <- nrow(dat1)
     } else {
         if(is.null(n1))
@@ -51,7 +61,13 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, alpha = 0.05) 
     }
     if(length(dat2) > 1L){
         dat2 <- na.omit(dat2)
-        r2 <- cor(dat2)[1,2]
+        if(betas){
+            mod2 <- lm(dat2[,2] ~ dat2[,1])
+            r2 <- summary.lm(mod2)$coefficients[2, 1]
+            se2 <- summary.lm(mod2)$coefficients[2, 2]
+        } else {
+            r2 <- cor(dat2)[1,2]
+        }        
         n2 <- nrow(dat2)
     } else {
         if(is.null(n2))
@@ -59,7 +75,11 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, alpha = 0.05) 
         r2 <- dat2
         if(r2 >= 1 || r2 <= -1) stop('Invalid correlation input')
     }
-    ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
+    if(betas){
+        ser <- sqrt(se1^2 + se2^2)
+    } else {
+        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
+    }
     p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
@@ -72,8 +92,13 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, alpha = 0.05) 
         upper2 <- lower
     }
     reject <- p.value <= alpha
-    ret <- data.frame(r1=r1, r2=r2, equiv_interval=equiv_int, 
+    if(betas){
+        cfs <- data.frame(b1=r1, b2=r2)
+    } else {
+        cfs <- data.frame(r1=r1, r2=r2)
+    }
+    ret <- cbind(cfs, data.frame(equiv_interval=equiv_int, 
                       lowerCI=lower2, upperCI=upper2, p=p.value,
-                      reject_equivalence=!reject)
+                      reject_equivalence=!reject))
     ret
 }
