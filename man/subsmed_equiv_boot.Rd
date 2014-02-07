@@ -59,7 +59,9 @@ subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca}
+  Constance Mara \email{constancemara@gmail.com}, Rob
+  Cribbie \email{cribbie@yorku.ca}, and Phil Chalmers
+  \email{rphilip.chalmers@gmail.com}
 }
 \references{
   Mara, C. & Cribbie, R. A. (submitted). An

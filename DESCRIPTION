@@ -27,3 +27,4 @@ Collate:
     'normcomp.R'
     'subsmed_equiv_boot.R'
     'wellek_welch.R'
+    'equiv_rs.R'

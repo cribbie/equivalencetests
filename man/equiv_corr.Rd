@@ -42,6 +42,7 @@ equiv_corr(v1, v2, .2)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca}
+  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+  \email{rphilip.chalmers@gmail.com}
 }
 

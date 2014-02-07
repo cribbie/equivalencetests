@@ -8,7 +8,7 @@
 #' @docType package
 #' @title Equivalence tests
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and
-#' Phil Chalmers \email{rphilip.chalmers@@gmail.com}
+#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
 #' @keywords package
 NULL
 

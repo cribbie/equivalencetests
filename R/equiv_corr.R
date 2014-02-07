@@ -12,7 +12,8 @@
 #' @param na.rm logical; remove missing values?
 #' @param ... additional arguments to be passed
 #' 
-#' @author Rob Cribbie \email{cribbie@@yorku.ca}
+#' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
+#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
 #' @export equiv_corr
 #' @examples
 #' \dontrun{

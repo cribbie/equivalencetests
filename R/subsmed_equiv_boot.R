@@ -18,10 +18,12 @@
 #' @param m mediator
 #' @param ei equivalence interval
 #' @param standardize logical; indicate whether the analysis should be done on the raw data or on 
-#' standardized data (i.e., all variables having a mean of 0 and standard deviation of 1)
+#'   standardized data (i.e., all variables having a mean of 0 and standard deviation of 1)
 #' @param nboot number of bootstraps
 #' @param alpha the appropriate alpha level
-#' @author Rob Cribbie \email{cribbie@@yorku.ca}
+#' @author Constance Mara \email{constancemara@@gmail.com}, 
+#'   Rob Cribbie \email{cribbie@@yorku.ca}, and 
+#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
 #' @export subsmed_equiv_boot
 #' @references 
 #' 

@@ -7,7 +7,8 @@
 #' @param group grouping variable that can be coerced to a \code{factor}
 #' @param eps numeric value defining the size of the equivalance interval
 #' @param alpha the appropriate alpha level
-#' @author Rob Cribbie \email{cribbie@@yorku.ca}
+#' @author Rob Cribbie \email{cribbie@@yorku.ca} and
+#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
 #' @export wellek_welch
 #' @examples
 #' \dontrun{

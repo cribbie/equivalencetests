@@ -51,7 +51,8 @@ normcomp(12,4,100,8,5,95,7,3,500)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca}
+  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+  \email{rphilip.chalmers@gmail.com}
 }
 \references{
   Cribbie, R. A. & Arpin-Cribbie, C. A. (2009). Evaluating

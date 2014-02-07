@@ -30,6 +30,7 @@ wellek_welch(dv, group, eps = 0.25)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca}
+  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+  \email{rphilip.chalmers@gmail.com}
 }
 
