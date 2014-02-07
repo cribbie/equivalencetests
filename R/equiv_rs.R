@@ -16,9 +16,10 @@
 #'   A scalar input may be used as well specifying the sample correlation directly
 #' @param dat2 a matrix or data.frame containing raw data used to compute the second correlation. 
 #'   A scalar input may be used as well specifying the sample correlation directly
-#' @param equivint equivalence interval for correlation
+#' @param equiv_int equivalence interval for correlation
+#' @param n1 sample size for first correlation (required when input is correlation)
+#' @param n2 sample size for second correlation (required when input is correlation)
 #' @param alpha desired alpha level
-#' @param na.rm logical; remove missing values?
 #' @param ... additional arguments to be passed
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 

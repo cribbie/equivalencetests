@@ -13,8 +13,8 @@
 #' 
 #' 
 #' @aliases subsmed_equiv_boot
-#' @param x independent variable
-#' @param y dependent variable
+#' @param IV independent variable
+#' @param DV dependent variable
 #' @param m mediator
 #' @param ei equivalence interval
 #' @param standardize logical; indicate whether the analysis should be done on the raw data or on 
@@ -39,8 +39,9 @@
 #' subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE) 
 #' }
 #' 
-subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, alpha = 0.05) {
+subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000, alpha = 0.05) {
     require(sem)
+    x <- IV; y <- DV
     x <- x[is.na(x) == F & is.na(y) == F & is.na(m) == F]
     y <- y[is.na(x) == F & is.na(y) == F & is.na(m) == F]
     m <- m[is.na(x) == F & is.na(y) == F & is.na(m) == F]
@@ -109,7 +110,8 @@ subsmed_equiv_boot <- function(x, y, m, ei, standardize = FALSE, nboot = 10000, 
 #' @rdname subsmed_equiv_boot
 #' @method print subsmed_equiv_boot
 #' @param x object of class \code{subsmed_equiv_boot}
-print.subsmed_equiv_boot <- function(x){
+#' @param ... additional arguments
+print.subsmed_equiv_boot <- function(x, ...){
     cat(x[[1]], '\n\n')
     cat(x[[2]], '\n')
     print(x[[3]])

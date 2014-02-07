@@ -3,15 +3,15 @@
 \alias{subsmed_equiv_boot}
 \title{Computes the equivalence and bootstrap-based test of substantial mediation}
 \usage{
-  subsmed_equiv_boot(x, y, m, ei, standardize = FALSE,
+  subsmed_equiv_boot(IV, DV, m, ei, standardize = FALSE,
     nboot = 10000, alpha = 0.05)
 
-  \method{print}{subsmed_equiv_boot} (x)
+  \method{print}{subsmed_equiv_boot} (x, ...)
 }
 \arguments{
-  \item{x}{independent variable}
+  \item{IV}{independent variable}
 
-  \item{y}{dependent variable}
+  \item{DV}{dependent variable}
 
   \item{m}{mediator}
 
@@ -27,6 +27,8 @@
   \item{alpha}{the appropriate alpha level}
 
   \item{x}{object of class \code{subsmed_equiv_boot}}
+
+  \item{...}{additional arguments}
 }
 \description{
   This function computes the equivalence and

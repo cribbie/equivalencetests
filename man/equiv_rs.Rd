@@ -16,11 +16,15 @@
   may be used as well specifying the sample correlation
   directly}
 
-  \item{equivint}{equivalence interval for correlation}
+  \item{equiv_int}{equivalence interval for correlation}
+
+  \item{n1}{sample size for first correlation (required
+  when input is correlation)}
+
+  \item{n2}{sample size for second correlation (required
+  when input is correlation)}
 
   \item{alpha}{desired alpha level}
-
-  \item{na.rm}{logical; remove missing values?}
 
   \item{...}{additional arguments to be passed}
 }

@@ -6,7 +6,7 @@
   normcomp(premean, presd, pren, postmean, postsd, postn,
     normmean, normsd, normn, alpha = 0.05, ...)
 
-  \method{print}{normcomp} (x)
+  \method{print}{normcomp} (x, ...)
 }
 \arguments{
   \item{premean}{pretest mean}

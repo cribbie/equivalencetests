@@ -3,17 +3,14 @@
 \alias{print.equiv_corr}
 \title{Run several equivalence based correlation tests}
 \usage{
-  equiv_corr(x, y, equivint, alpha = 0.05, na.rm = TRUE,
+  equiv_corr(dat, equivint, alpha = 0.05, na.rm = TRUE,
     ...)
 
-  \method{print}{equiv_corr} (x)
+  \method{print}{equiv_corr} (x, ...)
 }
 \arguments{
-  \item{x}{a numeric variable to be correlated with
-  \code{y}}
-
-  \item{y}{a numeric variable to be correlated with
-  \code{x}}
+  \item{dat}{a data.frame or matrix containing only 2
+  variables}
 
   \item{equivint}{equivalence interval}
 
@@ -38,7 +35,8 @@
 #equivalence correlation test between v1 and v2 with an interval of .2
 v1 <- rnorm(100)
 v2 <- v1 + rnorm(100, 2)
-equiv_corr(v1, v2, .2)
+dat <- data.frame(v1, v2)
+equiv_corr(dat, .2)
 }
 }
 \author{

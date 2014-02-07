@@ -111,7 +111,7 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
 #' @rdname normcomp
 #' @method print normcomp
 #' @param x object of class \code{normcomp}
-print.normcomp <- function(x){
+print.normcomp <- function(x, ...){
     cat(x[[1]], "\n")
     cat( "-----------------------------------------------------\n\n")
     cat(x[[2]], "\n")

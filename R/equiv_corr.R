@@ -5,8 +5,7 @@
 #' equivalence based test of lack of association with resampling. 
 #' 
 #' @aliases equiv_corr
-#' @param x a numeric variable to be correlated with \code{y}
-#' @param y a numeric variable to be correlated with \code{x}
+#' @param dat a data.frame or matrix containing only 2 variables
 #' @param equivint equivalence interval
 #' @param alpha desired alpha level
 #' @param na.rm logical; remove missing values?
@@ -20,11 +19,12 @@
 #' #equivalence correlation test between v1 and v2 with an interval of .2
 #' v1 <- rnorm(100)
 #' v2 <- v1 + rnorm(100, 2)
-#' equiv_corr(v1, v2, .2)
+#' dat <- data.frame(v1, v2)
+#' equiv_corr(dat, .2)
 #' }
-equiv_corr <- function(x, y, equivint, alpha = 0.05, na.rm = TRUE, ...) {
-    var1 <- x[is.na(x) == F & is.na(y) == F]
-    var2 <- y[is.na(x) == F & is.na(y) == F]
+equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE, ...) {
+    dat <- na.omit(dat)
+    var1 <- x <- dat[,1]; var2 <- y <- dat[,2]
     corxy <- cor(var1, var2)
     n <- length(var1)
     nresamples <- 10000
@@ -99,7 +99,7 @@ equiv_corr <- function(x, y, equivint, alpha = 0.05, na.rm = TRUE, ...) {
 #' @rdname equiv_corr
 #' @method print equiv_corr
 #' @param x object of class \code{equiv_corr}
-print.equiv_corr <- function(x){
+print.equiv_corr <- function(x, ...){
     lapply(x, function(y){
         cat('**************************************************\n\n', y[[1]], '\n\n')
         print(y[[2]])
