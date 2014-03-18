@@ -41,41 +41,43 @@
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 #' }
 equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, alpha = 0.05) {
-    if(betas && (length(dat1) == 1L || length(dat2) == 1L))
-        stop('beta comparisons require raw data inputs')
-    if(length(dat1) > 1L){
+    if (betas && (length(dat1) == 1L || length(dat2) == 1L)) 
+        stop("beta comparisons require raw data inputs")
+    if (length(dat1) > 1L) {
         dat1 <- na.omit(dat1)
-        if(betas){
-            mod1 <- lm(dat1[,2] ~ dat1[,1])
+        if (betas) {
+            mod1 <- lm(dat1[, 2] ~ dat1[, 1])
             r1 <- summary.lm(mod1)$coefficients[2, 1]
             se1 <- summary.lm(mod1)$coefficients[2, 2]
         } else {
-            r1 <- cor(dat1)[1,2]
+            r1 <- cor(dat1)[1, 2]
         }
         n1 <- nrow(dat1)
     } else {
-        if(is.null(n1))
-            stop('Correlation inputs require their respective sample sizes')
+        if (is.null(n1)) 
+            stop("Correlation inputs require their respective sample sizes")
         r1 <- dat1
-        if(r1 >= 1 || r1 <= -1) stop('Invalid correlation input')
+        if (r1 >= 1 || r1 <= -1) 
+            stop("Invalid correlation input")
     }
-    if(length(dat2) > 1L){
+    if (length(dat2) > 1L) {
         dat2 <- na.omit(dat2)
-        if(betas){
-            mod2 <- lm(dat2[,2] ~ dat2[,1])
+        if (betas) {
+            mod2 <- lm(dat2[, 2] ~ dat2[, 1])
             r2 <- summary.lm(mod2)$coefficients[2, 1]
             se2 <- summary.lm(mod2)$coefficients[2, 2]
         } else {
-            r2 <- cor(dat2)[1,2]
-        }        
+            r2 <- cor(dat2)[1, 2]
+        }
         n2 <- nrow(dat2)
     } else {
-        if(is.null(n2))
-            stop('Correlation inputs require their respective sample sizes')
+        if (is.null(n2)) 
+            stop("Correlation inputs require their respective sample sizes")
         r2 <- dat2
-        if(r2 >= 1 || r2 <= -1) stop('Invalid correlation input')
+        if (r2 >= 1 || r2 <= -1) 
+            stop("Invalid correlation input")
     }
-    if(betas){
+    if (betas) {
         ser <- sqrt(se1^2 + se2^2)
     } else {
         ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
@@ -92,13 +94,12 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
         upper2 <- lower
     }
     reject <- p.value <= alpha
-    if(betas){
-        cfs <- data.frame(b1=r1, b2=r2)
+    if (betas) {
+        cfs <- data.frame(b1 = r1, b2 = r2)
     } else {
-        cfs <- data.frame(r1=r1, r2=r2)
+        cfs <- data.frame(r1 = r1, r2 = r2)
     }
-    ret <- cbind(cfs, data.frame(equiv_interval=equiv_int, 
-                      lowerCI=lower2, upperCI=upper2, p=p.value,
-                      reject_equivalence=!reject))
+    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, upperCI = upper2, p = p.value, 
+        reject_equivalence = !reject))
     ret
-}
+} 

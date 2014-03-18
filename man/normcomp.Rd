@@ -3,10 +3,10 @@
 \alias{print.normcomp}
 \title{Normative comparison tests for evaluating clinical significance}
 \usage{
-  normcomp(premean, presd, pren, postmean, postsd, postn,
-    normmean, normsd, normn, alpha = 0.05, ...)
+normcomp(premean, presd, pren, postmean, postsd, postn, normmean, normsd, normn,
+  alpha = 0.05, ...)
 
-  \method{print}{normcomp} (x, ...)
+\method{print}{normcomp}(x, ...)
 }
 \arguments{
   \item{premean}{pretest mean}
@@ -34,12 +34,12 @@
   \item{x}{object of class \code{normcomp}}
 }
 \description{
-  The following function conducts normative comparison
-  tests for evaluating clinical significance, using both
-  the Cribbie and Arpin-Cribbie (2009) and Kendall et al.
-  (1999) methods.  Normative comparison tests compare a
-  treated sample to a normal comparison sample to determine
-  if they are statistically equivalent.
+The following function conducts normative comparison tests
+for evaluating clinical significance, using both the
+Cribbie and Arpin-Cribbie (2009) and Kendall et al. (1999)
+methods.  Normative comparison tests compare a treated
+sample to a normal comparison sample to determine if they
+are statistically equivalent.
 }
 \examples{
 \dontrun{
@@ -51,18 +51,18 @@ normcomp(12,4,100,8,5,95,7,3,500)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
-  \email{rphilip.chalmers@gmail.com}
+Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+\email{rphilip.chalmers@gmail.com}
 }
 \references{
-  Cribbie, R. A. & Arpin-Cribbie, C. A. (2009). Evaluating
-  clinical significance through equivalence testing:
-  Extending the normative comparisons approach.
-  \emph{Psychotherapy Research, 19}, 677-686.
+Cribbie, R. A. & Arpin-Cribbie, C. A. (2009). Evaluating
+clinical significance through equivalence testing:
+Extending the normative comparisons approach.
+\emph{Psychotherapy Research, 19}, 677-686.
 
-  Kendall, P. C., Marrs-Garcia, A., Nath, S. R., &
-  Sheldrick, R. C. (1999). Normative comparisons for the
-  evaluation of clinical significance. \emph{Journal of
-  Consulting and Clinical Psychology, 67}, 285-299.
+Kendall, P. C., Marrs-Garcia, A., Nath, S. R., & Sheldrick,
+R. C. (1999). Normative comparisons for the evaluation of
+clinical significance. \emph{Journal of Consulting and
+Clinical Psychology, 67}, 285-299.
 }
 

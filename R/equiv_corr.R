@@ -24,7 +24,8 @@
 #' }
 equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE, ...) {
     dat <- na.omit(dat)
-    var1 <- x <- dat[,1]; var2 <- y <- dat[,2]
+    var1 <- x <- dat[, 1]
+    var2 <- y <- dat[, 2]
     corxy <- cor(var1, var2)
     n <- length(var1)
     nresamples <- 10000
@@ -82,27 +83,26 @@ equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE, ...) {
     stats_tradt <- c(corxy, t, n - 2, pvalue_tradt)
     names(stats_tradt) <- c("Pearson r", "t-statistic", "df", "p-value")
     stats_equivt <- c(corxy, equivint, equivt1, pvalue1_equivt, equivt2, pvalue2_equivt, n - 2)
-    names(stats_equivt) <- c("Pearson r", "Equivalence Interval", "t-stat 1", "pval_t1", "t-stat 2", "pval_t2", "df")
+    names(stats_equivt) <- c("Pearson r", "Equivalence Interval", "t-stat 1", "pval_t1", "t-stat 2", "pval_t2", 
+        "df")
     stats_fz <- c(corxy, equivint, equivt1_fz, pvalue1_fz, equivt2_fz, pvalue2_fz)
     names(stats_fz) <- c("Pearson r", "Equivalence Interval", "z-stat 1", "pval_z1", "z-stat 2", "pval_z2")
     stats_rs <- c(corxy, equivint, nresamples, q1, q2)
     names(stats_rs) <- c("Pearson r", "Equivalence Interval", "# of Resamples", "5th Percentile", "95th Percentile")
-    out <- list(list(title1, stats_tradt, decis_tradt), 
-                list(title2, stats_equivt, decis_equivt), 
-                list(title3, stats_fz, decis_fz), 
-                list(title4, stats_rs, decis_rs))
-    class(out) <- 'equiv_corr'
+    out <- list(list(title1, stats_tradt, decis_tradt), list(title2, stats_equivt, decis_equivt), list(title3, 
+        stats_fz, decis_fz), list(title4, stats_rs, decis_rs))
+    class(out) <- "equiv_corr"
     out
-} 
+}
 
 #' @S3method print equiv_corr
 #' @rdname equiv_corr
 #' @method print equiv_corr
 #' @param x object of class \code{equiv_corr}
-print.equiv_corr <- function(x, ...){
-    lapply(x, function(y){
-        cat('**************************************************\n\n', y[[1]], '\n\n')
+print.equiv_corr <- function(x, ...) {
+    lapply(x, function(y) {
+        cat("**************************************************\n\n", y[[1]], "\n\n")
         print(y[[2]])
-        cat('\n\n', y[[3]], '\n\n')        
+        cat("\n\n", y[[3]], "\n\n")
     })
-}
+} 

@@ -37,37 +37,40 @@
 #' #The desired alpha level is .05, which is the default, so no alpha level is specified
 #' normcomp(12,4,100,8,5,95,7,3,500)
 #' }
-normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, normsd, normn, alpha = 0.05, ...) {
+normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, normsd, normn, alpha = 0.05, 
+    ...) {
     equivint <- c(0.5 * (normsd), normsd, 1.5 * (normsd))
     t1 <- c(0, 0, 0)
     t2 <- c(0, 0, 0)
     probt1 <- c(0, 0, 0)
     probt2 <- c(0, 0, 0)
     decis <- c(0, 0, 0)
-    preresults <- data.frame(matrix(0, nrow = 1, ncol = 3, dimnames = list(c("Value"), c("t-test", "df", "p-value"))))
-    results <- matrix(0, nrow = 6, ncol = 3, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2"), 
-        c("EI=.5*sd", "EI=sd", "EI=1.5*sd")))
-    results_kendall <- matrix(0, nrow = 6, ncol = 1, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2"), c("EI=sd")))
+    preresults <- data.frame(matrix(0, nrow = 1, ncol = 3, dimnames = list(c("Value"), c("t-test", "df", 
+        "p-value"))))
+    results <- matrix(0, nrow = 6, ncol = 3, dimnames = list(c("t-test1", "t-test2", "df1", "df2", "pvalue1", 
+        "pvalue2"), c("EI=.5*sd", "EI=sd", "EI=1.5*sd")))
+    results_kendall <- matrix(0, nrow = 6, ncol = 1, dimnames = list(c("t-test1", "t-test2", "df1", "df2", 
+        "pvalue1", "pvalue2"), c("EI=sd")))
     pret <- (premean - normmean)/sqrt((presd^2/pren) + (normsd^2/normn))
-    df_pret <- (((presd^2/pren) + (normsd^2/normn))^2)/((presd^4/(pren^2 * (pren - 1))) + (normsd^4/(normn^2 * (normn - 
-        1))))
+    df_pret <- (((presd^2/pren) + (normsd^2/normn))^2)/((presd^4/(pren^2 * (pren - 1))) + (normsd^4/(normn^2 * 
+        (normn - 1))))
     pval_pret <- pt(abs(pret), df_pret, lower.tail = F)
     ifelse(pval_pret < alpha, decis_pret <- "The pretest mean differs from the normative mean and the following normative comparisons are meaningful", 
         decis_pret <- "The pretest was not found to differ from the normative mean and therefore the following normative comparisons are not meaningful")
     for (i in 1:length(equivint)) {
         t1[i] <- (postmean - normmean - equivint[i])/sqrt((postsd^2/postn) + (normsd^2/normn))
         t2[i] <- (postmean - normmean + equivint[i])/sqrt((postsd^2/postn) + (normsd^2/normn))
-        dft <- (((postsd^2/postn) + (normsd^2/normn))^2)/((postsd^4/(postn^2 * (postn - 1))) + (normsd^4/(normn^2 * (normn - 
-            1))))
+        dft <- (((postsd^2/postn) + (normsd^2/normn))^2)/((postsd^4/(postn^2 * (postn - 1))) + (normsd^4/(normn^2 * 
+            (normn - 1))))
         probt1[i] <- pt(t1[i], dft, lower.tail = T)
         probt2[i] <- pt(t2[i], dft, lower.tail = F)
         ifelse(probt1[i] < alpha & probt2[i] < alpha, decis[i] <- "The treated and normative means are declared equivalent at this Equivalence Interval", 
             decis[i] <- "The treated and normative means cannot be declared equivalent at this Equivalence Interval")
     }
-    tk1 <- (postmean - normmean - equivint[2])/sqrt(((((postn - 1) * postsd^2) + ((normn - 1) * normsd^2))/(postn + normn - 
-        2)) * (1/postn + 1/normn))
-    tk2 <- (postmean - normmean + equivint[2])/sqrt(((((postn - 1) * postsd^2) + ((normn - 1) * normsd^2))/(postn + normn - 
-        2)) * (1/postn + 1/normn))
+    tk1 <- (postmean - normmean - equivint[2])/sqrt(((((postn - 1) * postsd^2) + ((normn - 1) * normsd^2))/(postn + 
+        normn - 2)) * (1/postn + 1/normn))
+    tk2 <- (postmean - normmean + equivint[2])/sqrt(((((postn - 1) * postsd^2) + ((normn - 1) * normsd^2))/(postn + 
+        normn - 2)) * (1/postn + 1/normn))
     dfk1 <- postn + normn - 2
     dfk2 <- postn + normn - 2
     pvalk1 <- pt(tk1, dfk1, lower.tail = T)
@@ -79,7 +82,7 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
     preresults[1, 1] <- pret
     preresults[1, 2] <- df_pret
     preresults[1, 3] <- pval_pret
-    #preresults[1, 4] <- decis_pret
+    # preresults[1, 4] <- decis_pret
     title3 <- "Test Statistics for the Cribbie & Arpin-Cribbie Method at Equivalence Intervals (EI) of .5, 1 and 1.5 times the SD of the Normal Comparison Group"
     for (j in 1:length(equivint)) {
         results[1, j] <- t1[j]
@@ -98,12 +101,13 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
     results_kendall[4, 1] <- dfk2
     results_kendall[5, 1] <- pvalk1
     results_kendall[6, 1] <- pvalk2
-    #results_kendall[7, 1] <- decisk
+    # results_kendall[7, 1] <- decisk
     decism <- as.matrix(decis)
     rownames(decism) <- c("EI=.5*sd", "EI=sd", "EI=1.5*sd")
     rownames(results_kendall) <- c("t-test1", "t-test2", "df1", "df2", "pvalue1", "pvalue2")
-    out <- list(title1, title2, preresults, decis_pret, title3, results, title4, decism, title5, title6, results_kendall, decisk)
-    class(out) <- 'normcomp'
+    out <- list(title1, title2, preresults, decis_pret, title3, results, title4, decism, title5, title6, 
+        results_kendall, decisk)
+    class(out) <- "normcomp"
     out
 }
 
@@ -111,19 +115,19 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, no
 #' @rdname normcomp
 #' @method print normcomp
 #' @param x object of class \code{normcomp}
-print.normcomp <- function(x, ...){
+print.normcomp <- function(x, ...) {
     cat(x[[1]], "\n")
-    cat( "-----------------------------------------------------\n\n")
+    cat("-----------------------------------------------------\n\n")
     cat(x[[2]], "\n")
     print(x[[3]])
     cat(x[[4]], "\n\n")
     cat(x[[5]], "\n")
     print(round(x[[6]], 4))
     cat(x[[7]], "\n")
-    colnames(x[[8]]) <- ''
+    colnames(x[[8]]) <- ""
     print(x[[8]])
-    cat('\n\n', x[[9]], '\n')
-    cat(x[[10]], '\n')
-    print(round(x[[11]],4))
-    cat(x[[12]])    
-}
+    cat("\n\n", x[[9]], "\n")
+    cat(x[[10]], "\n")
+    print(round(x[[11]], 4))
+    cat(x[[12]])
+} 

@@ -2,8 +2,8 @@
 \alias{equiv_rs}
 \title{Test whether correlations or covariances are equivalent}
 \usage{
-  equiv_rs(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL,
-    betas = FALSE, alpha = 0.05)
+equiv_rs(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
+  alpha = 0.05)
 }
 \arguments{
   \item{dat1}{a matrix or data.frame containing raw data
@@ -32,20 +32,20 @@
   \item{...}{additional arguments to be passed}
 }
 \description{
-  Given raw data or known sample correlations, test whether
-  correlation/covariance values are equivalent within a
-  specified interval. The null hypothesis is that the
-  groups are not equivalent.
+Given raw data or known sample correlations, test whether
+correlation/covariance values are equivalent within a
+specified interval. The null hypothesis is that the groups
+are not equivalent.
 }
 \details{
-  Function uses Anderson and Hauck's (1983) equivalence
-  test. Because the p value derived from the test is only
-  an approximation, the CIs may produce results that fall
-  outside of the equivalence interval at small sample
-  sizes, even with a statistically significant p value.
-  They therefore provide a measure of precision, but cannot
-  be used as a reject/fail to reject decision regarding the
-  null hypothesis.
+Function uses Anderson and Hauck's (1983) equivalence test.
+Because the p value derived from the test is only an
+approximation, the CIs may produce results that fall
+outside of the equivalence interval at small sample sizes,
+even with a statistically significant p value. They
+therefore provide a measure of precision, but cannot be
+used as a reject/fail to reject decision regarding the null
+hypothesis.
 }
 \examples{
 \dontrun{
@@ -63,7 +63,7 @@ equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
-  \email{rphilip.chalmers@gmail.com}
+Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+\email{rphilip.chalmers@gmail.com}
 }
 

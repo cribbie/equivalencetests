@@ -2,7 +2,7 @@
 \alias{wellek_welch}
 \title{Wellek-Welch equivalence test}
 \usage{
-  wellek_welch(dv, group, eps, alpha = 0.05)
+wellek_welch(dv, group, eps, alpha = 0.05)
 }
 \arguments{
   \item{dv}{a numeric vector for the continous dependent
@@ -17,8 +17,8 @@
   \item{alpha}{the appropriate alpha level}
 }
 \description{
-  This function computes the Wellek-Welch equivalence test
-  for k-groups.
+This function computes the Wellek-Welch equivalence test
+for k-groups.
 }
 \examples{
 \dontrun{
@@ -30,7 +30,7 @@ wellek_welch(dv, group, eps = 0.25)
 }
 }
 \author{
-  Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
-  \email{rphilip.chalmers@gmail.com}
+Rob Cribbie \email{cribbie@yorku.ca} and Phil Chalmers
+\email{rphilip.chalmers@gmail.com}
 }
 

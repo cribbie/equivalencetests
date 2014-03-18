@@ -3,10 +3,10 @@
 \alias{subsmed_equiv_boot}
 \title{Computes the equivalence and bootstrap-based test of substantial mediation}
 \usage{
-  subsmed_equiv_boot(IV, DV, m, ei, standardize = FALSE,
-    nboot = 10000, alpha = 0.05)
+subsmed_equiv_boot(IV, DV, m, ei, standardize = FALSE, nboot = 10000,
+  alpha = 0.05)
 
-  \method{print}{subsmed_equiv_boot} (x, ...)
+\method{print}{subsmed_equiv_boot}(x, ...)
 }
 \arguments{
   \item{IV}{independent variable}
@@ -31,25 +31,23 @@
   \item{...}{additional arguments}
 }
 \description{
-  This function computes the equivalence and
-  bootstrap-based test of substantial mediation outlined
-  in: Mara, C. & Cribbie, R. A. (submitted). An
-  equivalence-based procedure for assessing substantial
-  mediation. Psychological Methods.
+This function computes the equivalence and bootstrap-based
+test of substantial mediation outlined in: Mara, C. &
+Cribbie, R. A. (submitted). An equivalence-based procedure
+for assessing substantial mediation. Psychological Methods.
 }
 \details{
-  This function determines whether a single mediator
-  accounts for a substantial proportion of the relationship
-  between an independent variable (IV) and a dependent
-  variable (DV), where quantifying 'a substantial
-  proportion' depends on the width of the equivalence
-  interval. For a mediator to be said to account for a
-  substantial proportion of the relationship between the IV
-  and DV, the raw relationship between IV and DV should be
-  very similar to the reproduced IV-DV relationship (i.e.,
-  IV->M*M->DV). The equivalence interval defines how
-  similar these relationships must be in order for the
-  mediation to be substantial.
+This function determines whether a single mediator accounts
+for a substantial proportion of the relationship between an
+independent variable (IV) and a dependent variable (DV),
+where quantifying 'a substantial proportion' depends on the
+width of the equivalence interval. For a mediator to be
+said to account for a substantial proportion of the
+relationship between the IV and DV, the raw relationship
+between IV and DV should be very similar to the reproduced
+IV-DV relationship (i.e., IV->M*M->DV). The equivalence
+interval defines how similar these relationships must be in
+order for the mediation to be substantial.
 }
 \examples{
 \dontrun{
@@ -61,13 +59,13 @@ subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE)
 }
 }
 \author{
-  Constance Mara \email{constancemara@gmail.com}, Rob
-  Cribbie \email{cribbie@yorku.ca}, and Phil Chalmers
-  \email{rphilip.chalmers@gmail.com}
+Constance Mara \email{constancemara@gmail.com}, Rob Cribbie
+\email{cribbie@yorku.ca}, and Phil Chalmers
+\email{rphilip.chalmers@gmail.com}
 }
 \references{
-  Mara, C. & Cribbie, R. A. (submitted). An
-  equivalence-based procedure for assessing substantial
-  mediation. \emph{Psychological Methods}.
+Mara, C. & Cribbie, R. A. (submitted). An equivalence-based
+procedure for assessing substantial mediation.
+\emph{Psychological Methods}.
 }
 
