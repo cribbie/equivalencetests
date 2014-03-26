@@ -23,9 +23,9 @@ for k-groups.
 \examples{
 \dontrun{
 
-dv <- rnorm(100)
-group <- rep(paste0('G',1:4), each=25)
-wellek_welch(dv, group, eps = 0.25)
+dv <- rnorm(1000)
+group <- rep(paste0('G',1:4), each=length(dv)/4)
+wellek_welch(dv, group, eps = 0.5)
 
 }
 }
