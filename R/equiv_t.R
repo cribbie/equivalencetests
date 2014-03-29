@@ -1,17 +1,21 @@
 #' Schuirmann's Test of the Equivalence of Two Independent Groups
 #' 
 #' Perform Schuirmann's two-sample equivalence test, potentially with Yuen's formula for
-#' trimmed means on the data in x and y if trimming is included. Missing values 
+#' trimmed means on the data in x and y if trimming is included. Missing values are
 #' automatically removed.
 #' 
 #' @aliases equiv_t
 #' @param x a numeric vector
 #' @param y a numeric vector
 #' @param equivint equivalence interval
-#' @param tr proportion of data to trim
+#' @param tr proportion of data to trim. When \code{tr == 0} the standard Schuirmann test
+#'   is performed
 #' @param alpha desired alpha level
 #' @param varequal logical; assume equal variances? Only applicable when tr == 0
 #' @param ... additional arguments to be passed
+#' 
+#' @return returns a \code{data.frame} containing the directional t-statitics and 
+#'   their associated degrees of freedom and p-values
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}

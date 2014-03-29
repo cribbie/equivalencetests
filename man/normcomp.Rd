@@ -37,7 +37,7 @@ normcomp(premean, presd, pren, postmean, postsd, postn, normmean, normsd, normn,
 The following function conducts normative comparison tests
 for evaluating clinical significance, using both the
 Cribbie and Arpin-Cribbie (2009) and Kendall et al. (1999)
-methods.  Normative comparison tests compare a treated
+methods. Normative comparison tests compare a treated
 sample to a normal comparison sample to determine if they
 are statistically equivalent.
 }

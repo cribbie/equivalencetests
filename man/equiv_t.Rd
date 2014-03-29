@@ -11,7 +11,8 @@ equiv_t(x, y, equivint, tr = 0.2, alpha = 0.05, varequal = FALSE, ...)
 
   \item{equivint}{equivalence interval}
 
-  \item{tr}{proportion of data to trim}
+  \item{tr}{proportion of data to trim. When \code{tr == 0}
+  the standard Schuirmann test is performed}
 
   \item{alpha}{desired alpha level}
 
@@ -20,10 +21,15 @@ equiv_t(x, y, equivint, tr = 0.2, alpha = 0.05, varequal = FALSE, ...)
 
   \item{...}{additional arguments to be passed}
 }
+\value{
+returns a \code{data.frame} containing the directional
+t-statitics and their associated degrees of freedom and
+p-values
+}
 \description{
 Perform Schuirmann's two-sample equivalence test,
 potentially with Yuen's formula for trimmed means on the
-data in x and y if trimming is included. Missing values
+data in x and y if trimming is included. Missing values are
 automatically removed.
 }
 \examples{

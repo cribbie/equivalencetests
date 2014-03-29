@@ -18,11 +18,16 @@ equiv_drs(dat, equiv_int, n = NULL, alpha = 0.05)
 
   \item{alpha}{desired alpha level}
 }
+\value{
+returns a list containing the p-value, confidence interval,
+and statistical decision
+}
 \description{
-Interested in testing the equivalence of r12 and r13
-(variable 1 is overlapping variable). Standard errors based
-on William's modification to Hotellings test comparing
-dependent overlapping correlations
+Tests the equivalence of the correlations r12 and r13
+(variable 1 is overlapping variable) in a three variable
+correlation matrix. Standard errors based on William's
+modification to Hotellings test comparing dependent
+overlapping correlations.
 }
 \examples{
 \dontrun{

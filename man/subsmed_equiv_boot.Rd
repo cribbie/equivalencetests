@@ -51,7 +51,8 @@ order for the mediation to be substantial.
 }
 \examples{
 \dontrun{
-#equivalence interval of .1, a standardized solution, 1000 bootstrap samples, and the default alpha level (.05)
+# equivalence interval of .1, a standardized solution, 1000 bootstrap samples,
+#  and the default alpha level (.05)
 m <- rnorm(500)
 x <- m + rnorm(500)
 y <- m + rnorm(500)

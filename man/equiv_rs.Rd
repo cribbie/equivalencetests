@@ -31,6 +31,10 @@ equiv_rs(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
 
   \item{...}{additional arguments to be passed}
 }
+\value{
+returns a list containing the coefficients, the equivalence
+interval, p-value, and statistical decision
+}
 \description{
 Given raw data or known sample correlations, test whether
 correlation/covariance values are equivalent within a
@@ -39,10 +43,10 @@ are not equivalent.
 }
 \details{
 Function uses Anderson and Hauck's (1983) equivalence test.
-Because the p value derived from the test is only an
+Because the p-value derived from the test is only an
 approximation, the CIs may produce results that fall
 outside of the equivalence interval at small sample sizes,
-even with a statistically significant p value. They
+even with a statistically significant p-value. They
 therefore provide a measure of precision, but cannot be
 used as a reject/fail to reject decision regarding the null
 hypothesis.

@@ -1,8 +1,8 @@
-#' Run several equivalence based correlation tests
+#' Run equivalence based correlation tests
 #' 
-#' The following function was created to run a traditional Pearson correlation test, an equivalence based test of lack
-#' of association, an equivalence based test of lack of association using a Fisher's z transformation, and an
-#' equivalence based test of lack of association with resampling. 
+#' Function performs a traditional Pearson correlation test, an equivalence based test of lack
+#' of association, an equivalence based test of lack of association using a Fisher's z 
+#' transformation, and an equivalence based test of lack of association with resampling. 
 #' 
 #' @aliases equiv_corr
 #' @param dat a data.frame or matrix containing only 2 variables
@@ -10,6 +10,9 @@
 #' @param alpha desired alpha level
 #' @param na.rm logical; remove missing values?
 #' @param ... additional arguments to be passed
+#' 
+#' @return returns a \code{list} containing each analysis and their respective statistics
+#'   and decision
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}

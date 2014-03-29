@@ -1,7 +1,7 @@
 \name{equiv_corr}
 \alias{equiv_corr}
 \alias{print.equiv_corr}
-\title{Run several equivalence based correlation tests}
+\title{Run equivalence based correlation tests}
 \usage{
 equiv_corr(dat, equivint, alpha = 0.05, na.rm = TRUE, ...)
 
@@ -21,13 +21,16 @@ equiv_corr(dat, equivint, alpha = 0.05, na.rm = TRUE, ...)
 
   \item{x}{object of class \code{equiv_corr}}
 }
+\value{
+returns a \code{list} containing each analysis and their
+respective statistics and decision
+}
 \description{
-The following function was created to run a traditional
-Pearson correlation test, an equivalence based test of lack
-of association, an equivalence based test of lack of
-association using a Fisher's z transformation, and an
-equivalence based test of lack of association with
-resampling.
+Function performs a traditional Pearson correlation test,
+an equivalence based test of lack of association, an
+equivalence based test of lack of association using a
+Fisher's z transformation, and an equivalence based test of
+lack of association with resampling.
 }
 \examples{
 \dontrun{

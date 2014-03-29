@@ -5,9 +5,9 @@
 #' are not equivalent.
 #' 
 #' Function uses Anderson and Hauck's (1983) equivalence test. Because
-#' the p value derived from the test is only an approximation, the CIs may produce
+#' the p-value derived from the test is only an approximation, the CIs may produce
 #' results that fall outside of the equivalence interval at small sample sizes,
-#' even with a statistically significant p value. They therefore provide a measure
+#' even with a statistically significant p-value. They therefore provide a measure
 #' of precision, but cannot be used as a reject/fail to reject decision regarding
 #' the null hypothesis.
 #' 
@@ -22,6 +22,9 @@
 #' @param betas logical; compare raw beta regression coefficients rather than correlations?
 #' @param alpha desired alpha level
 #' @param ... additional arguments to be passed
+#' 
+#' @return returns a list containing the coefficients, the equivalence interval, p-value, and
+#'   statistical decision
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}

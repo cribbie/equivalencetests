@@ -1,9 +1,8 @@
 #' Dependent Correlations
 #' 
-#' Interested in testing the equivalence of r12 and r13 (variable 1 is overlapping variable). 
-#' Standard errors based on William's modification to Hotellings test comparing dependent 
-#' overlapping correlations
-#' 
+#' Tests the equivalence of the correlations r12 and r13 (variable 1 is overlapping variable) in
+#' a three variable correlation matrix. Standard errors based on William's modification 
+#' to Hotellings test comparing dependent overlapping correlations.
 #' 
 #' @aliases equiv_drs
 #' @param dat an N x 3 matrix or data.frame containing raw data used to compute the 
@@ -12,6 +11,8 @@
 #' @param equiv_int equivalence interval
 #' @param n sample size when dat input is a vector of correlations
 #' @param alpha desired alpha level
+#' 
+#' @return returns a list containing the p-value, confidence interval, and statistical decision
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
