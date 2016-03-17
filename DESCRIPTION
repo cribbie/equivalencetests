@@ -21,3 +21,4 @@ LazyData: yes
 Repository: github
 License: GPL (>= 2)
 URL: https://github.com/cribbie/equivalence_tests
+RoxygenNote: 5.0.1

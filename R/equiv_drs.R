@@ -47,12 +47,15 @@ equiv_drs <- function(dat, equiv_int, n = NULL, alpha = 0.05) {
             stop("sample size input required")
     }
     detR <- (1 - r12^2 - r13^2 - r23^2) + (2 * r12 * r13 * r23)
-    p1 <- pnorm((abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + 
-        (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
-    p2 <- pnorm((-abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + 
-        (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
+    p1 <- pnorm((abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * 
+        (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
+        ((1 - r23)^3)))))
+    p2 <- pnorm((-abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * 
+        (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
+        ((1 - r23)^3)))))
     p.value <- p1 - p2
-    ser <- 1/sqrt(((n - 1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))
+    ser <- 1/sqrt(((n - 1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * 
+        detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))
     upper <- (r12 - r13) + qnorm(alpha) * ser
     lower <- (r12 - r13) - qnorm(alpha) * ser
     if (lower < upper) {
@@ -70,6 +73,7 @@ equiv_drs <- function(dat, equiv_int, n = NULL, alpha = 0.05) {
         "Dependent correlation coefficients can NOT be considered equivalent at alpha."
     }
     out <- list(p.value, CI, decision)
-    names(out) <- c("P value", "Confidence Interval of the Difference in Correlations", "Decision")
+    names(out) <- c("P value", "Confidence Interval of the Difference in Correlations", 
+        "Decision")
     print(out)
 } 

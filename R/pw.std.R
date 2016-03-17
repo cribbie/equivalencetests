@@ -22,10 +22,8 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     means <- as.matrix(apply(dat, 2, mean))
     
     allcontrasts <- getContrast(k, type = "allPW")
-    mean_diff_names <- pairwise_meanDiffs(means, 
-        allcontrasts)
-    sqrt_varcovar <- pairwise_sd(allcontrasts, 
-        sigma)
+    mean_diff_names <- pairwise_meanDiffs(means, allcontrasts)
+    sqrt_varcovar <- pairwise_sd(allcontrasts, sigma)
     
     omnibus_res <- NA
     leftside <- NA
@@ -35,9 +33,8 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     }
     
     leftside <- unlist(leftside)
-    find_nonequiv_res <- which(ifelse(leftside < 
-        fcrit, check_equiv <- 1, check_equiv <- 0) == 
-        0)
+    find_nonequiv_res <- which(ifelse(leftside < fcrit, check_equiv <- 1, 
+        check_equiv <- 0) == 0)
     ifelse(length(find_nonequiv_res) > 0, omnibus_std_res <- "No evidence for equivalence", 
         omnibus_std_res <- "Evidence for equivalence")  #if at least one pair is NOT equiv, omnibus is not signif. 
     

@@ -43,7 +43,8 @@
 #' r2 <- cor(dat2)[2,1]
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 #' }
-equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, alpha = 0.05) {
+equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, 
+    betas = FALSE, alpha = 0.05) {
     if (betas && (length(dat1) == 1L || length(dat2) == 1L)) 
         stop("beta comparisons require raw data inputs")
     if (length(dat1) > 1L) {
@@ -83,9 +84,11 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     if (betas) {
         ser <- sqrt(se1^2 + se2^2)
     } else {
-        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
+        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 
+            2)))
     }
-    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - r2) - equiv_int)/ser)
+    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - 
+        r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
     if (lower < upper) {
@@ -102,7 +105,7 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     } else {
         cfs <- data.frame(r1 = r1, r2 = r2)
     }
-    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, upperCI = upper2, p = p.value, 
-        reject_equivalence = !reject))
+    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, 
+        upperCI = upper2, p = p.value, reject_equivalence = !reject))
     ret
 } 
