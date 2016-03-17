@@ -1,18 +1,30 @@
 #' Hotelling T2
+#' 
 #' This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 
-#' means on repeated measures are practically equivalent, given some pre-specified interval. 
-#' @aliases equiv.hotT2
+#' set of means on repeated measures are practically equivalent, given some pre-specified interval in the metric of Mahalanobis distance.
+#' @aliases eq.hotT2
 #' @param data a data.frame object
 #' @param repeated a character vector of column names that are the dependent samples
 #' @param ei equivalence interval, in the metric of Mahalanobis distance
 #' @param alpha alpha level
-#' @keywords
-#' @export equiv.hotT2
+#' @export eq.hotT2
 #' @examples
-#' dat <- data.frame(pre=rnorm(6), post=rnorm(6,2), fu=rnorm(6,0.5), sex=c(rep('m', 2), rep('f', 4)) )
-#' equiv.hotT2()
+#' k.obs <- 3
+#' elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
+#' 
+#' X <- diag(k.obs)  
+#' X[lower.tri(X, diag = TRUE)] <- elements
+#' X <- X + t(X) - diag(diag(X)) 
+#' colnames(X) <- c('repA', 'repB', 'repC')
+#' rownames(X) <- c('repA', 'repB', 'repC')
+#' 
+#' if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
+#' dat <- data.frame(rmvnorm(n=40, sigma=X))
+#' names(dat) <- c('repA', 'repB', 'repC')
+#' eq.hotT2(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
 
-equiv.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
+
+eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
     if (class(data) != "data.frame") 
         stop("Data input is not a dataframe.")
     dat <- data[, repeated]

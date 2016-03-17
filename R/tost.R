@@ -1,4 +1,4 @@
-#' Two one-sided equivalence tests (TOST)
+#' Two one-sided equivalence tests (TOST) for two independent groups
 #' 
 #' This R function allows for the computation of the original Schuirmann two-sided t-test (TOST) for equivalence, the modified Schuirmann-Welch test (which does not require the variances to be equal), or the Schuirmann-Yuen test (if normality cannot be assumed), 
 #' depending on the arguments specified. The original Schuirmann assumes equal variances and normality. The Schuirmann-Welch assumes normality but not equal variances. The Schuirmann-Yuen accounts for unequal variances and nonnormality using trimmed means and Winsorized variances.

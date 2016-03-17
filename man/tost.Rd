@@ -16,7 +16,7 @@
 \alias{varequiv}
 \alias{x,}
 \alias{y,}
-\title{Two one-sided equivalence tests (TOST)}
+\title{Two one-sided equivalence tests (TOST) for two independent groups}
 \usage{
 tost(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2,
   alpha = 0.05, na.rm = TRUE, ...)
