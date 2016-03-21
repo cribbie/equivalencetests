@@ -3,13 +3,25 @@
 #' 
 #' An equivalence test for repeated measures. Tests the null hypothesis that at least one pairwise mean difference 
 #' is not practically equivalent, as defined by an equivalent interval.  
-#' @param data data set in data.frame format
-#' @param repeated a character vector of column names designating the repeated measures
-#' @param ei equivalence interval 
-#' @param alpha  alpha level
+#' @param data a data.frame object
+#' @param repeated a character vector containing the names of the repeated measures variables
+#' @param ei equivalence interval, in standardized metric
+#' @param alpha  alpha/significance level
 #' @export pw.std
 #' @examples
-#' pw.std()
+#' k.obs <- 3
+#' elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
+#' 
+#' X <- diag(k.obs)  
+#' X[lower.tri(X, diag = TRUE)] <- elements
+#' X <- X + t(X) - diag(diag(X)) 
+#' colnames(X) <- c('repA', 'repB', 'repC')
+#' rownames(X) <- c('repA', 'repB', 'repC')
+#' 
+#' if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
+#' dat <- data.frame(rmvnorm(n=40, sigma=X))
+#' names(dat) <- c('repA', 'repB', 'repC')
+#' pw.std(data=dat, repeated=c('repA', 'repB', 'repC'), ei=1)
 
 
 pw.std <- function(data, repeated, ei, alpha = 0.05) {

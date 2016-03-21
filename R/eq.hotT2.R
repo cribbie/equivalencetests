@@ -4,9 +4,10 @@
 #' set of means on repeated measures are practically equivalent, given some pre-specified interval in the metric of Mahalanobis distance.
 #' @aliases eq.hotT2
 #' @param data a data.frame object
-#' @param repeated a character vector of column names that are the dependent samples
+#' @param repeated a character vector containing the names of the repeated measures variables
 #' @param ei equivalence interval, in the metric of Mahalanobis distance
-#' @param alpha alpha level
+#' @param alpha alpha/significance level
+#' @references Wellek, S. (2010). \emph{Testing statistical hypotheses of equivalence and noninferiority}. CRC Press.
 #' @export eq.hotT2
 #' @examples
 #' k.obs <- 3
@@ -21,6 +22,7 @@
 #' if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
 #' dat <- data.frame(rmvnorm(n=40, sigma=X))
 #' names(dat) <- c('repA', 'repB', 'repC')
+#' 
 #' eq.hotT2(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
 
 

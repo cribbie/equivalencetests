@@ -3,18 +3,23 @@ Type: Package
 Title: Equivalence Tests
 Version: 0.1.1
 Date: 2013-05-31
-Authors@R: c(person('Phil', 'Chalmers',
+Authors@R:  c(person('Victoria', 'Ng',
+    email='ng.victoria.ky@gmail.com',
+    role=c('aut')),
+    person('Phil', 'Chalmers',
     email='rphilip.chalmers@gmail.com',
     role=c('cre', 'aut')),
     person('Rob', 'Cribbie',
     email='cribbie@yorku.ca',
     role=c('ctb')))
 Maintainer: Rob Cribbie <cribbie@yorku.ca>
-Description: Provides tools for equivalence testing.
+Description: The equivalencetests package provides statistical tools for equivalence testing in the null hypothesis testing framework. Several sets of tests of available for continuous responses; some for independent grouping variables and others for repeated assessments on single samples.  groups,  
 Imports:
-    sem
+    sem,
+    plyr
 Suggests:
-    testthat
+    testthat,
+    mvtnorm
 ByteCompile: no
 LazyLoad: yes
 LazyData: yes
