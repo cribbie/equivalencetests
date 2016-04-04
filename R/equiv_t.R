@@ -31,13 +31,12 @@
 #' }
 equiv_t <- function(x, y, equivint, tr = 0.2, alpha = 0.05, varequal = FALSE, 
     ...) {
-    # Perform Schuirmann's two-sample equivalence test using Yuen's
-    # formula for trimmed means on the data in x and y.  The
-    # default amount of trimming is 20% Missing values (values
-    # stored as NA) are automatically removed.  The p-values are
-    # returned in yuen$pvals
-    equivt <- function(x, y, equivint, alpha = 0.05, varequal = FALSE, 
-        na.rm = TRUE, ...) {
+    # Perform Schuirmann's two-sample equivalence test using Yuen's formula
+    # for trimmed means on the data in x and y.  The default amount of
+    # trimming is 20% Missing values (values stored as NA) are automatically
+    # removed.  The p-values are returned in yuen$pvals
+    equivt <- function(x, y, equivint, alpha = 0.05, varequal = FALSE, na.rm = TRUE, 
+        ...) {
         if (na.rm) 
             x <- x[!is.na(x)]
         if (na.rm) 
@@ -56,12 +55,12 @@ equiv_t <- function(x, y, equivint, tr = 0.2, alpha = 0.05, varequal = FALSE,
                 decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval cannot be rejected")
         }
         if (varequal == TRUE) {
-            t1 <- (mean(x) - mean(y) - equivint)/sqrt(((((length(x) - 
-                1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
-                length(y) - 2)) * (1/length(x) + 1/length(y)))
-            t2 <- (mean(x) - mean(y) + equivint)/sqrt(((((length(x) - 
-                1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
-                length(y) - 2)) * (1/length(x) + 1/length(y)))
+            t1 <- (mean(x) - mean(y) - equivint)/sqrt(((((length(x) - 1) * 
+                sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + length(y) - 
+                2)) * (1/length(x) + 1/length(y)))
+            t2 <- (mean(x) - mean(y) + equivint)/sqrt(((((length(x) - 1) * 
+                sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + length(y) - 
+                2)) * (1/length(x) + 1/length(y)))
             dft <- length(x) + length(y) - 2
             probt1 <- pt(t1, dft, lower.tail = T)
             probt2 <- pt(t2, dft, lower.tail = F)

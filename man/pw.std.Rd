@@ -7,19 +7,31 @@
 pw.std(data, repeated, ei, alpha = 0.05)
 }
 \arguments{
-\item{data}{data set in data.frame format}
+\item{data}{a data.frame object}
 
-\item{repeated}{a character vector of column names designating the repeated measures}
+\item{repeated}{a character vector containing the names of the repeated measures variables}
 
-\item{ei}{equivalence interval}
+\item{ei}{equivalence interval, in standardized metric}
 
-\item{alpha}{alpha level}
+\item{alpha}{alpha/significance level}
 }
 \description{
 An equivalence test for repeated measures. Tests the null hypothesis that at least one pairwise mean difference 
 is not practically equivalent, as defined by an equivalent interval.
 }
 \examples{
-pw.std()
+k.obs <- 3
+elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
+
+X <- diag(k.obs)  
+X[lower.tri(X, diag = TRUE)] <- elements
+X <- X + t(X) - diag(diag(X)) 
+colnames(X) <- c('repA', 'repB', 'repC')
+rownames(X) <- c('repA', 'repB', 'repC')
+
+if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
+dat <- data.frame(rmvnorm(n=40, sigma=X))
+names(dat) <- c('repA', 'repB', 'repC')
+pw.std(data=dat, repeated=c('repA', 'repB', 'repC'), ei=1)
 }
 

@@ -4,14 +4,14 @@
 \alias{equiv_drs}
 \title{Dependent Correlations}
 \usage{
-equiv_drs(dat, equiv_int, n = NULL, alpha = 0.05)
+equiv_drs(dat, ei, n = NULL, alpha = 0.05)
 }
 \arguments{
 \item{dat}{an N x 3 matrix or data.frame containing raw data used to compute the 
 correlation matrix between variables. The input may also be a 1 x 3 vector of correlations
 (r12, r13, and r23, respectively) and requires a sample size input (N)}
 
-\item{equiv_int}{equivalence interval}
+\item{ei}{equivalence interval}
 
 \item{n}{sample size when dat input is a vector of correlations}
 
@@ -30,13 +30,13 @@ to Hotellings test comparing dependent overlapping correlations.
 #raw data
 set.seed(1234)
 dat <- cbind(rnorm(100), rnorm(100), rnorm(100)) 
-equiv_drs(dat, equiv_int = .2)
+equiv_drs(dat, ei = .2)
 
 #correlations input
 r12 <- cor(dat)[2,1]
 r13 <- cor(dat)[2,1]
 r23 <- 
-equiv_drs(c(r12, r13, r23), equiv_int = .2, n = nrow(dat))
+equiv_drs(c(r12, r13, r23), ei = .2, n = nrow(dat))
 }
 }
 \author{

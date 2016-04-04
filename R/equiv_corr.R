@@ -25,22 +25,20 @@
 #' dat <- data.frame(v1, v2)
 #' equiv_corr(dat, .2)
 #' }
-equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE, 
-    ...) {
+equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE, ...) {
     dat <- na.omit(dat)
     var1 <- x <- dat[, 1]
     var2 <- y <- dat[, 2]
     corxy <- cor(var1, var2)
     n <- length(var1)
     nresamples <- 10000
-    #### Running a traditional t test to determine if the correlation
-    #### is significant######
+    #### Running a traditional t test to determine if the correlation is
+    #### significant######
     t <- corxy/(sqrt((1 - corxy^2)/(n - 2)))
     pvalue_tradt <- 1 - pt(abs(t), n - 2)
     ifelse(pvalue_tradt <= alpha, decis_tradt <- "The null hypothesis that there is no correlation between x and y can be rejected.", 
         decis_tradt <- "The null hypothesis that there is no correlation between x and y cannot be rejected.")
-    #### Running an original two t-test procedure for equivalence
-    #### #######
+    #### Running an original two t-test procedure for equivalence #######
     equivt1 <- (corxy - equivint)/sqrt((1 - corxy^2)/(n - 2))
     pvalue1_equivt <- pt(equivt1, n - 2)
     equivt2 <- (corxy + equivint)/sqrt((1 - corxy^2)/(n - 2))
@@ -57,10 +55,9 @@ equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE,
     pvalue2_fz <- 1 - pnorm(equivt2_fz)
     ifelse(pvalue1_fz <= alpha & pvalue2_fz <= alpha, decis_fz <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval can be rejected.", 
         decis_fz <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval cannot be rejected.")
-    #### Run the resampling version of the two t-test procedure for
-    #### equivalence #####
-    resamp <- function(x, m = 10000, theta, conf.level = 0.95, 
-        ...) {
+    #### Run the resampling version of the two t-test procedure for equivalence
+    #### #####
+    resamp <- function(x, m = 10000, theta, conf.level = 0.95, ...) {
         n <- length(x)
         Data <- matrix(sample(x, size = n * m, replace = T), nrow = m)
         thetastar <- apply(Data, 1, theta, ...)
@@ -68,8 +65,8 @@ equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE,
         S <- sd(thetastar)
         alpha <- 1 - conf.level
         CI <- quantile(thetastar, c(alpha/2, 1 - alpha/2))
-        return(list(ThetaStar = thetastar, Mean.ThetaStar = M, 
-            S.E.ThetaStar = S, Percentile.CI = CI))
+        return(list(ThetaStar = thetastar, Mean.ThetaStar = M, S.E.ThetaStar = S, 
+            Percentile.CI = CI))
     }
     matr <- cbind(var1, var2)
     mat <- as.matrix(matr)
@@ -92,20 +89,19 @@ equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE,
     title4 <- "Equivalence Based Test of Lack of Association with Resampling"
     stats_tradt <- c(corxy, t, n - 2, pvalue_tradt)
     names(stats_tradt) <- c("Pearson r", "t-statistic", "df", "p-value")
-    stats_equivt <- c(corxy, equivint, equivt1, pvalue1_equivt, 
-        equivt2, pvalue2_equivt, n - 2)
-    names(stats_equivt) <- c("Pearson r", "Equivalence Interval", 
-        "t-stat 1", "pval_t1", "t-stat 2", "pval_t2", "df")
-    stats_fz <- c(corxy, equivint, equivt1_fz, pvalue1_fz, equivt2_fz, 
-        pvalue2_fz)
+    stats_equivt <- c(corxy, equivint, equivt1, pvalue1_equivt, equivt2, 
+        pvalue2_equivt, n - 2)
+    names(stats_equivt) <- c("Pearson r", "Equivalence Interval", "t-stat 1", 
+        "pval_t1", "t-stat 2", "pval_t2", "df")
+    stats_fz <- c(corxy, equivint, equivt1_fz, pvalue1_fz, equivt2_fz, pvalue2_fz)
     names(stats_fz) <- c("Pearson r", "Equivalence Interval", "z-stat 1", 
         "pval_z1", "z-stat 2", "pval_z2")
     stats_rs <- c(corxy, equivint, nresamples, q1, q2)
     names(stats_rs) <- c("Pearson r", "Equivalence Interval", "# of Resamples", 
         "5th Percentile", "95th Percentile")
-    out <- list(list(title1, stats_tradt, decis_tradt), list(title2, 
-        stats_equivt, decis_equivt), list(title3, stats_fz, decis_fz), 
-        list(title4, stats_rs, decis_rs))
+    out <- list(list(title1, stats_tradt, decis_tradt), list(title2, stats_equivt, 
+        decis_equivt), list(title3, stats_fz, decis_fz), list(title4, stats_rs, 
+        decis_rs))
     class(out) <- "equiv_corr"
     out
 }
@@ -116,8 +112,8 @@ equiv_corr <- function(dat, equivint, alpha = 0.05, na.rm = TRUE,
 #' @param x object of class \code{equiv_corr}
 print.equiv_corr <- function(x, ...) {
     lapply(x, function(y) {
-        cat("**************************************************\n\n", 
-            y[[1]], "\n\n")
+        cat("**************************************************\n\n", y[[1]], 
+            "\n\n")
         print(y[[2]])
         cat("\n\n", y[[3]], "\n\n")
     })

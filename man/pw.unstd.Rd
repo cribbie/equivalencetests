@@ -7,16 +7,31 @@
 pw.unstd(data, repeated, ei, alpha = 0.05)
 }
 \arguments{
-\item{data}{dataset in data.frame format}
+\item{data}{a data.frame object}
 
 \item{repeated}{a character vector containing the names of the repeated measures variables}
 
-\item{ei}{the equivalence interval in unstandardized metric}
+\item{ei}{equivalence interval, in unstandardized metric}
 
-\item{alpha}{the alpha level for significance testing}
+\item{alpha}{alpha/significance level}
 }
 \description{
 Equivalence interval is in unstandardized metric. If at least one pairwise mean difference is found not statistically significant (in equivalence), then the whole test fails to reject the null hypothesis.
+}
+\examples{
+#' k.obs <- 3
+elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
+
+X <- diag(k.obs)  
+X[lower.tri(X, diag = TRUE)] <- elements
+X <- X + t(X) - diag(diag(X)) 
+colnames(X) <- c('repA', 'repB', 'repC')
+rownames(X) <- c('repA', 'repB', 'repC')
+
+if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
+dat <- data.frame(rmvnorm(n=40, sigma=X))
+names(dat) <- c('repA', 'repB', 'repC')
+pw.unstd(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
 }
 \references{
 Mara, C. A., & Cribbie, R. A. (2012). Paired-samples tests of equivalence. \emph{Communications in Statistics-Simulation and Computation}, 41(10), 1928-1943.

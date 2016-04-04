@@ -9,11 +9,11 @@ eq.hotT2(data, repeated, ei, alpha = 0.05)
 \arguments{
 \item{data}{a data.frame object}
 
-\item{repeated}{a character vector of column names that are the dependent samples}
+\item{repeated}{a character vector containing the names of the repeated measures variables}
 
 \item{ei}{equivalence interval, in the metric of Mahalanobis distance}
 
-\item{alpha}{alpha level}
+\item{alpha}{alpha/significance level}
 }
 \description{
 This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 
@@ -32,6 +32,10 @@ rownames(X) <- c('repA', 'repB', 'repC')
 if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
 dat <- data.frame(rmvnorm(n=40, sigma=X))
 names(dat) <- c('repA', 'repB', 'repC')
+
 eq.hotT2(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
+}
+\references{
+Wellek, S. (2010). \emph{Testing statistical hypotheses of equivalence and noninferiority}. CRC Press.
 }
 
