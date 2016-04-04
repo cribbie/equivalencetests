@@ -8,7 +8,7 @@
 #' @param dat an N x 3 matrix or data.frame containing raw data used to compute the 
 #'   correlation matrix between variables. The input may also be a 1 x 3 vector of correlations
 #'   (r12, r13, and r23, respectively) and requires a sample size input (N)
-#' @param equiv_int equivalence interval
+#' @param ei equivalence interval
 #' @param n sample size when dat input is a vector of correlations
 #' @param alpha desired alpha level
 #' 
@@ -22,15 +22,15 @@
 #' #raw data
 #' set.seed(1234)
 #' dat <- cbind(rnorm(100), rnorm(100), rnorm(100)) 
-#' equiv_drs(dat, equiv_int = .2)
+#' equiv_drs(dat, ei = .2)
 #' 
 #' #correlations input
 #' r12 <- cor(dat)[2,1]
 #' r13 <- cor(dat)[2,1]
 #' r23 <- 
-#' equiv_drs(c(r12, r13, r23), equiv_int = .2, n = nrow(dat))
+#' equiv_drs(c(r12, r13, r23), ei = .2, n = nrow(dat))
 #' }
-equiv_drs <- function(dat, equiv_int, n = NULL, alpha = 0.05) {
+equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
     if (length(dat) > 3L) {
         x1 <- dat[, 1L]
         x2 <- dat[, 2L]
@@ -47,10 +47,10 @@ equiv_drs <- function(dat, equiv_int, n = NULL, alpha = 0.05) {
             stop("sample size input required")
     }
     detR <- (1 - r12^2 - r13^2 - r23^2) + (2 * r12 * r13 * r23)
-    p1 <- pnorm((abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * 
+    p1 <- pnorm((abs(r12 - r13) - ei) * (sqrt(((n - 1) * 
         (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
         ((1 - r23)^3)))))
-    p2 <- pnorm((-abs(r12 - r13) - equiv_int) * (sqrt(((n - 1) * 
+    p2 <- pnorm((-abs(r12 - r13) - ei) * (sqrt(((n - 1) * 
         (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
         ((1 - r23)^3)))))
     p.value <- p1 - p2

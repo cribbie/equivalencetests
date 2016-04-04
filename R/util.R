@@ -70,3 +70,28 @@ pairwise_sd <- function(allcontrasts, sigma) {
     return(sqrt_varcovar)
 }
 
+#' 'Internal helper Function' to simulate sample data
+#' simRanIntSlope()
+simRanIntSlope <- function(sample_size, number_of_sample, equiv_interval, power){
+  id <- rep(1:sample_size,each=number_of_sample)
+  gamma00 <- 5 #avg initial status 
+  
+  #d <- weaken_power_by * equiv_interval   #as weaken_power_by increases, d increases. 
+  
+  if(power==FALSE){
+    gamma10 <- equiv_interval #avg slope      
+  }else{
+    gamma10 <- equiv_interval #- d        
+  }
+  
+  timeij<-rep(c(0:(number_of_sample-1)), times=sample_size)
+  
+  zeta0i<-rnorm(sample_size,mean=0, sd=1)  #int residuals. Int_sd is variance in intercepts. 
+  zeta1i<-rnorm(sample_size,mean=0, sd=1)   #slope residuals. slope_sd is variance in slopes. 
+  eij<-rnorm(sample_size*number_of_sample, mean=0, sd=1) #individual residuals 
+  
+  y<-gamma00 + gamma10*timeij + zeta0i + zeta1i*timeij + eij
+  #tapply(y,timeij,mean)     
+  newdat<-data.frame(id,timeij,y)      
+  return(newdat)
+}
