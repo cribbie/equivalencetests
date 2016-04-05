@@ -2,6 +2,7 @@
 #' 
 #' This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 
 #' set of means on repeated measures are practically equivalent, given some pre-specified interval in the metric of Mahalanobis distance.
+#' The null hypothesis of nonequality among the means of the responses is rejected if the T2 statistic is less than the critical value.
 #' @aliases eq.hotT2
 #' @param data a data.frame object
 #' @param repeated a character vector containing the names of the repeated measures variables
@@ -52,5 +53,5 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
     res <- list(repeatedMeasures = paste(k, "repeated measures"), means = t(means), 
         ei = paste(ei, "in Mahalanobis distance metric"), T2 = T2, fcrit = fcrit, 
         Decision = check_equiv)
-    print(res)
+    return(res)
 } 

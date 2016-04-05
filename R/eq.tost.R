@@ -44,7 +44,7 @@
 
 
 
-tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2, 
+eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2, 
     alpha = 0.05, na.rm = TRUE, ...) {
     if (na.rm) {
         x <- x[!is.na(x)]
