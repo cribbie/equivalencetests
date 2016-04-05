@@ -45,7 +45,7 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     find_nonequiv_res <- which((ifelse(leftside <= rightside, check_equiv <- 1, 
         check_equiv <- 0)) == 0)
     ifelse(length(find_nonequiv_res) > 0, decis <- "No evidence for equivalence", 
-        decis <- "evidence for equivalence")  #if at least one pairwise test is signif, omnibus is not signif. 
+        decis <- "There is evidence for overall equivalence among the repeated measures")  #if at least one pairwise test is signif, omnibus is not signif. 
     res <- list(repeatedMeasures = paste(k, "repeated measures"), means = t(means), 
         ei = paste(ei, "in unstandardized metric"), Decision = decis)
     print(res)

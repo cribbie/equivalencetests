@@ -25,66 +25,67 @@
 #' dat <- data.frame(dv=c(x,y),  group=c(rep('g1', length(x)), rep('g2', length(y)) ))
 #' #Plot raw data distribution
 #' ggplot(dat,aes(x=dv)) + 
-#'   geom_histogram(data=subset(dat,group == 'g1'),fill = "red", alpha = 0.2) +
-#'   geom_histogram(data=subset(dat,group == 'g2'),fill = "blue", alpha = 0.2)
+#'   geom_histogram(data=subset(dat,group == 'g1'),fill = 'red', alpha = 0.2) +
+#'   geom_histogram(data=subset(dat,group == 'g2'),fill = 'blue', alpha = 0.2)
 
 #' equivInfo <- data.frame(name='mean difference', meanDiff=equivObj$meanDiff, lowCI=equivObj$lowCI, highCI=equivObj$hiCI)
 
 #' require(ggplot2)
 #' p <- ggplot(equivInfo, aes(x=name, y=meanDiff))+
 #'   geom_pointrange(aes(ymin=lowCI, ymax=highCI)) +  xlab('comparison') +
-#'   geom_hline(yintercept=c(-equivint, equivint), linetype="dashed", color='blue') + 
+#'   geom_hline(yintercept=c(-equivint, equivint), linetype='dashed', color='blue') + 
 #'   coord_flip()
 #' p
 #' equivObj <- eq.TOST.CI(x,y, ei=0.50, alpha=.05)
 #' }
 #' 
-eq.TOST.CI <- function (x,y, ei, alpha=.05) {
-se <- sqrt(((((length(x)-1)*sd(x)^2)+((length(y)-1)*sd(y)^2))/(length(x)+length(y)-2))*(1/length(x)+1/length(y)))
-num1 <- (mean(x)-mean(y)-ei)
-num2 <- (mean(x)-mean(y)+ei)
-meanDiff <- mean(x)-mean(y)
-t1<-(mean(x)-mean(y)-ei)/se
-t2<-(mean(x)-mean(y)+ei)/se
-dft<-length(x)+length(y)-2
-
-probt1<-pt(t1,dft,lower.tail=T)
-probt2<-pt(t2,dft,lower.tail=F)
-ifelse (probt1<=alpha & probt2<=alpha,
-        decis<-"The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected",
-        decis<-"The null hypothesis that the difference between the means exceeds the equivalence interval cannot be rejected")
-
-#by two CIs (1-alpha)
-#find the two CIs for each of the mean diffs
-#get critical values
-t1Crit<-qt(1-alpha,dft,lower.tail=T)
-t2Crit<-qt(1-alpha,dft,lower.tail=F)
-
-#by 1 CIs (1-2alpha)
-tCrit <- qt(1-2*alpha, dft)
-lowCI <-  meanDiff-tCrit*se
-hiCI <- meanDiff+tCrit*se
-ifelse (lowCI>-ei & hiCI<ei,
-        ci.decis<-"CI bounds are within EI. Reject in favour of equivalence",
-        ci.decis<-"CI bounds are outside EI. Dont reject in favour of equivalence")
-
-ciBounds <- c(lowCI, hiCI)
-names(ciBounds) <- c('lowCI', 'highCI')
-means<-c(mean(x),mean(y))
-names(means)<-c("Mean Grp 1","Mean Grp 2")
-sds<-c(sd(x),sd(y))
-names(sds)<-c("SD Grp 1","SD Grp 2")
-ei<-(c(ei))
-names(ei)<-c("equivalence interval")
-tstats<-c(t1,t2)
-dfs<-c(dft,dft)
-pvals<-c(probt1,probt2)
-names(tstats)<-c("t1","t2")
-names(dfs)<-c("dft1","dft2")
-names(pvals)<-c("p_t1", "p_t2")
-res <- list(means=means, meanDiff=meanDiff, sds=sds,ei=ei,tstats=tstats,dfs=dfs,pvals=pvals,decis=decis, ciBounds=ciBounds, ci.decis=ci.decis, se=se, twoAlphaTCrit=tCrit, lowCI=lowCI, hiCI=hiCI)
-return(res)
+eq.TOST.CI <- function(x, y, ei, alpha = 0.05) {
+    se <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
+        length(y) - 2)) * (1/length(x) + 1/length(y)))
+    num1 <- (mean(x) - mean(y) - ei)
+    num2 <- (mean(x) - mean(y) + ei)
+    meanDiff <- mean(x) - mean(y)
+    t1 <- (mean(x) - mean(y) - ei)/se
+    t2 <- (mean(x) - mean(y) + ei)/se
+    dft <- length(x) + length(y) - 2
+    
+    probt1 <- pt(t1, dft, lower.tail = T)
+    probt2 <- pt(t2, dft, lower.tail = F)
+    ifelse(probt1 <= alpha & probt2 <= alpha, decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected", 
+        decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval cannot be rejected")
+    
+    # by two CIs (1-alpha) find the two CIs for each of the mean diffs
+    # get critical values
+    t1Crit <- qt(1 - alpha, dft, lower.tail = T)
+    t2Crit <- qt(1 - alpha, dft, lower.tail = F)
+    
+    # by 1 CIs (1-2alpha)
+    tCrit <- qt(1 - 2 * alpha, dft)
+    lowCI <- meanDiff - tCrit * se
+    hiCI <- meanDiff + tCrit * se
+    ifelse(lowCI > -ei & hiCI < ei, ci.decis <- "CI bounds are within EI. Reject in favour of equivalence", 
+        ci.decis <- "CI bounds are outside EI. Dont reject in favour of equivalence")
+    
+    ciBounds <- c(lowCI, hiCI)
+    names(ciBounds) <- c("lowCI", "highCI")
+    means <- c(mean(x), mean(y))
+    names(means) <- c("Mean Grp 1", "Mean Grp 2")
+    sds <- c(sd(x), sd(y))
+    names(sds) <- c("SD Grp 1", "SD Grp 2")
+    ei <- (c(ei))
+    names(ei) <- c("equivalence interval")
+    tstats <- c(t1, t2)
+    dfs <- c(dft, dft)
+    pvals <- c(probt1, probt2)
+    names(tstats) <- c("t1", "t2")
+    names(dfs) <- c("dft1", "dft2")
+    names(pvals) <- c("p_t1", "p_t2")
+    res <- list(means = means, meanDiff = meanDiff, sds = sds, ei = ei, 
+        tstats = tstats, dfs = dfs, pvals = pvals, decis = decis, ciBounds = ciBounds, 
+        ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, 
+        hiCI = hiCI)
+    return(res)
 }
 
 
-
+ 

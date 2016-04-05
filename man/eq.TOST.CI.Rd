@@ -36,13 +36,13 @@ alpha=0.5
 dat <- data.frame(dv=c(x,y),  group=c(rep('g1', length(x)), rep('g2', length(y)) ))
 #Plot raw data distribution
 ggplot(dat,aes(x=dv)) + 
-  geom_histogram(data=subset(dat,group == 'g1'),fill = "red", alpha = 0.2) +
-  geom_histogram(data=subset(dat,group == 'g2'),fill = "blue", alpha = 0.2)
+  geom_histogram(data=subset(dat,group == 'g1'),fill = 'red', alpha = 0.2) +
+  geom_histogram(data=subset(dat,group == 'g2'),fill = 'blue', alpha = 0.2)
 equivInfo <- data.frame(name='mean difference', meanDiff=equivObj$meanDiff, lowCI=equivObj$lowCI, highCI=equivObj$hiCI)
 require(ggplot2)
 p <- ggplot(equivInfo, aes(x=name, y=meanDiff))+
   geom_pointrange(aes(ymin=lowCI, ymax=highCI)) +  xlab('comparison') +
-  geom_hline(yintercept=c(-equivint, equivint), linetype="dashed", color='blue') + 
+  geom_hline(yintercept=c(-equivint, equivint), linetype='dashed', color='blue') + 
   coord_flip()
 p
 equivObj <- eq.TOST.CI(x,y, ei=0.50, alpha=.05)
