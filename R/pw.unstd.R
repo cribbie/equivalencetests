@@ -7,7 +7,7 @@
 #' @param alpha alpha/significance level
 #' @references Mara, C. A., & Cribbie, R. A. (2012). Paired-samples tests of equivalence. \emph{Communications in Statistics-Simulation and Computation}, 41(10), 1928-1943.
 #' @references Wellek, S. (2010). \emph{Testing statistical hypotheses of equivalence and noninferiority}. CRC Press.
-#' @export pw.std
+#' @export pw.unstd
 #' @examples 
 #' #' k.obs <- 3
 #' elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
