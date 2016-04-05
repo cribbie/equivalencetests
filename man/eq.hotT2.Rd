@@ -18,6 +18,7 @@ eq.hotT2(data, repeated, ei, alpha = 0.05)
 \description{
 This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 
 set of means on repeated measures are practically equivalent, given some pre-specified interval in the metric of Mahalanobis distance.
+The null hypothesis of nonequality among the means of the responses is rejected if the T2 statistic is less than the critical value.
 }
 \examples{
 k.obs <- 3

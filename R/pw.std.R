@@ -43,17 +43,17 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     for (i in 1:length(mean_diff_names)) {
         leftside <- sqrt(n) * abs((mean_diff_names))/(sqrt_varcovar)
     }
-  
+    
     leftside <- unlist(leftside)
     find_nonequiv_res <- which(ifelse(leftside < fcrit, check_equiv <- 1, 
         check_equiv <- 0) == 0)
     ifelse(length(find_nonequiv_res) > 0, omnibus_std_res <- "No evidence for overall equivalence among the repeated measures", 
         omnibus_std_res <- "There is evidence for overall equivalence among the repeated measures")  #if at least one pair is NOT equiv, omnibus is not signif. 
-    if(length(find_nonequiv_res)>0){
-      print('The following pairs were found to be nonequivalent:')
-      print()
-      print(find_nonequiv_res)    
-    }  
+    if (length(find_nonequiv_res) > 0) {
+        print("The following pairs were found to be nonequivalent:")
+        print()
+        print(find_nonequiv_res)
+    }
     res <- list(repeatedMeasures = paste(k, "repeated measures"), means = t(means), 
         ei = paste(ei, "in standardized metric"), Decision = omnibus_std_res)
     

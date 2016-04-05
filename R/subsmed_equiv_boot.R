@@ -41,8 +41,8 @@
 #' subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE) 
 #' }
 #' 
-subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000, 
-    alpha = 0.05) {
+subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, 
+    nboot = 10000, alpha = 0.05) {
     x <- IV
     y <- DV
     x <- x[is.na(x) == F & is.na(y) == F & is.na(m) == F]
@@ -56,9 +56,9 @@ subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000
     }
     id <- 1:n
     newdat <- data.frame(x, y, m)
-    semmod <- structure(c("x->m", "m->y", "m<->m", "y<->y", "x<->x", "bmx", 
-        "bym", "erm", "ery", "erx", NA, NA, NA, NA, NA), .Dim = c(5L, 3L), 
-        class = "semmod")
+    semmod <- structure(c("x->m", "m->y", "m<->m", "y<->y", "x<->x", 
+        "bmx", "bym", "erm", "ery", "erx", NA, NA, NA, NA, NA), .Dim = c(5L, 
+        3L), class = "semmod")
     moments <- sem::rawMoments(~(-1) + m + x + y)
     semout <- sem::sem(semmod, moments, n)
     covyx1 <- lm(y ~ x)$coeff[2]
@@ -74,8 +74,8 @@ subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000
         yb <- newdatb[, 2]
         mb <- newdatb[, 3]
         semmodb <- structure(c("xb->mb", "mb->yb", "mb<->mb", "yb<->yb", 
-            "xb<->xb", "bmx", "bym", "erm", "ery", "erx", NA, NA, NA, NA, 
-            NA), .Dim = c(5L, 3L), class = "semmod")
+            "xb<->xb", "bmx", "bym", "erm", "ery", "erx", NA, NA, NA, 
+            NA, NA), .Dim = c(5L, 3L), class = "semmod")
         momentsb <- sem::rawMoments(~(-1) + mb + xb + yb)
         semoutb <- sem::sem(semmodb, momentsb, n)
         covyx1b <- lm(yb ~ xb)$coeff[2]
@@ -107,8 +107,8 @@ subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000
     rownames(results) <- c("Positive Equiv Interval", "Negative Equiv Interval")
     colnames(results) <- c("alpha%CI", "1-alpha%CI")
     title5 <- "Decision"
-    out <- list(title1, title2, input, title3, covs, title4, results, title5, 
-        decis)
+    out <- list(title1, title2, input, title3, covs, title4, results, 
+        title5, decis)
     class(out) <- "subsmed_equiv_boot"
     out
 }

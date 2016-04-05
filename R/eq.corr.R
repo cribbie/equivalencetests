@@ -55,8 +55,8 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, ...) {
     pvalue2_fz <- 1 - pnorm(equivt2_fz)
     ifelse(pvalue1_fz <= alpha & pvalue2_fz <= alpha, decis_fz <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval can be rejected.", 
         decis_fz <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval cannot be rejected.")
-    #### Run the resampling version of the two t-test procedure for equivalence
-    #### #####
+    #### Run the resampling version of the two t-test procedure for
+    #### equivalence #####
     resamp <- function(x, m = 10000, theta, conf.level = 0.95, ...) {
         n <- length(x)
         Data <- matrix(sample(x, size = n * m, replace = T), nrow = m)
@@ -99,9 +99,9 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, ...) {
     stats_rs <- c(corxy, ei, nresamples, q1, q2)
     names(stats_rs) <- c("Pearson r", "Equivalence Interval", "# of Resamples", 
         "5th Percentile", "95th Percentile")
-    out <- list(list(title1, stats_tradt, decis_tradt), list(title2, stats_equivt, 
-        decis_equivt), list(title3, stats_fz, decis_fz), list(title4, stats_rs, 
-        decis_rs))
+    out <- list(list(title1, stats_tradt, decis_tradt), list(title2, 
+        stats_equivt, decis_equivt), list(title3, stats_fz, decis_fz), 
+        list(title4, stats_rs, decis_rs))
     class(out) <- "eq.corr"
     out
 }
@@ -112,8 +112,8 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, ...) {
 #' @param x object of class \code{eq.corr}
 print.eq.corr <- function(x, ...) {
     lapply(x, function(y) {
-        cat("**************************************************\n\n", y[[1]], 
-            "\n\n")
+        cat("**************************************************\n\n", 
+            y[[1]], "\n\n")
         print(y[[2]])
         cat("\n\n", y[[3]], "\n\n")
     })

@@ -37,8 +37,8 @@
 #' #The desired alpha level is .05, which is the default, so no alpha level is specified
 #' normcomp(12,4,100,8,5,95,7,3,500)
 #' }
-normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean, 
-    normsd, normn, alpha = 0.05, ...) {
+normcomp <- function(premean, presd, pren, postmean, postsd, postn, 
+    normmean, normsd, normn, alpha = 0.05, ...) {
     equivint <- c(0.5 * (normsd), normsd, 1.5 * (normsd))
     t1 <- c(0, 0, 0)
     t2 <- c(0, 0, 0)
@@ -48,8 +48,8 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean,
     preresults <- data.frame(matrix(0, nrow = 1, ncol = 3, dimnames = list(c("Value"), 
         c("t-test", "df", "p-value"))))
     results <- matrix(0, nrow = 6, ncol = 3, dimnames = list(c("t-test1", 
-        "t-test2", "df1", "df2", "pvalue1", "pvalue2"), c("EI=.5*sd", "EI=sd", 
-        "EI=1.5*sd")))
+        "t-test2", "df1", "df2", "pvalue1", "pvalue2"), c("EI=.5*sd", 
+        "EI=sd", "EI=1.5*sd")))
     results_kendall <- matrix(0, nrow = 6, ncol = 1, dimnames = list(c("t-test1", 
         "t-test2", "df1", "df2", "pvalue1", "pvalue2"), c("EI=sd")))
     pret <- (premean - normmean)/sqrt((presd^2/pren) + (normsd^2/normn))
@@ -70,10 +70,12 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean,
         ifelse(probt1[i] < alpha & probt2[i] < alpha, decis[i] <- "The treated and normative means are declared equivalent at this Equivalence Interval", 
             decis[i] <- "The treated and normative means cannot be declared equivalent at this Equivalence Interval")
     }
-    tk1 <- (postmean - normmean - equivint[2])/sqrt(((((postn - 1) * postsd^2) + 
-        ((normn - 1) * normsd^2))/(postn + normn - 2)) * (1/postn + 1/normn))
-    tk2 <- (postmean - normmean + equivint[2])/sqrt(((((postn - 1) * postsd^2) + 
-        ((normn - 1) * normsd^2))/(postn + normn - 2)) * (1/postn + 1/normn))
+    tk1 <- (postmean - normmean - equivint[2])/sqrt(((((postn - 1) * 
+        postsd^2) + ((normn - 1) * normsd^2))/(postn + normn - 2)) * 
+        (1/postn + 1/normn))
+    tk2 <- (postmean - normmean + equivint[2])/sqrt(((((postn - 1) * 
+        postsd^2) + ((normn - 1) * normsd^2))/(postn + normn - 2)) * 
+        (1/postn + 1/normn))
     dfk1 <- postn + normn - 2
     dfk2 <- postn + normn - 2
     pvalk1 <- pt(tk1, dfk1, lower.tail = T)
@@ -107,8 +109,8 @@ normcomp <- function(premean, presd, pren, postmean, postsd, postn, normmean,
     # results_kendall[7, 1] <- decisk
     decism <- as.matrix(decis)
     rownames(decism) <- c("EI=.5*sd", "EI=sd", "EI=1.5*sd")
-    rownames(results_kendall) <- c("t-test1", "t-test2", "df1", "df2", "pvalue1", 
-        "pvalue2")
+    rownames(results_kendall) <- c("t-test1", "t-test2", "df1", "df2", 
+        "pvalue1", "pvalue2")
     out <- list(title1, title2, preresults, decis_pret, title3, results, 
         title4, decism, title5, title6, results_kendall, decisk)
     class(out) <- "normcomp"

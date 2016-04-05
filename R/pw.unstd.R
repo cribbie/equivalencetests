@@ -37,8 +37,8 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     sqrt_varcovar <- pairwise_sd(allcontrasts, sigma)  #sd of diffs 
     for (i in 1:length(mean_diff_names)) {
         leftside <- abs((mean_diff_names))
-        rightside <- ei - (sqrt_varcovar/sqrt(n)) * qt(df = n - 1, p = (1 - 
-            alpha))
+        rightside <- ei - (sqrt_varcovar/sqrt(n)) * qt(df = n - 1, 
+            p = (1 - alpha))
     }
     
     # decision leftside<-unlist(leftside)

@@ -17,7 +17,7 @@ pw.std(data, repeated, ei, alpha = 0.05)
 }
 \description{
 An equivalence test for repeated measures. Tests the null hypothesis that at least one pairwise mean difference 
-is not practically equivalent, as defined by an equivalent interval.
+is not practically equivalent, as defined by an equivalence interval. This null hypothesis is constructed as an intersection-union test, so the null hypothesis fails to be rejected if even one pairwise mean difference is not found to be statistically equivalent.
 }
 \examples{
 k.obs <- 3
