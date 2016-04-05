@@ -1,4 +1,4 @@
-#' Two one-sided equivalence tests (TOST) for two independent groups
+#' Robust and Non-Robust Variants for the two one-sided equivalence tests (TOST): Test equivalence between 2 independent groups
 #' 
 #' This R function allows for the computation of the original Schuirmann two-sided t-test (TOST) for equivalence, the modified Schuirmann-Welch test (which does not require the variances to be equal), or the Schuirmann-Yuen test (if normality cannot be assumed), 
 #' depending on the arguments specified. The original Schuirmann assumes equal variances and normality. The Schuirmann-Welch assumes normality but not equal variances. The Schuirmann-Yuen accounts for unequal variances and nonnormality using trimmed means and Winsorized variances.
@@ -19,7 +19,7 @@
 #' @return returns a \code{list} 
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca}
-#' @export tost
+#' @export eq.tost
 #' @references 
 #' 
 #' Schuirmann, D. J. (1987). A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability. \emph{Journal of pharmacokinetics and biopharmaceutics}, 15(6), 657-680.
@@ -31,13 +31,13 @@
 #' y <- rnorm(100, 1)
 
 #' # Original Schuirman TOST
-#' equivt(x, y, equivint=0.5, alpha = 0.05, varequiv=FALSE, normality=FALSE)
+#' eq.tost(x, y, equivint=0.5, alpha = 0.05, varequiv=FALSE, normality=FALSE)
 
 #' # Schuirmann-Welch
-#' equivt(x, y, equivint=0.5, alpha = 0.05, varequiv=FALSE, normality=TRUE)
+#' eq.tost(x, y, equivint=0.5, alpha = 0.05, varequiv=FALSE, normality=TRUE)
 
 #' # Schuirmann-Yuen TOST (default)
-#' equivt(x, y, equivint=0.5, alpha = 0.05)
+#' eq.tost(x, y, equivint=0.5, alpha = 0.05)
 
 #' }
 

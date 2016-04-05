@@ -48,10 +48,9 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     find_nonequiv_res <- which(ifelse(leftside < fcrit, check_equiv <- 1, 
         check_equiv <- 0) == 0)
     ifelse(length(find_nonequiv_res) > 0, omnibus_std_res <- "No evidence for equivalence", 
-        omnibus_std_res <- "Evidence for equivalence")  #if at least one pair is NOT equiv, omnibus is not signif. 
+        omnibus_std_res <- "There is evidence for equivalence")  #if at least one pair is NOT equiv, omnibus is not signif. 
     
     res <- list(repeatedMeasures = paste(k, "repeated measures"), means = t(means), 
         ei = paste(ei, "in standardized metric"), Decision = omnibus_std_res)
-    print(res)
     return(res)
 } 

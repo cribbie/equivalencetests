@@ -16,10 +16,10 @@ Maintainer: Rob Cribbie <cribbie@yorku.ca>
 Description: The equivalencetests package provides statistical tools for equivalence testing in the null hypothesis testing framework. Several sets of tests of available for continuous responses; some for independent grouping variables and others for repeated assessments on single samples.  groups,  
 Imports:
     sem,
-    plyr
+    plyr,
+	mvtnorm
 Suggests:
-    testthat,
-    mvtnorm
+    testthat
 ByteCompile: no
 LazyLoad: yes
 LazyData: yes
