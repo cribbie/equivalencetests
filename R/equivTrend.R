@@ -17,7 +17,7 @@ equivTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
     probt2 <- pt(t2, df, lower.tail = F)
     ifelse(probt1 < alpha && probt2 < alpha, check_equiv <- "There is evidence in favour of a practically meaningless trend.", 
         check_equiv <- "There is no evidence in favour of practically meaninglesls trend.")
-    res <- list(t1 = t1, t2 = t2, p.t1 = probt1, p.t2 = probt2, 
-        check_equiv)
+    res <- list(t1 = t1, t2 = t2, pValue.t1 = probt1, pValue.t2 = probt2, 
+        decision=check_equiv)
     return(res)
 } 

@@ -31,8 +31,10 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
             eps^2)
     pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], 
         ncp = mean(size) * eps^2)
+    ifelse(pval < crit_psis, check_equiv <- "The null hypothesis is rejected.", check_equiv <- 'The null hypothesis is not rejected.' )
     ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 
         1, df2 = sum(size) - ng, p.crit = crit_psisq, 
-        p.obs = pval, equivalent = pval < crit_psisq)
+        p.obs = pval, decision = check_equiv)
     ret
 } 
+

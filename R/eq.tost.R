@@ -120,4 +120,5 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
     res <- list(title, means = means, trimmeans = trimmeans, 
         sds = sds, ei = ei, tstats = tstats, dfs = dfs, 
         pvals = pvals, decis = decis)
+    return(res)
 } 

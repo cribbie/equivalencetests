@@ -109,15 +109,16 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
         lower2 <- upper
         upper2 <- lower
     }
-    reject <- p.value <= alpha
+    
+    ifelse(p.value <= alpha, check_equiv <- 'Reject in favour equivalence', check_equiv <- 'Do not reject null hypothesis.' )
     if (betas) {
         cfs <- data.frame(b1 = r1, b2 = r2)
     } else {
         cfs <- data.frame(r1 = r1, r2 = r2)
     }
     ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, 
-        lowerCI = lower2, upperCI = upper2, p = p.value, 
-        reject_equivalence = !reject))
+        lowerCI = lower2, upperCI = upper2, pValue = p.value, 
+        decision = check_equiv))
     class(ret) <- "equiv_rs"
     return(ret)
 }
