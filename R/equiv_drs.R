@@ -26,8 +26,8 @@
 #' 
 #' #correlations input
 #' r12 <- cor(dat)[2,1]
-#' r13 <- cor(dat)[2,1]
-#' r23 <- 
+#' r13 <- cor(dat)[3,1]
+#' r23 <- cor(dat)[3,2]
 #' equiv_drs(c(r12, r13, r23), ei = .2, n = nrow(dat))
 #' }
 equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
