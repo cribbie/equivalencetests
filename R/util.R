@@ -1,7 +1,7 @@
 
 #' Internal helper function to compute the gamma Winsorized variance for
-# the data in the vector x.  tr is the amount of Winsorization which defaults to
-# .2.
+# the data in the vector x.  tr is the amount of Winsorization which
+# defaults to .2.
 
 winvar <- function(x, tr = 0.2, na.rm = FALSE) {
     if (na.rm) 
@@ -67,7 +67,8 @@ pairwise_sd <- function(allcontrasts, sigma) {
 
 #' 'Internal helper Function' to simulate sample data
 #' simRanIntSlope()
-simRanIntSlope <- function(sample_size, number_of_sample, equiv_interval, power) {
+simRanIntSlope <- function(sample_size, number_of_sample, equiv_interval, 
+    power) {
     id <- rep(1:sample_size, each = number_of_sample)
     gamma00 <- 5  #avg initial status 
     
@@ -103,15 +104,16 @@ simDat <- function() {
         if (power == FALSE) {
             boundary_diff <- eps
             # population_means <- c(0, boundary_diff, rep(0, number_of_sample-2))
-            population_means <- c(0, boundary_diff, rep(boundary_diff/2, number_of_sample - 
-                2))
+            population_means <- c(0, boundary_diff, rep(boundary_diff/2, 
+                number_of_sample - 2))
         }
         sample_data <- rmvnorm(sample_size, mean = population_means, sigma = sigma_matrix)
         
         return(sample_data)
     }
     
-    make_sigma_matrix <- function(corMatrix, standard_deviation_of_each_sample, number_of_sample) {
+    make_sigma_matrix <- function(corMatrix, standard_deviation_of_each_sample, 
+        number_of_sample) {
         sigma_matrix <- cor2cov(corMatrix, sd = rep(standard_deviation_of_each_sample, 
             number_of_sample))
         return(sigma_matrix)
@@ -125,8 +127,8 @@ simDat <- function() {
     p <- nrow(V)
     V[cbind(1:p, 1:p)] <- V[cbind(1:p, 1:p)] * sigma  #cov matrix 
     sigma_matrix <- V  #corMatrix <- cov2cor(V)   
-    data <- sim_dependent_samples(sample_size = 100, number_of_sample = k, sigma_matrix = sigma_matrix, 
-        eps = 1, power = TRUE)
+    data <- sim_dependent_samples(sample_size = 100, number_of_sample = k, 
+        sigma_matrix = sigma_matrix, eps = 1, power = TRUE)
     data <- data.frame(data)
     names(data) <- c("repA", "repB", "repC")
     return(data)

@@ -3,7 +3,7 @@
 \name{eq.corr}
 \alias{eq.corr}
 \alias{print.eq.corr}
-\title{Run equivalence based correlation tests}
+\title{Test for lack of association: Equivalence-based correlation tests}
 \usage{
 eq.corr(dat, ei, alpha = 0.05, na.rm = TRUE, ...)
 
