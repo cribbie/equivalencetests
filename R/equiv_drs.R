@@ -15,7 +15,7 @@
 #' @return returns a list containing the p-value, confidence interval, and statistical decision
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
-#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
+#'   Alyssa Counsell \email{counsela@@yorku.ca}
 #' @export equiv_drs
 #' @examples
 #' \dontrun{

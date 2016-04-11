@@ -1,7 +1,7 @@
 
 #' Internal helper function to compute the gamma Winsorized variance for
-# the data in the vector x.  tr is the amount of Winsorization
-# which defaults to .2.
+# the data in the vector x.  tr is the amount of Winsorization which
+# defaults to .2.
 
 winvar <- function(x, tr = 0.2, na.rm = FALSE) {
     # Compute

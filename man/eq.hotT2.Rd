@@ -2,9 +2,12 @@
 % Please edit documentation in R/eq.hotT2.R
 \name{eq.hotT2}
 \alias{eq.hotT2}
+\alias{print.eq.hotT2}
 \title{Hotelling T2}
 \usage{
 eq.hotT2(data, repeated, ei, alpha = 0.05)
+
+\method{print}{eq.hotT2}(x, ...)
 }
 \arguments{
 \item{data}{a data.frame object}
@@ -14,6 +17,8 @@ eq.hotT2(data, repeated, ei, alpha = 0.05)
 \item{ei}{equivalence interval, in the metric of Mahalanobis distance}
 
 \item{alpha}{alpha/significance level}
+
+\item{x}{object of class \code{eq.hotT2}}
 }
 \description{
 This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 

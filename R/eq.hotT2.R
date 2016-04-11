@@ -47,11 +47,27 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
         vector_of_mean_differences
     fcrit <- (((n - 1) * (k - 1))/(n - k + 1)) * qf(alpha, k - 1, n - 
         k + 1, n * ei^2)
-    ifelse(T2 < fcrit, check_equiv <- "The null hypothesis is rejected in favour of equivalence", 
-        check_equiv <- "The null hypothesis is NOT rejected")
+    ifelse(T2 < fcrit, check_equiv <- "T2 is less than the critical value, so the null hypothesis is rejected in favour of equivalence", 
+        check_equiv <- "T2 is greater than the critical value, so the null hypothesis is NOT rejected")
     T2_res <- check_equiv
-    res <- list(repeatedMeasures = paste(k, "repeated measures"), means = t(means), 
-        ei = paste(ei, "in Mahalanobis distance metric"), T2 = T2, 
+    res <- list(repeatedMeasures = k, means = t(means), ei = ei, T2 = T2, 
         fcrit = fcrit, Decision = check_equiv)
+    class(res) <- "eq.hotT2"
     return(res)
+}
+#' @S3method print eq.hotT2
+#' @rdname eq.hotT2
+#' @method print eq.hotT2
+#' @param x object of class \code{eq.hotT2}
+print.eq.hotT2 <- function(x, ...) {
+    cat(x[[1]], "\n")
+    cat("-----------------------------------------------------\n\n")
+    paste("The", x[[1]], "means were ")
+    (x[[2]])
+    cat("\n")
+    print(x[[3]])
+    cat(x[[4]], "\n\n")
+    cat(x[[5]], "\n")
+    cat(x[[6]], "\n")
+    
 } 

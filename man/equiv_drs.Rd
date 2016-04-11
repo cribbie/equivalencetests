@@ -41,6 +41,6 @@ equiv_drs(c(r12, r13, r23), ei = .2, n = nrow(dat))
 }
 \author{
 Rob Cribbie \email{cribbie@yorku.ca} and 
-  Phil Chalmers \email{rphilip.chalmers@gmail.com}
+  Alyssa Counsell \email{counsela@yorku.ca}
 }
 

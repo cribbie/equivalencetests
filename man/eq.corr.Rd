@@ -12,7 +12,7 @@ eq.corr(dat, ei, alpha = 0.05, na.rm = TRUE, ...)
 \arguments{
 \item{dat}{a data.frame or matrix containing only 2 variables}
 
-\item{ei}{equivalence interval}
+\item{ei}{equivalence interval, in terms of the magnitude of a correlation}
 
 \item{alpha}{desired alpha level}
 
@@ -37,6 +37,8 @@ transformation, and an equivalence based test of lack of association with resamp
 v1 <- rnorm(100)
 v2 <- v1 + rnorm(100, 2)
 dat <- data.frame(v1, v2)
+plot(dat)
+cor(dat)
 eq.corr(dat, .2)
 }
 }

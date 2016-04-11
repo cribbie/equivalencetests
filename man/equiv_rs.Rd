@@ -60,6 +60,6 @@ equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 }
 \author{
 Rob Cribbie \email{cribbie@yorku.ca} and 
-  Phil Chalmers \email{rphilip.chalmers@gmail.com}
+  Alyssa Counsell \email{counsela@yorku.ca}
 }
 

@@ -27,7 +27,7 @@
 #'   statistical decision
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
-#'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
+#'   Alyssa Counsell \email{counsela@@yorku.ca}
 #' @export equiv_rs
 #' @examples
 #' \dontrun{
@@ -106,5 +106,15 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     }
     ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, 
         upperCI = upper2, p = p.value, reject_equivalence = !reject))
-    ret
-} 
+    class(ret) <- equiv_rs
+}
+#' @S3method print equiv_rs
+#' @rdname equiv_rs
+#' @method print equiv_rs
+#' @param x object of class \code{equiv_rs}
+# print.equiv_rs <- function(x, ...) { cat(x[[1]], '\n')
+# cat('-----------------------------------------------------\n\n')
+# cat(x[[2]], '\n') print(x[[3]]) cat(x[[4]], '\n\n') cat(x[[5]],
+# '\n') print(round(x[[6]], 4)) cat(x[[7]], '\n') colnames(x[[8]])
+# <- '' print(x[[8]]) cat('\n\n', x[[9]], '\n') cat(x[[10]],
+# '\n') print(round(x[[11]], 4)) cat(x[[12]]) } 

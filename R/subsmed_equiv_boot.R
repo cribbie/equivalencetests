@@ -41,8 +41,8 @@
 #' subsmed_equiv_boot(x,y,m,ei=.1,nboot=1000,standardize=TRUE) 
 #' }
 #' 
-subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, 
-    nboot = 10000, alpha = 0.05) {
+subsmed_equiv_boot <- function(IV, DV, m, ei, standardize = FALSE, nboot = 10000, 
+    alpha = 0.05) {
     x <- IV
     y <- DV
     x <- x[is.na(x) == F & is.na(y) == F & is.na(m) == F]

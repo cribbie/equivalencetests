@@ -1,7 +1,7 @@
 #' Independent samples equivalence test using confidence intervals
 #' The two one-sided test for independent samples can be expressed using the confidence inclusion principle. If the confidence interval around a mean difference is within the equivalence bounds, then the mean difference is considered to be practically meaningless. 
 #' 
-#' @aliases eq.TOST.CI
+#' @aliases eq.tost.CI
 #' @param dat an N x 3 matrix or data.frame containing raw data used to compute the 
 #'   correlation matrix between variables. The input may also be a 1 x 3 vector of correlations
 #'   (r12, r13, and r23, respectively) and requires a sample size input (N)
@@ -13,7 +13,7 @@
 #' 
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and 
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
-#' @export equiv_drs
+#' @export eq.tost.CI
 #' @examples
 #' \dontrun{
 #' #raw data
@@ -39,7 +39,7 @@
 #' equivObj <- eq.TOST.CI(x,y, ei=0.50, alpha=.05)
 #' }
 #' 
-eq.TOST.CI <- function(x, y, ei, alpha = 0.05) {
+eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
     se <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
         length(y) - 2)) * (1/length(x) + 1/length(y)))
     num1 <- (mean(x) - mean(y) - ei)
@@ -85,7 +85,4 @@ eq.TOST.CI <- function(x, y, ei, alpha = 0.05) {
         ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, 
         hiCI = hiCI)
     return(res)
-}
-
-
- 
+} 

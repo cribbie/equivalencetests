@@ -6,7 +6,7 @@
 #' 
 #' @aliases eq.corr
 #' @param dat a data.frame or matrix containing only 2 variables
-#' @param ei equivalence interval
+#' @param ei equivalence interval, in terms of the magnitude of a correlation
 #' @param alpha desired alpha level
 #' @param na.rm logical; remove missing values?
 #' @param ... additional arguments to be passed
@@ -23,6 +23,8 @@
 #' v1 <- rnorm(100)
 #' v2 <- v1 + rnorm(100, 2)
 #' dat <- data.frame(v1, v2)
+#' plot(dat)
+#' cor(dat)
 #' eq.corr(dat, .2)
 #' }
 eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, ...) {
@@ -89,8 +91,8 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, ...) {
     title4 <- "Equivalence Based Test of Lack of Association with Resampling"
     stats_tradt <- c(corxy, t, n - 2, pvalue_tradt)
     names(stats_tradt) <- c("Pearson r", "t-statistic", "df", "p-value")
-    stats_equivt <- c(corxy, ei, equivt1, pvalue1_equivt, equivt2, 
-        pvalue2_equivt, n - 2)
+    stats_equivt <- c(corxy, ei, equivt1, pvalue1_equivt, equivt2, pvalue2_equivt, 
+        n - 2)
     names(stats_equivt) <- c("Pearson r", "Equivalence Interval", "t-stat 1", 
         "pval_t1", "t-stat 2", "pval_t2", "df")
     stats_fz <- c(corxy, ei, equivt1_fz, pvalue1_fz, equivt2_fz, pvalue2_fz)
