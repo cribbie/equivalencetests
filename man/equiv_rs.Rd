@@ -33,7 +33,7 @@ returns a list containing the coefficients, the equivalence interval, p-value, a
 \description{
 Given raw data or known sample correlations, test whether correlation/covariance values
 are equivalent within a specified interval. The null hypothesis is that the groups
-are not equivalent.
+are not equivalent in degree of association between two variables.
 }
 \details{
 Function uses Anderson and Hauck's (1983) equivalence test. Because

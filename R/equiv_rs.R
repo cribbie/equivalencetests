@@ -2,7 +2,7 @@
 #' 
 #' Given raw data or known sample correlations, test whether correlation/covariance values
 #' are equivalent within a specified interval. The null hypothesis is that the groups
-#' are not equivalent.
+#' are not equivalent in degree of association between two variables.
 #' 
 #' Function uses Anderson and Hauck's (1983) equivalence test. Because
 #' the p-value derived from the test is only an approximation, the CIs may produce
@@ -48,16 +48,19 @@
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 #' 
 #' }
-equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, 
-    alpha = 0.05) {
-    if (betas && (length(dat1) == 1L || length(dat2) == 1L)) 
+equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, 
+    n2 = NULL, betas = FALSE, alpha = 0.05) {
+    if (betas && (length(dat1) == 1L || length(dat2) == 
+        1L)) 
         stop("beta comparisons require raw data inputs")
     if (length(dat1) > 1L) {
         dat1 <- na.omit(dat1)
         if (betas) {
             mod1 <- lm(dat1[, 2] ~ dat1[, 1])
-            r1 <- summary.lm(mod1)$coefficients[2, 1]
-            se1 <- summary.lm(mod1)$coefficients[2, 2]
+            r1 <- summary.lm(mod1)$coefficients[2, 
+                1]
+            se1 <- summary.lm(mod1)$coefficients[2, 
+                2]
         } else {
             r1 <- cor(dat1)[1, 2]
         }
@@ -73,8 +76,10 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
         dat2 <- na.omit(dat2)
         if (betas) {
             mod2 <- lm(dat2[, 2] ~ dat2[, 1])
-            r2 <- summary.lm(mod2)$coefficients[2, 1]
-            se2 <- summary.lm(mod2)$coefficients[2, 2]
+            r2 <- summary.lm(mod2)$coefficients[2, 
+                1]
+            se2 <- summary.lm(mod2)$coefficients[2, 
+                2]
         } else {
             r2 <- cor(dat2)[1, 2]
         }
@@ -89,10 +94,11 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     if (betas) {
         ser <- sqrt(se1^2 + se2^2)
     } else {
-        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
+        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - 
+            r2^2)^2/(n2 - 2)))
     }
-    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - 
-        r2) - equiv_int)/ser)
+    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - 
+        pnorm((-abs(r1 - r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
     if (lower < upper) {
@@ -109,17 +115,22 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     } else {
         cfs <- data.frame(r1 = r1, r2 = r2)
     }
-    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, 
-        upperCI = upper2, p = p.value, reject_equivalence = !reject))
-    class(ret) <- equiv_rs
+    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, 
+        lowerCI = lower2, upperCI = upper2, p = p.value, 
+        reject_equivalence = !reject))
+    class(ret) <- "equiv_rs"
+    return(ret)
 }
 #' @S3method print equiv_rs
 #' @rdname equiv_rs
 #' @method print equiv_rs
 #' @param x object of class \code{equiv_rs}
-# print.equiv_rs <- function(x, ...) { cat(x[[1]], '\n')
+# print.equiv_rs <- function(x, ...) { cat(x[[1]],
+# '\n')
 # cat('-----------------------------------------------------\n\n')
-# cat(x[[2]], '\n') print(x[[3]]) cat(x[[4]], '\n\n') cat(x[[5]],
-# '\n') print(round(x[[6]], 4)) cat(x[[7]], '\n') colnames(x[[8]]) <-
-# '' print(x[[8]]) cat('\n\n', x[[9]], '\n') cat(x[[10]], '\n')
-# print(round(x[[11]], 4)) cat(x[[12]]) } 
+# cat(x[[2]], '\n') print(x[[3]]) cat(x[[4]],
+# '\n\n') cat(x[[5]], '\n') print(round(x[[6]],
+# 4)) cat(x[[7]], '\n') colnames(x[[8]]) <- ''
+# print(x[[8]]) cat('\n\n', x[[9]], '\n')
+# cat(x[[10]], '\n') print(round(x[[11]], 4))
+# cat(x[[12]]) } 

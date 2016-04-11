@@ -2,8 +2,7 @@
 % Please edit documentation in R/eq.tost.CI.R
 \name{eq.tost.CI}
 \alias{eq.tost.CI}
-\title{Independent samples equivalence test using confidence intervals
-The two one-sided test for independent samples can be expressed using the confidence inclusion principle. If the confidence interval around a mean difference is within the equivalence bounds, then the mean difference is considered to be practically meaningless.}
+\title{Independent samples equivalence test using confidence intervals}
 \usage{
 eq.tost.CI(x, y, ei, alpha = 0.05)
 }
@@ -22,7 +21,6 @@ correlation matrix between variables. The input may also be a 1 x 3 vector of co
 returns a list containing the p-value, confidence interval, and statistical decision
 }
 \description{
-Independent samples equivalence test using confidence intervals
 The two one-sided test for independent samples can be expressed using the confidence inclusion principle. If the confidence interval around a mean difference is within the equivalence bounds, then the mean difference is considered to be practically meaningless.
 }
 \examples{

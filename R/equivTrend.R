@@ -11,10 +11,13 @@
 equivTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
     t1 <- (slope - ei)/se
     t2 <- (slope + ei)/se
-    # dft <- summary(mod)$tTable[2,3] #this df is from lme.
+    # dft <- summary(mod)$tTable[2,3] #this df is from
+    # lme.
     probt1 <- pt(t1, df, lower.tail = T)
     probt2 <- pt(t2, df, lower.tail = F)
-    ifelse(probt1 < alpha && probt2 < alpha, check_equiv <- "There is evidence in favour of a practically meaningless trend.", check_equiv <- 'There is no evidence in favour of practically meaninglesls trend.')
-    res <- list(t1=t1, t2=t2, p.t1=probt1, p.t2=probt2, check_equiv)
+    ifelse(probt1 < alpha && probt2 < alpha, check_equiv <- "There is evidence in favour of a practically meaningless trend.", 
+        check_equiv <- "There is no evidence in favour of practically meaninglesls trend.")
+    res <- list(t1 = t1, t2 = t2, p.t1 = probt1, p.t2 = probt2, 
+        check_equiv)
     return(res)
 } 
