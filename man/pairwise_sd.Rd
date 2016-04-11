@@ -2,15 +2,13 @@
 % Please edit documentation in R/util.R
 \name{pairwise_sd}
 \alias{pairwise_sd}
-\title{'Internal helper Function' for pairwise IUT based tests}
+\title{'Internal helper Function' for pairwise IUT based tests
+pairwise_sd()}
 \usage{
 pairwise_sd(allcontrasts, sigma)
 }
-\arguments{
-\item{love}{Do you love cats? Defaults to TRUE.
-pairwise_sd()}
-}
 \description{
 'Internal helper Function' for pairwise IUT based tests
+pairwise_sd()
 }
 

@@ -52,10 +52,15 @@ dat2 <- cbind(rnorm(200), rnorm(200))
 equiv_rs(dat1, dat2, .2)
 equiv_rs(dat1, dat2, .2, betas = TRUE)
 
+par(mfrow=c(1,2))
+plot(dat1)
+plot(dat2)
+
 #correlations input
 r1 <- cor(dat1)[2,1]
 r2 <- cor(dat2)[2,1]
 equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
+
 }
 }
 \author{

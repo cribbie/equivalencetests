@@ -41,8 +41,8 @@
 
 #' }
 
-eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE, 
-    tr = 0.2, alpha = 0.05, na.rm = TRUE, ...) {
+eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2, 
+    alpha = 0.05, na.rm = TRUE, ...) {
     if (na.rm) {
         x <- x[!is.na(x)]
         y <- y[!is.na(y)]
@@ -53,8 +53,7 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
             t1 <- (mean(x) - mean(y) - equivint)/denom
             t2 <- (mean(x) - mean(y) + equivint)/denom
             dft <- (((var(x)/length(x)) + (var(y)/length(y)))^2)/((var(x)^2/(length(x)^2 * 
-                (length(x) - 1))) + (var(y)^2/(length(y)^2 * (length(y) - 
-                1))))
+                (length(x) - 1))) + (var(y)^2/(length(y)^2 * (length(y) - 1))))
             probt1 <- pt(t1, dft, lower.tail = T)
             probt2 <- pt(t2, dft, lower.tail = F)
             ifelse(probt1 <= alpha & probt2 <= alpha, decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected", 
@@ -63,9 +62,8 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
             title <- "Schuirmann-Welch Test of the Equivalence of Two Independent Groups"
         }
         if (varequiv == TRUE) {
-            denom <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 
-                1) * sd(y)^2))/(length(x) + length(y) - 2)) * (1/length(x) + 
-                1/length(y)))
+            denom <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
+                length(y) - 2)) * (1/length(x) + 1/length(y)))
             t1 <- (mean(x) - mean(y) - equivint)/denom
             t2 <- (mean(x) - mean(y) + equivint)/denom
             dft <- length(x) + length(y) - 2
@@ -111,6 +109,6 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
     names(dfs) <- c("dft1", "dft2")
     pvals <- c(probt1, probt2)
     names(pvals) <- c("p_t1", "p_t2")
-    res <- list(title, means = means, trimmeans = trimmeans, sds = sds, 
-        ei = ei, tstats = tstats, dfs = dfs, pvals = pvals, decis = decis)
+    res <- list(title, means = means, trimmeans = trimmeans, sds = sds, ei = ei, 
+        tstats = tstats, dfs = dfs, pvals = pvals, decis = decis)
 } 

@@ -25,11 +25,10 @@ wellek_welch <- function(dv, group, eps, alpha = 0.05) {
     owt <- oneway.test(dv ~ group, var.equal = TRUE)
     f <- owt$statistic
     psisq <- f * ((ng - 1)/mean(size))
-    crit_psisq <- ((ng - 1)/mean(size)) * qf(p = alpha, df1 = ng - 1, 
-        df2 = sum(size) - ng, ncp = mean(size) * eps^2)
-    pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], ncp = mean(size) * 
-        eps^2)
-    ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 1, df2 = sum(size) - 
-        ng, p.crit = crit_psisq, p.obs = pval, equivalent = pval < crit_psisq)
+    crit_psisq <- ((ng - 1)/mean(size)) * qf(p = alpha, df1 = ng - 1, df2 = sum(size) - 
+        ng, ncp = mean(size) * eps^2)
+    pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], ncp = mean(size) * eps^2)
+    ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 1, df2 = sum(size) - ng, 
+        p.crit = crit_psisq, p.obs = pval, equivalent = pval < crit_psisq)
     ret
 } 

@@ -3,6 +3,8 @@
 S3method(print,eq.corr)
 S3method(print,eq.hotT2)
 S3method(print,normcomp)
+S3method(print,pw.std)
+S3method(print,pw.unstd)
 S3method(print,subsmed_equiv_boot)
 export(eq.corr)
 export(eq.hotT2)

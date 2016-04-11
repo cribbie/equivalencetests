@@ -38,10 +38,15 @@
 #' equiv_rs(dat1, dat2, .2)
 #' equiv_rs(dat1, dat2, .2, betas = TRUE)
 #' 
+#' par(mfrow=c(1,2))
+#' plot(dat1)
+#' plot(dat2)
+#' 
 #' #correlations input
 #' r1 <- cor(dat1)[2,1]
 #' r2 <- cor(dat2)[2,1]
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
+#' 
 #' }
 equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, 
     alpha = 0.05) {
@@ -86,8 +91,7 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     } else {
         ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
     }
-    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - 
-        r2) - equiv_int)/ser)
+    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
     if (lower < upper) {
@@ -104,8 +108,8 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     } else {
         cfs <- data.frame(r1 = r1, r2 = r2)
     }
-    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, 
-        upperCI = upper2, p = p.value, reject_equivalence = !reject))
+    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, upperCI = upper2, 
+        p = p.value, reject_equivalence = !reject))
     class(ret) <- equiv_rs
 }
 #' @S3method print equiv_rs
@@ -113,8 +117,8 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
 #' @method print equiv_rs
 #' @param x object of class \code{equiv_rs}
 # print.equiv_rs <- function(x, ...) { cat(x[[1]], '\n')
-# cat('-----------------------------------------------------\n\n')
-# cat(x[[2]], '\n') print(x[[3]]) cat(x[[4]], '\n\n') cat(x[[5]],
-# '\n') print(round(x[[6]], 4)) cat(x[[7]], '\n') colnames(x[[8]])
-# <- '' print(x[[8]]) cat('\n\n', x[[9]], '\n') cat(x[[10]],
-# '\n') print(round(x[[11]], 4)) cat(x[[12]]) } 
+# cat('-----------------------------------------------------\n\n') cat(x[[2]],
+# '\n') print(x[[3]]) cat(x[[4]], '\n\n') cat(x[[5]], '\n')
+# print(round(x[[6]], 4)) cat(x[[7]], '\n') colnames(x[[8]]) <- '' print(x[[8]])
+# cat('\n\n', x[[9]], '\n') cat(x[[10]], '\n') print(round(x[[11]], 4))
+# cat(x[[12]]) } 
