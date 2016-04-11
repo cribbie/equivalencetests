@@ -1,24 +1,25 @@
-#' Wellek-Welch equivalence test
+#' Wellek-Welch equivalence test for k-groups: 
 #' 
-#' This function computes the Wellek-Welch equivalence test for k-groups.
+#' This function computes the Wellek-Welch equivalence test for k-groups. This addresses the research question about equivalence for means among k independent groups.
+#' The Welch adjustment provides a robust correction for unequal vairances among the k groups.
 #' 
-#' @aliases wellek_welch
+#' @aliases eq.1way.ww
 #' @param dv a numeric vector for the continous dependent variable
 #' @param group grouping variable that can be coerced to a \code{factor}
 #' @param eps numeric value defining the size of the equivalance interval
 #' @param alpha the appropriate alpha level
 #' @author Rob Cribbie \email{cribbie@@yorku.ca} and
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
-#' @export wellek_welch
+#' @export eq.1way.ww
 #' @examples
 #' \dontrun{
 #' 
 #' dv <- rnorm(1000)
 #' group <- rep(paste0('G',1:4), each=length(dv)/4)
-#' wellek_welch(dv, group, eps = 0.5)
+#' eq.1way.ww(dv, group, eps = 0.5)
 #' 
 #' }
-wellek_welch <- function(dv, group, eps, alpha = 0.05) {
+eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
     group <- factor(group)
     size <- table(group)
     ng <- length(size)
