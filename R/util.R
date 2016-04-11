@@ -46,10 +46,11 @@ getContrast <- function(k, type) {
 #'
 #' pairwise_meanDiffs()
 pairwise_meanDiffs <- function(sample_means, allcontrasts) {
-  if(!require(plyr)){
-    install.packages(plyr); library(plyr) 
-  } 
-   mean_diffs <- t(allcontrasts %*% sample_means)  #this is the vector of mean differences, ie. mean difference @ k=1, mean of k=2, etc. Matches mean D, pg 245, table 8.5 
+    if (!require(plyr)) {
+        install.packages(plyr)
+        library(plyr)
+    }
+    mean_diffs <- t(allcontrasts %*% sample_means)  #this is the vector of mean differences, ie. mean difference @ k=1, mean of k=2, etc. Matches mean D, pg 245, table 8.5 
     mean_diff_names <- data.frame(mean_diffs)
     v <- 1:length(sample_means)
     allPairs <- combn(length(v), 2)  # choose a pair from 1:length(v)
@@ -99,10 +100,11 @@ simRanIntSlope <- function(sample_size, number_of_sample, equiv_interval,
 #' 'Internal helper Function' to simulate sample data
 #' simDat()
 simDat <- function() {
-  if(!require(mvtnorm)){
-    install.packages(mvtnorm); library(mvtnorm) 
-  }
-  sim_dependent_samples <- function(sample_size, number_of_sample, sigma_matrix, 
+    if (!require(mvtnorm)) {
+        install.packages(mvtnorm)
+        library(mvtnorm)
+    }
+    sim_dependent_samples <- function(sample_size, number_of_sample, sigma_matrix, 
         eps, power) {
         if (power == TRUE) {
             population_means <- rep(0, number_of_sample)
