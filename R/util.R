@@ -19,8 +19,8 @@ winvar <- function(x, tr = 0.2, na.rm = FALSE) {
 }
 
 
-# create contrast matrices (for hotelling t2: adjacenet mean differences;
-# otherwise, pairwise)
+# create contrast matrices (for hotelling t2: adjacenet mean
+# differences; otherwise, pairwise)
 getContrast <- function(k, type) {
     if (type == "adjacent") {
         M <- matrix(0, nrow = k - 1, ncol = k)

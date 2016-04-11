@@ -63,8 +63,9 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
             title <- "Schuirmann-Welch Test of the Equivalence of Two Independent Groups"
         }
         if (varequiv == TRUE) {
-            denom <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * 
-                sd(y)^2))/(length(x) + length(y) - 2)) * (1/length(x) + 1/length(y)))
+            denom <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 
+                1) * sd(y)^2))/(length(x) + length(y) - 2)) * (1/length(x) + 
+                1/length(y)))
             t1 <- (mean(x) - mean(y) - equivint)/denom
             t2 <- (mean(x) - mean(y) + equivint)/denom
             dft <- length(x) + length(y) - 2
@@ -110,6 +111,6 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
     names(dfs) <- c("dft1", "dft2")
     pvals <- c(probt1, probt2)
     names(pvals) <- c("p_t1", "p_t2")
-    res <- list(title, means = means, trimmeans = trimmeans, sds = sds, ei = ei, 
-        tstats = tstats, dfs = dfs, pvals = pvals, decis = decis)
+    res <- list(title, means = means, trimmeans = trimmeans, sds = sds, 
+        ei = ei, tstats = tstats, dfs = dfs, pvals = pvals, decis = decis)
 } 

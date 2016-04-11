@@ -43,7 +43,8 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
     vector_of_mean_differences_pr <- t(vector_of_mean_differences)
     sigma_Mahal <- contrasts %*% sigma %*% t(contrasts)  #covar. matrix with respect to the Mahalanobis distance (vector of mean diffs) 
     sigma_Mahal_inverse <- solve(sigma_Mahal)
-    T2 <- n * vector_of_mean_differences_pr %*% sigma_Mahal_inverse %*% vector_of_mean_differences
+    T2 <- n * vector_of_mean_differences_pr %*% sigma_Mahal_inverse %*% 
+        vector_of_mean_differences
     fcrit <- (((n - 1) * (k - 1))/(n - k + 1)) * qf(alpha, k - 1, n - k + 
         1, n * ei^2)
     ifelse(T2 < fcrit, check_equiv <- "T2 is less than the critical value, so the null hypothesis is rejected in favour of equivalence", 

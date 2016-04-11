@@ -91,8 +91,8 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
     } else {
         ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
     }
-    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - r2) - 
-        equiv_int)/ser)
+    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - 
+        r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
     if (lower < upper) {

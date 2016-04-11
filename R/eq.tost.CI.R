@@ -80,8 +80,9 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
     names(tstats) <- c("t1", "t2")
     names(dfs) <- c("dft1", "dft2")
     names(pvals) <- c("p_t1", "p_t2")
-    res <- list(means = means, meanDiff = meanDiff, sds = sds, ei = ei, tstats = tstats, 
-        dfs = dfs, pvals = pvals, decis = decis, ciBounds = ciBounds, ci.decis = ci.decis, 
-        se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, hiCI = hiCI)
+    res <- list(means = means, meanDiff = meanDiff, sds = sds, ei = ei, 
+        tstats = tstats, dfs = dfs, pvals = pvals, decis = decis, ciBounds = ciBounds, 
+        ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, 
+        hiCI = hiCI)
     return(res)
 } 
