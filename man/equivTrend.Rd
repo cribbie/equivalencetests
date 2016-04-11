@@ -2,10 +2,7 @@
 % Please edit documentation in R/equivTrend.R
 \name{equivTrend}
 \alias{equivTrend}
-\title{Trend test
-This function takes as input the estimates obtained from a linear mixed model. Specifically, some fixed effect slope for time or some other ordered variable, its standard error, and the approximated degrees of freedom are used. 
-This is essentially a TOST; instead of the mean difference as the parameter of interest, the slope is. 
-The equivalence interval is then specified with the lower and upper limit bounds for what is considered to be minimum average slope deemed practically important.}
+\title{Trend test}
 \usage{
 equivTrend(ei, slope, se, df, n, alpha = 0.05)
 }
@@ -16,12 +13,9 @@ equivTrend(ei, slope, se, df, n, alpha = 0.05)
 
 \item{se}{the standard error of the slope}
 
-\item{df}{the degrees of freedom obtained from the fitted model
-
-equivTrend()}
+\item{df}{the degrees of freedom obtained from the fitted model}
 }
 \description{
-Trend test
 This function takes as input the estimates obtained from a linear mixed model. Specifically, some fixed effect slope for time or some other ordered variable, its standard error, and the approximated degrees of freedom are used. 
 This is essentially a TOST; instead of the mean difference as the parameter of interest, the slope is. 
 The equivalence interval is then specified with the lower and upper limit bounds for what is considered to be minimum average slope deemed practically important.
