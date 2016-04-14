@@ -2,7 +2,7 @@
 % Please edit documentation in R/eq.1way.ww.R
 \name{eq.1way.ww}
 \alias{eq.1way.ww}
-\title{Wellek-Welch equivalence test for k-groups:}
+\title{Wellek-Welch equivalence test for k-groups}
 \usage{
 eq.1way.ww(dv, group, eps, alpha = 0.05)
 }

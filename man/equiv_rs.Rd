@@ -2,10 +2,13 @@
 % Please edit documentation in R/equiv_rs.R
 \name{equiv_rs}
 \alias{equiv_rs}
-\title{Test whether correlations or covariances are equivalent}
+\alias{print.equiv_rs}
+\title{Test equivalence of two groups'correlations/covariances}
 \usage{
 equiv_rs(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE,
   alpha = 0.05)
+
+\method{print}{equiv_rs}(x, ...)
 }
 \arguments{
 \item{dat1}{a matrix or data.frame containing raw data used to compute the first correlation/
@@ -23,6 +26,8 @@ covariance. A scalar input may be used as well specifying the sample correlation
 \item{betas}{logical; compare raw beta regression coefficients rather than correlations?}
 
 \item{alpha}{desired alpha level}
+
+\item{x}{object of class \code{equiv_rs}}
 
 \item{...}{additional arguments to be passed}
 }
@@ -55,6 +60,7 @@ equiv_rs(dat1, dat2, .2, betas = TRUE)
 par(mfrow=c(1,2))
 plot(dat1)
 plot(dat2)
+par(mfrow=c(1,1))
 
 #correlations input
 r1 <- cor(dat1)[2,1]

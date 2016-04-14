@@ -46,9 +46,9 @@ normcomp <- function(premean, presd, pren, postmean,
     probt1 <- c(0, 0, 0)
     probt2 <- c(0, 0, 0)
     decis <- c(0, 0, 0)
-    preresults <- data.frame(matrix(0, nrow = 1, ncol = 3, 
-        dimnames = list(c("Value"), c("t-test", "df", 
-            "p-value"))))
+    preresults <- data.frame(matrix(0, nrow = 1, 
+        ncol = 3, dimnames = list(c("Value"), c("t-test", 
+            "df", "p-value"))))
     results <- matrix(0, nrow = 6, ncol = 3, dimnames = list(c("t-test1", 
         "t-test2", "df1", "df2", "pvalue1", "pvalue2"), 
         c("EI=.5*sd", "EI=sd", "EI=1.5*sd")))
@@ -69,8 +69,8 @@ normcomp <- function(premean, presd, pren, postmean,
         t2[i] <- (postmean - normmean + equivint[i])/sqrt((postsd^2/postn) + 
             (normsd^2/normn))
         dft <- (((postsd^2/postn) + (normsd^2/normn))^2)/((postsd^4/(postn^2 * 
-            (postn - 1))) + (normsd^4/(normn^2 * (normn - 
-            1))))
+            (postn - 1))) + (normsd^4/(normn^2 * 
+            (normn - 1))))
         probt1[i] <- pt(t1[i], dft, lower.tail = T)
         probt2[i] <- pt(t2[i], dft, lower.tail = F)
         ifelse(probt1[i] < alpha & probt2[i] < alpha, 
@@ -119,8 +119,8 @@ normcomp <- function(premean, presd, pren, postmean,
     rownames(results_kendall) <- c("t-test1", "t-test2", 
         "df1", "df2", "pvalue1", "pvalue2")
     out <- list(title1, title2, preresults, decis_pret, 
-        title3, results, title4, decism, title5, title6, 
-        results_kendall, decisk)
+        title3, results, title4, decism, title5, 
+        title6, results_kendall, decisk)
     class(out) <- "normcomp"
     out
 }

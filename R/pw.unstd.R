@@ -33,7 +33,8 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     allcontrasts <- getContrast(k, type = "allPW")
     
     
-    mean_diff_names <- pairwise_meanDiffs(means, allcontrasts)
+    mean_diff_names <- pairwise_meanDiffs(means, 
+        allcontrasts)
     sqrt_varcovar <- pairwise_sd(allcontrasts, sigma)  #sd of diffs 
     for (i in 1:length(mean_diff_names)) {
         leftside <- abs((mean_diff_names))
@@ -47,8 +48,8 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
         0)
     ifelse(length(find_nonequiv_res) > 0, decis <- "No evidence for equivalence", 
         decis <- "There is evidence for overall equivalence among the repeated measures")  #if at least one pairwise test is signif, omnibus is not signif. 
-    res <- list(repeatedMeasures = paste(k, "repeated measures"), 
-        means = t(means), ei = paste(ei, "in unstandardized metric"), 
+    res <- list(repeatedMeasures = k, means = t(means), 
+        ei = paste(ei, "in unstandardized metric"), 
         Decision = decis)
     class(res) <- "pw.unstd"
     return(res)
@@ -59,12 +60,13 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
 #' @method print pw.unstd
 #' @param x object of class \code{pw.unstd}
 print.pw.unstd <- function(x, ...) {
+    cat("------Pairwise unstandardized test for overall equivalence------\n\n")
     cat("There are", x[[1]], "repeated measures.", 
         "\n\n")
     cat("The", x[[1]], "means were ")
     cat(x[[2]])
     cat("\n\n")
-    cat("The equivalence interval was ", x[[3]], "in raw metric.", 
-        "\n\n")
+    cat("The equivalence interval was ", x[[3]], 
+        "in raw metric.", "\n\n")
     print(x[[4]])
 } 

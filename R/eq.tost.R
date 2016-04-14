@@ -11,7 +11,7 @@
 #' @param equivint numeric value defining the size of the equivalance interval
 #' @param varequal logical; If true, equal variances are assumed. Only applicable when tr == 0
 #' @param normality logical; If true, normality of x and y are assumed. 
-#' @param tr proportion of data to trim. When \code{tr == 0}, either the standard Schuirmann test
+#' @param tr proportion of data to trim. When \code{tr == 0}, equivintther the standard Schuirmann test
 #'  or Schuirmann-Welch is performed
 #' @param alpha the appropriate alpha level
 #' @param ... additional arguments to be passed
@@ -67,7 +67,8 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
         if (varequiv == TRUE) {
             denom <- sqrt(((((length(x) - 1) * sd(x)^2) + 
                 ((length(y) - 1) * sd(y)^2))/(length(x) + 
-                length(y) - 2)) * (1/length(x) + 1/length(y)))
+                length(y) - 2)) * (1/length(x) + 
+                1/length(y)))
             t1 <- (mean(x) - mean(y) - equivint)/denom
             t2 <- (mean(x) - mean(y) + equivint)/denom
             dft <- length(x) + length(y) - 2
@@ -98,7 +99,8 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
         t2 <- dif2/sqrt(q1 + q2)
         probt1 <- pt(t1, dft)
         probt2 <- 1 - pt(t2, dft)
-        ifelse(probt1 <= alpha & probt2 <= alpha, decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected", 
+        ifelse(probt1 <= alpha & probt2 <= alpha, 
+            decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected", 
             decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval cannot be rejected")
         title <- "Schuirmann-Yuen Test of the Equivalence of Two Independent Groups"
     }
@@ -109,8 +111,8 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
     names(trimmeans) <- c("Trimmed Mean Grp 1", "Trimmed Mean Grp 2")
     sds <- c(sd(x), sd(y))
     names(sds) <- c("SD Grp 1", "SD Grp 2")
-    ei <- (c(equivint))
-    names(ei) <- c("equivalence interval")
+    equivint <- (c(equivint))
+    names(equivint) <- c("equivalence interval")
     tstats <- c(t1, t2)
     names(tstats) <- c("t1", "t2")
     dfs <- c(dft, dft)
@@ -118,7 +120,7 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
     pvals <- c(probt1, probt2)
     names(pvals) <- c("p_t1", "p_t2")
     res <- list(title, means = means, trimmeans = trimmeans, 
-        sds = sds, ei = ei, tstats = tstats, dfs = dfs, 
-        pvals = pvals, decis = decis)
+        sds = sds, equivint = equivint, tstats = tstats, 
+        dfs = dfs, pvals = pvals, decis = decis)
     return(res)
 } 

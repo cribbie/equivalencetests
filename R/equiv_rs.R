@@ -1,4 +1,4 @@
-#' Test whether correlations or covariances are equivalent
+#' Test equivalence of two groups'correlations/covariances
 #' 
 #' Given raw data or known sample correlations, test whether correlation/covariance values
 #' are equivalent within a specified interval. The null hypothesis is that the groups
@@ -41,6 +41,7 @@
 #' par(mfrow=c(1,2))
 #' plot(dat1)
 #' plot(dat2)
+#' par(mfrow=c(1,1))
 #' 
 #' #correlations input
 #' r1 <- cor(dat1)[2,1]
@@ -110,7 +111,8 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
         upper2 <- lower
     }
     
-    ifelse(p.value <= alpha, check_equiv <- 'Reject in favour equivalence', check_equiv <- 'Do not reject null hypothesis.' )
+    ifelse(p.value <= alpha, check_equiv <- "Reject in favour equivalence", 
+        check_equiv <- "Do not reject null hypothesis.")
     if (betas) {
         cfs <- data.frame(b1 = r1, b2 = r2)
     } else {
@@ -126,12 +128,14 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
 #' @rdname equiv_rs
 #' @method print equiv_rs
 #' @param x object of class \code{equiv_rs}
-# print.equiv_rs <- function(x, ...) { cat(x[[1]],
-# '\n')
-# cat('-----------------------------------------------------\n\n')
-# cat(x[[2]], '\n') print(x[[3]]) cat(x[[4]],
-# '\n\n') cat(x[[5]], '\n') print(round(x[[6]],
-# 4)) cat(x[[7]], '\n') colnames(x[[8]]) <- ''
-# print(x[[8]]) cat('\n\n', x[[9]], '\n')
-# cat(x[[10]], '\n') print(round(x[[11]], 4))
-# cat(x[[12]]) } 
+print.equiv_rs <- function(x, ...) {
+    cat("-----------Test equivalence of two groups correlations/covariances ---------\n\n")
+    
+    cat("Relation 1 = ", x[[1]], "\n")
+    cat("Relation 2 = ", x[[2]], "\n")
+    cat("Equivalence interval = ", x[[3]], "\n")
+    cat("Lower CI = ", x[[4]], "\n")
+    cat("Upper CI = ", x[[5]], "\n")
+    cat("p-value = ", (round(x[[6]], 4)), "\n")
+    cat("Decision = ", x[[7]], "\n")
+} 

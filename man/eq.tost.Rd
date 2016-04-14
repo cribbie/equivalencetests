@@ -31,7 +31,7 @@ eq.tost(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2,
 
 \item{normality}{logical; If true, normality of x and y are assumed.}
 
-\item{tr}{proportion of data to trim. When \code{tr == 0}, either the standard Schuirmann test
+\item{tr}{proportion of data to trim. When \code{tr == 0}, equivintther the standard Schuirmann test
 or Schuirmann-Welch is performed}
 
 \item{alpha}{the appropriate alpha level}

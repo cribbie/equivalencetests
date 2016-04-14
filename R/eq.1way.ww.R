@@ -1,4 +1,4 @@
-#' Wellek-Welch equivalence test for k-groups: 
+#' Wellek-Welch equivalence test for k-groups 
 #' 
 #' This function computes the Wellek-Welch equivalence test for k-groups. This addresses the research question about equivalence for means among k independent groups.
 #' The Welch adjustment provides a robust correction for unequal vairances among the k groups.
@@ -31,10 +31,18 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
             eps^2)
     pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], 
         ncp = mean(size) * eps^2)
-    ifelse(pval < crit_psis, check_equiv <- "The null hypothesis is rejected.", check_equiv <- 'The null hypothesis is not rejected.' )
+    ifelse(pval < crit_psisq, check_equiv <- "The null hypothesis is rejected.", 
+        check_equiv <- "The null hypothesis is not rejected.")
     ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 
         1, df2 = sum(size) - ng, p.crit = crit_psisq, 
         p.obs = pval, decision = check_equiv)
-    ret
+    class(ret) <- "eq.1way.ww"
+}
+print.eq.1way.ww <- function(x, ...) {
+    cat("----Wellek-Welch equivalence test for k-groups----\n\n")
+    cat("F statistic = ", x$stat, "\n")
+    cat("with degrees of freedom ", x$df1, ",", x$df2, 
+        ".\n")
+    cat("Critical value = ", x$p.crit, "\n")
+    cat("p-value = ", x$p.obs, "\n")
 } 
-

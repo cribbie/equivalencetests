@@ -35,8 +35,8 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
     corxy <- cor(var1, var2)
     n <- length(var1)
     nresamples <- 10000
-    #### Running a traditional t test to determine if the
-    #### correlation is significant######
+    #### Running a traditional t test to determine if
+    #### the correlation is significant######
     t <- corxy/(sqrt((1 - corxy^2)/(n - 2)))
     pvalue_tradt <- 1 - pt(abs(t), n - 2)
     ifelse(pvalue_tradt <= alpha, decis_tradt <- "The null hypothesis that there is no correlation between x and y can be rejected.", 
@@ -74,7 +74,8 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
         M <- mean(thetastar)
         S <- sd(thetastar)
         alpha <- 1 - conf.level
-        CI <- quantile(thetastar, c(alpha/2, 1 - alpha/2))
+        CI <- quantile(thetastar, c(alpha/2, 1 - 
+            alpha/2))
         return(list(ThetaStar = thetastar, Mean.ThetaStar = M, 
             S.E.ThetaStar = S, Percentile.CI = CI))
     }
@@ -114,9 +115,9 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
     names(stats_rs) <- c("Pearson r", "Equivalence Interval", 
         "# of Resamples", "5th Percentile", "95th Percentile")
     out <- list(list(title1, stats_tradt, decis_tradt), 
-        list(title2, stats_equivt, decis_equivt), list(title3, 
-            stats_fz, decis_fz), list(title4, stats_rs, 
-            decis_rs))
+        list(title2, stats_equivt, decis_equivt), 
+        list(title3, stats_fz, decis_fz), list(title4, 
+            stats_rs, decis_rs))
     class(out) <- "eq.corr"
     out
 }

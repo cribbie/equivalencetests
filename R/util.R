@@ -20,7 +20,8 @@ winvar <- function(x, tr = 0.2, na.rm = FALSE) {
 
 
 # create contrast matrices (for hotelling t2:
-# adjacenet mean differences; otherwise, pairwise)
+# adjacenet mean differences; otherwise,
+# pairwise)
 getContrast <- function(k, type) {
     if (type == "adjacent") {
         M <- matrix(0, nrow = k - 1, ncol = k)
@@ -30,7 +31,8 @@ getContrast <- function(k, type) {
         }
     }
     if (type == "allPW") {
-        M <- matrix(0, nrow = k, ncol = k * (k - 1)/2)
+        M <- matrix(0, nrow = k, ncol = k * (k - 
+            1)/2)
         comb <- combn(k, 2)
         M[cbind(comb[1, ], 1:(k * (k - 1)/2))] <- -1
         M[cbind(comb[2, ], 1:(k * (k - 1)/2))] <- 1
@@ -89,8 +91,8 @@ simRanIntSlope <- function(sample_size, number_of_sample,
     
     zeta0i <- rnorm(sample_size, mean = 0, sd = 1)  #int residuals. Int_sd is variance in intercepts. 
     zeta1i <- rnorm(sample_size, mean = 0, sd = 1)  #slope residuals. slope_sd is variance in slopes. 
-    eij <- rnorm(sample_size * number_of_sample, mean = 0, 
-        sd = 1)  #individual residuals 
+    eij <- rnorm(sample_size * number_of_sample, 
+        mean = 0, sd = 1)  #individual residuals 
     
     y <- gamma00 + gamma10 * timeij + zeta0i + zeta1i * 
         timeij + eij

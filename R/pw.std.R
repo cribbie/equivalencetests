@@ -34,7 +34,8 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     means <- as.matrix(apply(dat, 2, mean))
     
     allcontrasts <- getContrast(k, type = "allPW")
-    mean_diff_names <- pairwise_meanDiffs(means, allcontrasts)
+    mean_diff_names <- pairwise_meanDiffs(means, 
+        allcontrasts)
     sqrt_varcovar <- pairwise_sd(allcontrasts, sigma)
     
     omnibus_res <- NA
@@ -45,20 +46,22 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     }
     
     leftside <- unlist(leftside)
-    find_nonequiv_res <- which(ifelse(leftside < fcrit, 
-        check_equiv <- 1, check_equiv <- 0) == 0)
+    find_nonequiv_res <- which(ifelse(leftside < 
+        fcrit, check_equiv <- 1, check_equiv <- 0) == 
+        0)
     ifelse(length(find_nonequiv_res) > 0, omnibus_std_res <- "At least one pairwise comparison was not statistically equivalent. There is no evidence for overall equivalence among the repeated measures.", 
         omnibus_std_res <- "All pairwise comparisons were statistically equivalent. There is evidence for overall equivalence among the repeated measures.")  #if at least one pair is NOT equiv, omnibus is not signif. 
+    
     if (length(find_nonequiv_res) > 0) {
-        print("The following pairs were found to be nonequivalent:")
-        print()
-        print(find_nonequiv_res)
+        print("The following pairwise mean contrasts were found to be nonequivalent:")
+        cat("\n")
+        print(names(find_nonequiv_res))
+        cat("\n\n")
     }
     res <- list(repeatedMeasures = k, means = t(means), 
         ei = ei, Decision = omnibus_std_res)
     class(res) <- "pw.std"
     return(res)
-    
 }
 
 #' @S3method print pw.std
@@ -66,12 +69,13 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
 #' @method print pw.std
 #' @param x object of class \code{pw.std}
 print.pw.std <- function(x, ...) {
+    cat("------Pairwise unstandardized test for overall equivalence------\n\n")
     cat("There are", x[[1]], "repeated measures.", 
         "\n\n")
     cat("The", x[[1]], "means were ")
     cat(x[[2]])
     cat("\n\n")
-    cat("The equivalence interval was ", x[[3]], "in standardized metric.", 
-        "\n\n")
+    cat("The equivalence interval was ", x[[3]], 
+        "in standardized metric.", "\n\n")
     print(x[[4]])
 } 

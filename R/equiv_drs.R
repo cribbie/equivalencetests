@@ -49,11 +49,11 @@ equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
     detR <- (1 - r12^2 - r13^2 - r23^2) + (2 * r12 * 
         r13 * r23)
     p1 <- pnorm((abs(r12 - r13) - ei) * (sqrt(((n - 
-        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + 
-        (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
+        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * 
+        detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
     p2 <- pnorm((-abs(r12 - r13) - ei) * (sqrt(((n - 
-        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * detR) + 
-        (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
+        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * 
+        detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
     p.value <- p1 - p2
     ser <- 1/sqrt(((n - 1) * (1 + r23))/((2 * ((n - 
         1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
@@ -74,8 +74,21 @@ equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
     } else {
         "Dependent correlation coefficients can NOT be considered equivalent at alpha."
     }
-    out <- list(p.value, CI, decision)
+    out <- list(p.value, CI, decision, ei)
     names(out) <- c("P value", "Confidence Interval of the Difference in Correlations", 
-        "Decision")
-    print(out)
+        "Decision", "ei")
+    class(out) <- "equiv_drs"
+    return(out)
+}
+#' @S3method print equiv_drs
+#' @rdname equiv_drs
+#' @method print equiv_drs
+#' @param x object of class \code{equiv_drs}
+print.equiv_drs <- function(x, ...) {
+    cat("------Equivalence tests of dependent correlations------\n\n")
+    cat("p-value = ", x[[1]], "\n")
+    cat("CI = ", x[[2]], "\n")
+    cat("Decision: ", x[[3]])
+    cat("\n\n")
+    cat("Equivalence interval = ", x[[4]])
 } 

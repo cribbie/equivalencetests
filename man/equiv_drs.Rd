@@ -2,9 +2,12 @@
 % Please edit documentation in R/equiv_drs.R
 \name{equiv_drs}
 \alias{equiv_drs}
+\alias{print.equiv_drs}
 \title{Dependent Correlations}
 \usage{
 equiv_drs(dat, ei, n = NULL, alpha = 0.05)
+
+\method{print}{equiv_drs}(x, ...)
 }
 \arguments{
 \item{dat}{an N x 3 matrix or data.frame containing raw data used to compute the 
@@ -16,6 +19,8 @@ correlation matrix between variables. The input may also be a 1 x 3 vector of co
 \item{n}{sample size when dat input is a vector of correlations}
 
 \item{alpha}{desired alpha level}
+
+\item{x}{object of class \code{equiv_drs}}
 }
 \value{
 returns a list containing the p-value, confidence interval, and statistical decision
