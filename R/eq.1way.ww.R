@@ -37,7 +37,13 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
         1, df2 = sum(size) - ng, p.crit = crit_psisq, 
         p.obs = pval, decision = check_equiv)
     class(ret) <- "eq.1way.ww"
+    return(ret)
 }
+
+#' @S3method print eq.1way.ww
+#' @rdname eq.1way.ww
+#' @method print eq.1way.ww
+#' @param x object of class \code{eq.1way.ww}
 print.eq.1way.ww <- function(x, ...) {
     cat("----Wellek-Welch equivalence test for k-groups----\n\n")
     cat("F statistic = ", x$stat, "\n")
