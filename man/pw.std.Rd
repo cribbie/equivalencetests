@@ -25,18 +25,7 @@ An equivalence test for repeated measures. Tests the null hypothesis that at lea
 is not practically equivalent, as defined by an equivalence interval. This null hypothesis is constructed as an intersection-union test, so the null hypothesis fails to be rejected if even one pairwise mean difference is not found to be statistically equivalent.
 }
 \examples{
-k.obs <- 3
-elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
-
-X <- diag(k.obs)  
-X[lower.tri(X, diag = TRUE)] <- elements
-X <- X + t(X) - diag(diag(X)) 
-colnames(X) <- c('repA', 'repB', 'repC')
-rownames(X) <- c('repA', 'repB', 'repC')
-
-if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
-dat <- data.frame(rmvnorm(n=40, sigma=X))
-names(dat) <- c('repA', 'repB', 'repC')
+dat <- simRepDat()
 pw.std(data=dat, repeated=c('repA', 'repB', 'repC'), ei=1)
 }
 

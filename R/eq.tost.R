@@ -116,3 +116,20 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE, normality = FALSE,
         decis = decis)
     return(res)
 } 
+#' @S3method print eq.1way.ww
+#' @rdname eq.1way.ww
+#' @method print eq.1way.ww
+#' @param x object of class \code{eq.1way.ww}
+print.eq.1way.ww <- function(x, ...) {
+  cat("----", x$title, "----", '\n\n')
+  cat("Means:", x$means, "\n")
+  cat("SDs:", x$sds, "\n")  
+  cat("Trimmed Means:", x$trimmeans, "\n")
+  cat("The equivalence interval was ", x$equivint, "in unstandardized metric.")
+  cat("Test statistics: ", x$tstats, "\n")
+  cat("Degrees of freedom: ", x$dfs, "\n")
+  cat("p-value = ", x$p.vals, "\n")
+  cat("Decision:", x$decis, "\n")
+}
+
+

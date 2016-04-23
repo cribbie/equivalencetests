@@ -9,18 +9,7 @@
 #' @references Wellek, S. (2010). \emph{Testing statistical hypotheses of equivalence and noninferiority}. CRC Press.
 #' @export pw.unstd
 #' @examples 
-#' #' k.obs <- 3
-#' elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
-#' 
-#' X <- diag(k.obs)  
-#' X[lower.tri(X, diag = TRUE)] <- elements
-#' X <- X + t(X) - diag(diag(X)) 
-#' colnames(X) <- c('repA', 'repB', 'repC')
-#' rownames(X) <- c('repA', 'repB', 'repC')
-#' 
-#' if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
-#' dat <- data.frame(rmvnorm(n=40, sigma=X))
-#' names(dat) <- c('repA', 'repB', 'repC')
+#' dat <- simRepDat()
 #' pw.unstd(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
 pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     if (class(data) != "data.frame") 

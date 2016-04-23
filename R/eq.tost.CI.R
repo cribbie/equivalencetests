@@ -88,5 +88,6 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
         tstats = tstats, dfs = dfs, pvals = pvals, decis = decis, ciBounds = ciBounds, 
         ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, 
         hiCI = hiCI)
+    class(res) <- "eq.tost.CI"
     return(res)
 } 

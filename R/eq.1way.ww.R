@@ -48,5 +48,4 @@ print.eq.1way.ww <- function(x, ...) {
     cat("with degrees of freedom ", x$df1, ",", x$df2, ".\n")
     cat("Critical value = ", x$p.crit, "\n")
     cat("p-value = ", x$p.obs, "\n")
-}
- 
+} 

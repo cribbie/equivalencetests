@@ -24,18 +24,7 @@ pw.unstd(data, repeated, ei, alpha = 0.05)
 Equivalence interval is in unstandardized metric. If at least one pairwise mean difference is found not statistically significant (in equivalence), then the whole test fails to reject the null hypothesis.
 }
 \examples{
-#' k.obs <- 3
-elements <- c(1, 0.7, 0.8, 1, 0.5,1)  
-
-X <- diag(k.obs)  
-X[lower.tri(X, diag = TRUE)] <- elements
-X <- X + t(X) - diag(diag(X)) 
-colnames(X) <- c('repA', 'repB', 'repC')
-rownames(X) <- c('repA', 'repB', 'repC')
-
-if(!require(mvtnorm)) install.packages(mvtnorm); library(mvtnorm) 
-dat <- data.frame(rmvnorm(n=40, sigma=X))
-names(dat) <- c('repA', 'repB', 'repC')
+dat <- simRepDat()
 pw.unstd(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
 }
 \references{
