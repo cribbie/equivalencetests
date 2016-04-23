@@ -16,6 +16,10 @@
 
 
 eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
+    if(any(!complete.cases(data))){
+      print('Missing data present. Only complete cases are used.')
+      data <- data[complete.cases(data),]
+    }
     if (class(data) != "data.frame") 
         stop("Data input is not a dataframe.")
     dat <- data[, repeated]
@@ -39,7 +43,7 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
         check_equiv <- "T2 is greater than the critical value, so the null hypothesis is NOT rejected")
     T2_res <- check_equiv
     res <- list(repeatedMeasures = k, means = t(means), ei = ei, T2 = T2, 
-        fcrit = fcrit, Decision = check_equiv)
+        fcrit = fcrit, Decision = check_equiv, sampleSize = n)
     class(res) <- "eq.hotT2"
     return(res)
 }
@@ -49,7 +53,7 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
 #' @param x object of class \code{eq.hotT2}
 print.eq.hotT2 <- function(x, ...) {
     cat("-------Hotelling T2 test for overall equivalence------\n\n")
-    cat("There are", x[[1]], "repeated measures.", "\n\n")
+    cat("There are", x[[1]], "repeated measures for ", n, ' participants.', "\n\n")
     cat("The", x[[1]], "means were ")
     cat(x[[2]])
     cat("\n\n")

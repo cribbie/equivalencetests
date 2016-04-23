@@ -43,7 +43,15 @@
 #' eq.tost.CI(x,y, ei=0.50, alpha=.05)
 #' }
 #' 
-eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
+eq.tost.CI <- function(x, y, ei, alpha = 0.05, na.rm=FALSE) {
+  ifelse (any(is.na(y)) | any(is.na(x)), missing <- TRUE, missing <- FALSE    )
+  if(missing & na.rm==TRUE){
+      x <- na.omit(x)
+      y <- na.omit(y)
+  }
+   if (missing & na.rm==FALSE){
+     stop(print('There are missing values.'))
+   }
     se <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
         length(y) - 2)) * (1/length(x) + 1/length(y)))
     num1 <- (mean(x) - mean(y) - ei)
