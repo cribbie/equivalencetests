@@ -15,15 +15,13 @@
 negTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
     t1 <- (slope - ei)/se
     t2 <- (slope + ei)/se
-    # dft <- summary(mod)$tTable[2,3] #this df is
-    # from lme.
+    # dft <- summary(mod)$tTable[2,3] #this df is from lme.
     probt1 <- pt(t1, df, lower.tail = T)
     probt2 <- pt(t2, df, lower.tail = F)
     ifelse(probt1 < alpha && probt2 < alpha, check_equiv <- "There is evidence in favour of a practically meaningless trend.", 
         check_equiv <- "There is no evidence in favour of practically meaninglesls trend.")
-    res <- list(t1 = t1, t2 = t2, pValue.t1 = probt1, 
-        pValue.t2 = probt2, decision = check_equiv, 
-        ei = ei)
+    res <- list(t1 = t1, t2 = t2, pValue.t1 = probt1, pValue.t2 = probt2, 
+        decision = check_equiv, ei = ei)
     class(res) <- "negTrend"
     return(res)
 }
@@ -33,8 +31,7 @@ negTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
 #' @param x object of class \code{negTrend}
 print.negTrend <- function(x, ...) {
     cat("-------Two one-sided test for negligible trend------\n\n")
-    cat("The equivalence interval magnitude was ", 
-        x[[6]], "\n\n")
+    cat("The equivalence interval magnitude was ", x[[6]], "\n\n")
     cat("t1 = ", x[[1]], "p-value = ", x[[3]], "\n")
     cat("t2 = ", x[[2]], "p-value = ", x[[4]], "\n")
     cat(x[[5]])

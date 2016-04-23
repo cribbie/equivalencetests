@@ -2,9 +2,12 @@
 % Please edit documentation in R/eq.1way.ww.R
 \name{eq.1way.ww}
 \alias{eq.1way.ww}
+\alias{print.eq.1way.ww}
 \title{Wellek-Welch equivalence test for k-groups}
 \usage{
 eq.1way.ww(dv, group, eps, alpha = 0.05)
+
+\method{print}{eq.1way.ww}(x, ...)
 }
 \arguments{
 \item{dv}{a numeric vector for the continous dependent variable}
@@ -14,6 +17,8 @@ eq.1way.ww(dv, group, eps, alpha = 0.05)
 \item{eps}{numeric value defining the size of the equivalance interval}
 
 \item{alpha}{the appropriate alpha level}
+
+\item{x}{object of class \code{eq.1way.ww}}
 }
 \description{
 This function computes the Wellek-Welch equivalence test for k-groups. This addresses the research question about equivalence for means among k independent groups.

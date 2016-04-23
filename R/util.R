@@ -1,7 +1,7 @@
 
 #' Internal helper function to compute the gamma Winsorized variance for
-# the data in the vector x.  tr is the amount of
-# Winsorization which defaults to .2.
+# the data in the vector x.  tr is the amount of Winsorization which
+# defaults to .2.
 
 winvar <- function(x, tr = 0.2, na.rm = FALSE) {
     if (na.rm) 
@@ -19,9 +19,8 @@ winvar <- function(x, tr = 0.2, na.rm = FALSE) {
 }
 
 
-# create contrast matrices (for hotelling t2:
-# adjacenet mean differences; otherwise,
-# pairwise)
+# create contrast matrices (for hotelling t2: adjacenet mean
+# differences; otherwise, pairwise)
 getContrast <- function(k, type) {
     if (type == "adjacent") {
         M <- matrix(0, nrow = k - 1, ncol = k)
@@ -31,8 +30,7 @@ getContrast <- function(k, type) {
         }
     }
     if (type == "allPW") {
-        M <- matrix(0, nrow = k, ncol = k * (k - 
-            1)/2)
+        M <- matrix(0, nrow = k, ncol = k * (k - 1)/2)
         comb <- combn(k, 2)
         M[cbind(comb[1, ], 1:(k * (k - 1)/2))] <- -1
         M[cbind(comb[2, ], 1:(k * (k - 1)/2))] <- 1
@@ -56,8 +54,8 @@ pairwise_meanDiffs <- function(sample_means, allcontrasts) {
     mean_diff_names <- data.frame(mean_diffs)
     v <- 1:length(sample_means)
     allPairs <- combn(length(v), 2)  # choose a pair from 1:length(v)
-    names(mean_diff_names) <- plyr::aaply(combn(length(v), 
-        2), 2, function(x) paste0(x[2], "-", x[1]))  # iterate over all pairs
+    names(mean_diff_names) <- plyr::aaply(combn(length(v), 2), 2, function(x) paste0(x[2], 
+        "-", x[1]))  # iterate over all pairs
     return(mean_diff_names)
 }
 
@@ -73,13 +71,13 @@ pairwise_sd <- function(allcontrasts, sigma) {
 
 #' 'Internal helper Function' to simulate sample data
 #' simRanIntSlope()
-simRanIntSlope <- function(sample_size, number_of_sample, 
-    equiv_interval, power) {
+simRanIntSlope <- function(sample_size, number_of_sample, equiv_interval, 
+    power) {
     id <- rep(1:sample_size, each = number_of_sample)
     gamma00 <- 5  #avg initial status 
     
-    # d <- weaken_power_by * equiv_interval #as
-    # weaken_power_by increases, d increases.
+    # d <- weaken_power_by * equiv_interval #as weaken_power_by
+    # increases, d increases.
     
     if (power == FALSE) {
         gamma10 <- equiv_interval  #avg slope      
@@ -91,11 +89,9 @@ simRanIntSlope <- function(sample_size, number_of_sample,
     
     zeta0i <- rnorm(sample_size, mean = 0, sd = 1)  #int residuals. Int_sd is variance in intercepts. 
     zeta1i <- rnorm(sample_size, mean = 0, sd = 1)  #slope residuals. slope_sd is variance in slopes. 
-    eij <- rnorm(sample_size * number_of_sample, 
-        mean = 0, sd = 1)  #individual residuals 
+    eij <- rnorm(sample_size * number_of_sample, mean = 0, sd = 1)  #individual residuals 
     
-    y <- gamma00 + gamma10 * timeij + zeta0i + zeta1i * 
-        timeij + eij
+    y <- gamma00 + gamma10 * timeij + zeta0i + zeta1i * timeij + eij
     # tapply(y,timeij,mean)
     newdat <- data.frame(id, timeij, y)
     return(newdat)
@@ -108,8 +104,8 @@ simDat <- function() {
         install.packages(mvtnorm)
         library(mvtnorm)
     }
-    sim_dependent_samples <- function(sample_size, 
-        number_of_sample, sigma_matrix, eps, power) {
+    sim_dependent_samples <- function(sample_size, number_of_sample, 
+        sigma_matrix, eps, power) {
         if (power == TRUE) {
             population_means <- rep(0, number_of_sample)
         }
@@ -117,9 +113,8 @@ simDat <- function() {
             boundary_diff <- eps
             # population_means <- c(0, boundary_diff, rep(0,
             # number_of_sample-2))
-            population_means <- c(0, boundary_diff, 
-                rep(boundary_diff/2, number_of_sample - 
-                  2))
+            population_means <- c(0, boundary_diff, rep(boundary_diff/2, 
+                number_of_sample - 2))
         }
         sample_data <- rmvnorm(sample_size, mean = population_means, 
             sigma = sigma_matrix)
@@ -142,9 +137,8 @@ simDat <- function() {
     p <- nrow(V)
     V[cbind(1:p, 1:p)] <- V[cbind(1:p, 1:p)] * sigma  #cov matrix 
     sigma_matrix <- V  #corMatrix <- cov2cor(V)   
-    data <- sim_dependent_samples(sample_size = 100, 
-        number_of_sample = k, sigma_matrix = sigma_matrix, 
-        eps = 1, power = TRUE)
+    data <- sim_dependent_samples(sample_size = 100, number_of_sample = k, 
+        sigma_matrix = sigma_matrix, eps = 1, power = TRUE)
     data <- data.frame(data)
     names(data) <- c("repA", "repB", "repC")
     return(data)

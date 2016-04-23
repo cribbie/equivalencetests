@@ -44,9 +44,8 @@
 #' }
 #' 
 eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
-    se <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 
-        1) * sd(y)^2))/(length(x) + length(y) - 2)) * 
-        (1/length(x) + 1/length(y)))
+    se <- sqrt(((((length(x) - 1) * sd(x)^2) + ((length(y) - 1) * sd(y)^2))/(length(x) + 
+        length(y) - 2)) * (1/length(x) + 1/length(y)))
     num1 <- (mean(x) - mean(y) - ei)
     num2 <- (mean(x) - mean(y) + ei)
     meanDiff <- mean(x) - mean(y)
@@ -59,8 +58,8 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
     ifelse(probt1 <= alpha & probt2 <= alpha, decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval can be rejected", 
         decis <- "The null hypothesis that the difference between the means exceeds the equivalence interval cannot be rejected")
     
-    # by two CIs (1-alpha) find the two CIs for each
-    # of the mean diffs get critical values
+    # by two CIs (1-alpha) find the two CIs for each of the mean diffs
+    # get critical values
     t1Crit <- qt(1 - alpha, dft, lower.tail = T)
     t2Crit <- qt(1 - alpha, dft, lower.tail = F)
     
@@ -85,10 +84,9 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05) {
     names(tstats) <- c("t1", "t2")
     names(dfs) <- c("dft1", "dft2")
     names(pvals) <- c("p_t1", "p_t2")
-    res <- list(means = means, meanDiff = meanDiff, 
-        sds = sds, ei = ei, tstats = tstats, dfs = dfs, 
-        pvals = pvals, decis = decis, ciBounds = ciBounds, 
-        ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, 
-        lowCI = lowCI, hiCI = hiCI)
+    res <- list(means = means, meanDiff = meanDiff, sds = sds, ei = ei, 
+        tstats = tstats, dfs = dfs, pvals = pvals, decis = decis, ciBounds = ciBounds, 
+        ci.decis = ci.decis, se = se, twoAlphaTCrit = tCrit, lowCI = lowCI, 
+        hiCI = hiCI)
     return(res)
 } 

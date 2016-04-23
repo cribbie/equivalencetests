@@ -49,23 +49,22 @@
 #' equiv_rs(r1, r2, .2, n1 = 100, n2 = 200)
 #' 
 #' }
-equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, 
-    n2 = NULL, betas = FALSE, alpha = 0.05) {
-    if (betas && (length(dat1) == 1L || length(dat2) == 
-        1L)) 
+equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL, n2 = NULL, betas = FALSE, 
+    alpha = 0.05) {
+    par(mfrow = c(1, 2))
+    if (betas && (length(dat1) == 1L || length(dat2) == 1L)) 
         stop("beta comparisons require raw data inputs")
     if (length(dat1) > 1L) {
         dat1 <- na.omit(dat1)
         if (betas) {
             mod1 <- lm(dat1[, 2] ~ dat1[, 1])
-            r1 <- summary.lm(mod1)$coefficients[2, 
-                1]
-            se1 <- summary.lm(mod1)$coefficients[2, 
-                2]
+            r1 <- summary.lm(mod1)$coefficients[2, 1]
+            se1 <- summary.lm(mod1)$coefficients[2, 2]
         } else {
             r1 <- cor(dat1)[1, 2]
         }
         n1 <- nrow(dat1)
+        plot(dat1)
     } else {
         if (is.null(n1)) 
             stop("Correlation inputs require their respective sample sizes")
@@ -77,14 +76,13 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
         dat2 <- na.omit(dat2)
         if (betas) {
             mod2 <- lm(dat2[, 2] ~ dat2[, 1])
-            r2 <- summary.lm(mod2)$coefficients[2, 
-                1]
-            se2 <- summary.lm(mod2)$coefficients[2, 
-                2]
+            r2 <- summary.lm(mod2)$coefficients[2, 1]
+            se2 <- summary.lm(mod2)$coefficients[2, 2]
         } else {
             r2 <- cor(dat2)[1, 2]
         }
         n2 <- nrow(dat2)
+        plot(dat2)
     } else {
         if (is.null(n2)) 
             stop("Correlation inputs require their respective sample sizes")
@@ -95,11 +93,10 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
     if (betas) {
         ser <- sqrt(se1^2 + se2^2)
     } else {
-        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - 
-            r2^2)^2/(n2 - 2)))
+        ser <- sqrt(((1 - r1^2)^2/(n1 - 2)) + ((1 - r2^2)^2/(n2 - 2)))
     }
-    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - 
-        pnorm((-abs(r1 - r2) - equiv_int)/ser)
+    p.value <- pnorm((abs(r1 - r2) - equiv_int)/ser) - pnorm((-abs(r1 - 
+        r2) - equiv_int)/ser)
     upper <- (r1 - r2) + qnorm(alpha) * ser
     lower <- (r1 - r2) - qnorm(alpha) * ser
     if (lower < upper) {
@@ -118,9 +115,9 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
     } else {
         cfs <- data.frame(r1 = r1, r2 = r2)
     }
-    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, 
-        lowerCI = lower2, upperCI = upper2, pValue = p.value, 
-        decision = check_equiv))
+    ret <- cbind(cfs, data.frame(equiv_interval = equiv_int, lowerCI = lower2, 
+        upperCI = upper2, pValue = p.value, decision = check_equiv))
+    par(mfrow = c(1, 1))
     class(ret) <- "equiv_rs"
     return(ret)
 }
