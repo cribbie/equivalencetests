@@ -13,9 +13,8 @@ Authors@R:  c(person('Victoria', 'Ng',
     email='cribbie@yorku.ca',
     role=c('ctb')))
 Maintainer: Rob Cribbie <cribbie@yorku.ca>
-Description: The equivalencetests package provides statistical tools for equivalence testing in the null hypothesis testing framework. Available statistical tests include the following: [eq.corr] One-sample lack of correlation/association; [equiv_rs] Two independent-samples equivalence of correlations (equivalence-based independent samples) [equiv_drs] Dependent-samples equivalence of correlations (equivalence-based dependent samples) - [eq.hotT2] k-dependent samples equivalence of repeated/multiple measures (multivariate approach) [pw.std] k-dependent samples equivalence of repeated/multiple measures (pairwise comparisons approach, using standardized metric)- [pw.unstd] k-dependent samples equivalence of repeated/multiple measures (pairwise comparisons approach, using unstand)
+Description: Provides various functions for computing equivalence tests in R.
 Imports:
-    sem,
     plyr,
 	mvtnorm
 Suggests:

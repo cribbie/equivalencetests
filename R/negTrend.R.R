@@ -31,7 +31,8 @@ negTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
 #' @param x object of class \code{negTrend}
 print.negTrend <- function(x, ...) {
     cat("-------Two one-sided test for negligible trend------\n\n")
-    cat("The equivalence interval magnitude was ", x[[6]], "\n\n")
+    cat("The equivalence interval magnitude was ", x[[6]], 
+        "\n\n")
     cat("t1 = ", x[[1]], "p-value = ", x[[3]], "\n")
     cat("t2 = ", x[[2]], "p-value = ", x[[4]], "\n")
     cat(x[[5]])

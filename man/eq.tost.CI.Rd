@@ -2,11 +2,19 @@
 % Please edit documentation in R/eq.tost.CI.R
 \name{eq.tost.CI}
 \alias{eq.tost.CI}
+\alias{plot.eq.tost.CI}
+\alias{print.eq.tost.CI}
 \title{Independent samples equivalence test using confidence intervals}
 \usage{
-eq.tost.CI(x, y, ei, alpha = 0.05)
+eq.tost.CI(x, y, ei, alpha = 0.05, na.rm = FALSE)
+
+\method{print}{eq.tost.CI}(x, ...)
+
+\method{plot}{eq.tost.CI}(equivObj, ...)
 }
 \arguments{
+\item{x}{object of class \code{eq.tost.CI}}
+
 \item{ei}{equivalence interval}
 
 \item{alpha}{desired alpha level}
@@ -16,6 +24,8 @@ correlation matrix between variables. The input may also be a 1 x 3 vector of co
 (r12, r13, and r23, respectively) and requires a sample size input (N)}
 
 \item{n}{sample size when dat input is a vector of correlations}
+
+\item{x}{object of class \code{eq.tost.CI}}
 }
 \value{
 returns a list containing the p-value, confidence interval, and statistical decision
@@ -40,17 +50,9 @@ ggplot(dat,aes(x=dv)) +
   
 # Run test
 ei <- 0.50
-eq.tost.CI(x,y, ei=ei, alpha=.05)
-equivInfo <- data.frame(name='mean difference', meanDiff=equivObj$meanDiff, lowCI=equivObj$lowCI, highCI=equivObj$hiCI)
-
-p <- ggplot(equivInfo, aes(x=name, y=meanDiff))+
-  geom_pointrange(aes(ymin=lowCI, ymax=highCI)) +  xlab('comparison') +
-  geom_hline(yintercept=c(-equivint, equivint), linetype='dashed', color='blue') + 
-  coord_flip()
-p
-eq.tost.CI(x,y, ei=0.50, alpha=.05)
+res <- eq.tost.CI(x,y, ei=ei, alpha=.05)
+plot(res)
 }
-
 }
 \author{
 Rob Cribbie \email{cribbie@yorku.ca} and 

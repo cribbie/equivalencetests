@@ -26,14 +26,16 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
     owt <- oneway.test(dv ~ group, var.equal = TRUE)
     f <- owt$statistic
     psisq <- f * ((ng - 1)/mean(size))
-    crit_psisq <- ((ng - 1)/mean(size)) * qf(p = alpha, df1 = ng - 1, 
-        df2 = sum(size) - ng, ncp = mean(size) * eps^2)
-    pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], ncp = mean(size) * 
-        eps^2)
+    crit_psisq <- ((ng - 1)/mean(size)) * qf(p = alpha, 
+        df1 = ng - 1, df2 = sum(size) - ng, ncp = mean(size) * 
+            eps^2)
+    pval <- pf(f, df1 = ng - 1, df2 = owt$parameter[2], 
+        ncp = mean(size) * eps^2)
     ifelse(pval < crit_psisq, check_equiv <- "The null hypothesis is rejected.", 
         check_equiv <- "The null hypothesis is not rejected.")
-    ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 1, df2 = sum(size) - 
-        ng, p.crit = crit_psisq, p.obs = pval, decision = check_equiv)
+    ret <- data.frame(stat = as.numeric(psisq), df1 = ng - 
+        1, df2 = sum(size) - ng, p.crit = crit_psisq, p.obs = pval, 
+        decision = check_equiv)
     class(ret) <- "eq.1way.ww"
     return(ret)
 }
@@ -45,7 +47,8 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
 print.eq.1way.ww <- function(x, ...) {
     cat("----Wellek-Welch equivalence test for k-groups----\n\n")
     cat("F statistic = ", x$stat, "\n")
-    cat("with degrees of freedom ", x$df1, ",", x$df2, ".\n")
+    cat("with degrees of freedom ", x$df1, ",", x$df2, 
+        ".\n")
     cat("Critical value = ", x$p.crit, "\n")
     cat("p-value = ", x$p.obs, "\n")
 } 

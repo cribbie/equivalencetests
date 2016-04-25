@@ -1,7 +1,7 @@
 
 #' Internal helper function to compute the gamma Winsorized variance for
-# the data in the vector x.  tr is the amount of Winsorization which
-# defaults to .2.
+# the data in the vector x.  tr is the amount of
+# Winsorization which defaults to .2.
 
 winvar <- function(x, tr = 0.2, na.rm = FALSE) {
     if (na.rm) 
@@ -19,8 +19,8 @@ winvar <- function(x, tr = 0.2, na.rm = FALSE) {
 }
 
 
-# create contrast matrices (for hotelling t2: adjacenet mean
-# differences; otherwise, pairwise)
+# create contrast matrices (for hotelling t2: adjacenet
+# mean differences; otherwise, pairwise)
 getContrast <- function(k, type) {
     if (type == "adjacent") {
         M <- matrix(0, nrow = k - 1, ncol = k)
@@ -54,8 +54,8 @@ pairwise_meanDiffs <- function(sample_means, allcontrasts) {
     mean_diff_names <- data.frame(mean_diffs)
     v <- 1:length(sample_means)
     allPairs <- combn(length(v), 2)  # choose a pair from 1:length(v)
-    names(mean_diff_names) <- plyr::aaply(combn(length(v), 2), 2, function(x) paste0(x[2], 
-        "-", x[1]))  # iterate over all pairs
+    names(mean_diff_names) <- plyr::aaply(combn(length(v), 
+        2), 2, function(x) paste0(x[2], "-", x[1]))  # iterate over all pairs
     return(mean_diff_names)
 }
 
