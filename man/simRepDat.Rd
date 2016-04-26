@@ -2,13 +2,12 @@
 % Please edit documentation in R/util.R
 \name{simRepDat}
 \alias{simRepDat}
-\title{'Internal helper Function' to simulate sample data
-simRepDat()}
+\alias{simRepDat()}
+\title{'Internal helper Function' to simulate sample data}
 \usage{
 simRepDat()
 }
 \description{
 'Internal helper Function' to simulate sample data
-simRepDat()
 }
 

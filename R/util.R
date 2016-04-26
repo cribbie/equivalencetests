@@ -1,5 +1,7 @@
 
 #' 'Internal helper Function' to simulate sample data
+#' @export simRepDat
+#' @aliases simRepDat
 #' simRepDat()
 simRepDat <- function() {
     if (!require(mvtnorm)) {
