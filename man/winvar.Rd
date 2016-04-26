@@ -2,11 +2,17 @@
 % Please edit documentation in R/util.R
 \name{winvar}
 \alias{winvar}
-\title{Internal helper function to compute the gamma Winsorized variance for}
+\title{Internal helper function to compute the gamma Winsorized variance for
+the data in the vector x.  tr is the amount of
+Winsorization which defaults to .2.
+winvar()}
 \usage{
 winvar(x, tr = 0.2, na.rm = FALSE)
 }
 \description{
 Internal helper function to compute the gamma Winsorized variance for
+the data in the vector x.  tr is the amount of
+Winsorization which defaults to .2.
+winvar()
 }
 
