@@ -16,9 +16,11 @@ Maintainer: Rob Cribbie <cribbie@yorku.ca>
 Description: Provides various functions for computing equivalence tests in R.
 Imports:
     plyr,
-	mvtnorm
+	mvtnorm,
+	ggplot2
 Suggests:
-    testthat
+    testthat,
+	nlme
 ByteCompile: no
 LazyLoad: yes
 LazyData: yes

@@ -1,5 +1,6 @@
 
 #' 'Internal helper Function' to simulate sample data
+#' test change
 #' @export simRepDat
 #' @aliases simRepDat
 #' simRepDat()
