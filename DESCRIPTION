@@ -5,10 +5,10 @@ Version: 0.1.1
 Date: 2013-05-31
 Authors@R:  c(person('Victoria', 'Ng',
     email='ng.victoria.ky@gmail.com',
-    role=c('aut')),
+    role=c('cre', 'aut')),
     person('Phil', 'Chalmers',
     email='rphilip.chalmers@gmail.com',
-    role=c('cre', 'aut')),
+    role=c('aut')),
     person('Rob', 'Cribbie',
     email='cribbie@yorku.ca',
     role=c('ctb')))

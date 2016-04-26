@@ -125,10 +125,10 @@ eq.tost <- function(x, y, equivint, varequiv = FALSE,
         dfs = dfs, pvals = pvals, decis = decis)
     return(res)
 }
-#' @S3method print eq.tost
+
 #' @rdname eq.tost
-#' @method print eq.tost
 #' @param x object of class \code{eq.tost}
+#' @export
 print.eq.tost <- function(x, ...) {
     cat("----", x$title, "----", "\n\n")
     cat("Means:", x$means, "\n")

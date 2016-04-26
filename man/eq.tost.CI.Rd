@@ -10,10 +10,12 @@ eq.tost.CI(x, y, ei, alpha = 0.05, na.rm = FALSE)
 
 \method{print}{eq.tost.CI}(x, ...)
 
-\method{plot}{eq.tost.CI}(equivObj, ...)
+\method{plot}{eq.tost.CI}(x, y = NULL, ...)
 }
 \arguments{
 \item{x}{object of class \code{eq.tost.CI}}
+
+\item{y}{a NULL object}
 
 \item{ei}{equivalence interval}
 
@@ -43,7 +45,6 @@ dat <- data.frame(dv=c(x,y),  group=c(rep('g1', length(x)), rep('g2', length(y))
 
 # Plot raw data distribution
 
- if (!require(ggplot2)) install.packages(ggplot2); library(ggplot2)
 ggplot(dat,aes(x=dv)) + 
   geom_histogram(data=subset(dat,group == 'g1'),fill = 'red', alpha = 0.2) +
   geom_histogram(data=subset(dat,group == 'g2'),fill = 'blue', alpha = 0.2)

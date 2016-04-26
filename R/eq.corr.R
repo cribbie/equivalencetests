@@ -123,10 +123,9 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
     out
 }
 
-#' @S3method print eq.corr
 #' @rdname eq.corr
-#' @method print eq.corr
 #' @param x object of class \code{eq.corr}
+#' @export
 print.eq.corr <- function(x, ...) {
     lapply(x, function(y) {
         cat("**************************************************\n\n", 

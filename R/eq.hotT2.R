@@ -49,10 +49,10 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
     class(res) <- "eq.hotT2"
     return(res)
 }
-#' @S3method print eq.hotT2
+
 #' @rdname eq.hotT2
-#' @method print eq.hotT2
 #' @param x object of class \code{eq.hotT2}
+#' @export
 print.eq.hotT2 <- function(x, ...) {
     cat("-------Hotelling T2 test for overall equivalence------\n\n")
     cat("There are", x[[1]], "repeated measures for ", 

@@ -27,10 +27,10 @@ negTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
     class(res) <- "negTrend"
     return(res)
 }
-#' @S3method print negTrend
+
 #' @rdname negTrend
-#' @method print negTrend
 #' @param x object of class \code{negTrend}
+#' @export
 print.negTrend <- function(x, ...) {
     cat("-------Two one-sided test for negligible trend------\n\n")
     cat("The equivalence interval magnitude was ", 

@@ -127,10 +127,9 @@ normcomp <- function(premean, presd, pren, postmean,
     out
 }
 
-#' @S3method print normcomp
 #' @rdname normcomp
-#' @method print normcomp
 #' @param x object of class \code{normcomp}
+#' @export
 print.normcomp <- function(x, ...) {
     cat(x[[1]], "\n")
     cat("-----------------------------------------------------\n\n")

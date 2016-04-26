@@ -40,10 +40,9 @@ eq.1way.ww <- function(dv, group, eps, alpha = 0.05) {
     return(ret)
 }
 
-#' @S3method print eq.1way.ww
 #' @rdname eq.1way.ww
-#' @method print eq.1way.ww
 #' @param x object of class \code{eq.1way.ww}
+#' @export
 print.eq.1way.ww <- function(x, ...) {
     cat("----Wellek-Welch equivalence test for k-groups----\n\n")
     cat("F statistic = ", x$stat, "\n")

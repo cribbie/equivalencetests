@@ -3,11 +3,13 @@
 \name{simRepDat}
 \alias{simRepDat}
 \alias{simRepDat()}
-\title{'Internal helper Function' to simulate sample data}
+\title{'Internal helper Function' to simulate sample data
+test change}
 \usage{
 simRepDat()
 }
 \description{
 'Internal helper Function' to simulate sample data
+test change
 }
 

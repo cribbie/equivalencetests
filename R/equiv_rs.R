@@ -128,10 +128,10 @@ equiv_rs <- function(dat1, dat2, equiv_int, n1 = NULL,
     class(ret) <- "equiv_rs"
     return(ret)
 }
-#' @S3method print equiv_rs
+
 #' @rdname equiv_rs
-#' @method print equiv_rs
 #' @param x object of class \code{equiv_rs}
+#' @export
 print.equiv_rs <- function(x, ...) {
     cat("-----------Test equivalence of two groups correlations/covariances ---------\n\n")
     

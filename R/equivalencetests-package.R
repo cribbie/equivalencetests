@@ -26,6 +26,7 @@
 #' @title Equivalence tests
 #' @author Rob Cribbie \email{cribbie@@yorku.ca}, Victoria Ng \email{ng.victoria.ky@@gmail.com}, Alyssa Counsell \email{counsela@@yorku.ca} and
 #'   Phil Chalmers \email{rphilip.chalmers@@gmail.com}
+#' @import stats plyr mvtnorm ggplot2
 #' @keywords package
 NULL
 

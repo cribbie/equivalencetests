@@ -44,10 +44,9 @@ pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     return(res)
 }
 
-#' @S3method print pw.unstd
 #' @rdname pw.unstd
-#' @method print pw.unstd
 #' @param x object of class \code{pw.unstd}
+#' @export
 print.pw.unstd <- function(x, ...) {
     cat("------Pairwise unstandardized test for overall equivalence------\n\n")
     cat("There are", x[[1]], "repeated measures.", 

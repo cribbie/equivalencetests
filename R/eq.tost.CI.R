@@ -25,7 +25,6 @@
 #' 
 #' # Plot raw data distribution
 #' 
-#'  if (!require(ggplot2)) install.packages(ggplot2); library(ggplot2)
 #' ggplot(dat,aes(x=dv)) + 
 #'   geom_histogram(data=subset(dat,group == 'g1'),fill = 'red', alpha = 0.2) +
 #'   geom_histogram(data=subset(dat,group == 'g2'),fill = 'blue', alpha = 0.2)
@@ -95,10 +94,9 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05, na.rm = FALSE) {
     return(res)
 }
 
-#' @S3method print eq.tost.CI
 #' @rdname eq.tost.CI
-#' @method print eq.tost.CI
 #' @param x object of class \code{eq.tost.CI}
+#' @export
 print.eq.tost.CI <- function(x, ...) {
     cat("-----Equivalence test for confidence interval inclusion principal---\n\n")
     cat("Means: ", x$means, ". Mean difference is ", 
@@ -118,21 +116,18 @@ print.eq.tost.CI <- function(x, ...) {
     cat("Decision: ", x$decis)
 }
 
-#' @S3method plot eq.tost.CI
 #' @rdname eq.tost.CI
-#' @method plot eq.tost.CI
 #' @param x object of class \code{eq.tost.CI}
-plot.eq.tost.CI <- function(equivObj, ...) {
-    if (!require(ggplot2)) 
-        install.packages(ggplot2)
-    library(ggplot2)
+#' @param y a NULL object
+#' @export
+plot.eq.tost.CI <- function(x, y = NULL, ...) {
     equivInfo <- data.frame(name = "mean difference", 
-        meanDiff = equivObj$meanDiff, lowCI = equivObj$ciBounds[1], 
-        highCI = equivObj$ciBounds[2])
+        meanDiff = x$meanDiff, lowCI = x$ciBounds[1], 
+        highCI = x$ciBounds[2])
     p <- ggplot(equivInfo, aes(x = name, y = meanDiff)) + 
         geom_pointrange(aes(ymin = lowCI, ymax = highCI)) + 
-        xlab("comparison") + geom_hline(yintercept = c(-equivObj$ei, 
-        equivObj$ei), linetype = "dashed", color = "blue") + 
+        xlab("comparison") + geom_hline(yintercept = 
+            c(-x$ei, x$ei), linetype = "dashed", color = "blue") + 
         coord_flip()
     p
 } 

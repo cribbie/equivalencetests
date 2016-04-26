@@ -53,10 +53,9 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
     return(res)
 }
 
-#' @S3method print pw.std
 #' @rdname pw.std
-#' @method print pw.std
 #' @param x object of class \code{pw.std}
+#' @export
 print.pw.std <- function(x, ...) {
     cat("------Pairwise unstandardized test for overall equivalence------\n\n")
     cat("There are", x[[1]], "repeated measures.", 
