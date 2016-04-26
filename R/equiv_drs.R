@@ -30,8 +30,7 @@
 #' r23 <- cor(dat)[3,2]
 #' equiv_drs(c(r12, r13, r23), ei = .2, n = nrow(dat))
 #' }
-equiv_drs <- function(dat, ei, n = NULL, 
-    alpha = 0.05) {
+equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
     if (length(dat) > 3L) {
         x1 <- dat[, 1L]
         x2 <- dat[, 2L]
@@ -47,26 +46,20 @@ equiv_drs <- function(dat, ei, n = NULL,
         if (is.null(n)) 
             stop("sample size input required")
     }
-    detR <- (1 - r12^2 - r13^2 - r23^2) + 
-        (2 * r12 * r13 * r23)
-    p1 <- pnorm((abs(r12 - r13) - ei) * 
-        (sqrt(((n - 1) * (1 + r23))/((2 * 
-            ((n - 1)/(n - 3)) * detR) + 
-            (((r12 + r13)^2)/4) * ((1 - 
-                r23)^3)))))
-    p2 <- pnorm((-abs(r12 - r13) - ei) * 
-        (sqrt(((n - 1) * (1 + r23))/((2 * 
-            ((n - 1)/(n - 3)) * detR) + 
-            (((r12 + r13)^2)/4) * ((1 - 
-                r23)^3)))))
+    detR <- (1 - r12^2 - r13^2 - r23^2) + (2 * r12 * 
+        r13 * r23)
+    p1 <- pnorm((abs(r12 - r13) - ei) * (sqrt(((n - 
+        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * 
+        detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
+    p2 <- pnorm((-abs(r12 - r13) - ei) * (sqrt(((n - 
+        1) * (1 + r23))/((2 * ((n - 1)/(n - 3)) * 
+        detR) + (((r12 + r13)^2)/4) * ((1 - r23)^3)))))
     p.value <- p1 - p2
-    ser <- 1/sqrt(((n - 1) * (1 + r23))/((2 * 
-        ((n - 1)/(n - 3)) * detR) + (((r12 + 
-        r13)^2)/4) * ((1 - r23)^3)))
-    upper <- (r12 - r13) + qnorm(alpha) * 
-        ser
-    lower <- (r12 - r13) - qnorm(alpha) * 
-        ser
+    ser <- 1/sqrt(((n - 1) * (1 + r23))/((2 * ((n - 
+        1)/(n - 3)) * detR) + (((r12 + r13)^2)/4) * 
+        ((1 - r23)^3)))
+    upper <- (r12 - r13) + qnorm(alpha) * ser
+    lower <- (r12 - r13) - qnorm(alpha) * ser
     if (lower < upper) {
         lower2 <- lower
         upper2 <- upper
@@ -81,8 +74,7 @@ equiv_drs <- function(dat, ei, n = NULL,
     } else {
         "Dependent correlation coefficients can NOT be considered equivalent at alpha."
     }
-    out <- list(p.value, CI, decision, 
-        ei)
+    out <- list(p.value, CI, decision, ei)
     names(out) <- c("P value", "Confidence Interval of the Difference in Correlations", 
         "Decision", "ei")
     class(out) <- "equiv_drs"

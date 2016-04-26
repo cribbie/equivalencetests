@@ -11,23 +11,20 @@
 #' @examples 
 #' dat <- simRepDat()
 #' pw.unstd(data=dat, repeated=c('repA', 'repB', 'repC'), ei=0.25)
-pw.unstd <- function(data, repeated, 
-    ei, alpha = 0.05) {
+pw.unstd <- function(data, repeated, ei, alpha = 0.05) {
     if (class(data) != "data.frame") 
         stop("Data input is not a dataframe.")
     dat <- data[, repeated]
     n <- nrow(dat)
     k <- length(repeated)
     sigma <- cov(dat)
-    means <- as.matrix(apply(dat, 2, 
-        mean))
+    means <- as.matrix(apply(dat, 2, mean))
     allcontrasts <- getContrast(k, type = "allPW")
     
     
     mean_diff_names <- pairwise_meanDiffs(means, 
         allcontrasts)
-    sqrt_varcovar <- pairwise_sd(allcontrasts, 
-        sigma)  #sd of diffs 
+    sqrt_varcovar <- pairwise_sd(allcontrasts, sigma)  #sd of diffs 
     for (i in 1:length(mean_diff_names)) {
         leftside <- abs((mean_diff_names))
         rightside <- ei - (sqrt_varcovar/sqrt(n)) * 
@@ -36,14 +33,12 @@ pw.unstd <- function(data, repeated,
     
     # decision leftside<-unlist(leftside)
     find_nonequiv_res <- which((ifelse(leftside <= 
-        rightside, check_equiv <- 1, 
-        check_equiv <- 0)) == 0)
-    ifelse(length(find_nonequiv_res) > 
-        0, decis <- "No evidence for equivalence", 
+        rightside, check_equiv <- 1, check_equiv <- 0)) == 
+        0)
+    ifelse(length(find_nonequiv_res) > 0, decis <- "No evidence for equivalence", 
         decis <- "There is evidence for overall equivalence among the repeated measures")  #if at least one pairwise test is signif, omnibus is not signif. 
-    res <- list(repeatedMeasures = k, 
-        means = t(means), ei = paste(ei, 
-            "in unstandardized metric"), 
+    res <- list(repeatedMeasures = k, means = t(means), 
+        ei = paste(ei, "in unstandardized metric"), 
         Decision = decis)
     class(res) <- "pw.unstd"
     return(res)
@@ -60,7 +55,7 @@ print.pw.unstd <- function(x, ...) {
     cat("The", x[[1]], "means were ")
     cat(x[[2]])
     cat("\n\n")
-    cat("The equivalence interval was ", 
-        x[[3]], "in raw metric.", "\n\n")
+    cat("The equivalence interval was ", x[[3]], 
+        "in raw metric.", "\n\n")
     print(x[[4]])
 } 

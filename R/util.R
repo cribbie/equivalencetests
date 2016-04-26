@@ -7,34 +7,27 @@ simRepDat <- function() {
         library(mvtnorm)
     }
     sim_dependent_samples <- function(sample_size, 
-        number_of_sample, sigma_matrix, 
-        eps, power) {
+        number_of_sample, sigma_matrix, eps, power) {
         if (power == TRUE) {
-            population_means <- rep(0, 
-                number_of_sample)
+            population_means <- rep(0, number_of_sample)
         }
         if (power == FALSE) {
             boundary_diff <- eps
-            # population_means <- c(0,
-            # boundary_diff, rep(0,
+            # population_means <- c(0, boundary_diff, rep(0,
             # number_of_sample-2))
-            population_means <- c(0, 
-                boundary_diff, rep(boundary_diff/2, 
-                  number_of_sample - 
-                    2))
+            population_means <- c(0, boundary_diff, 
+                rep(boundary_diff/2, number_of_sample - 
+                  2))
         }
-        sample_data <- rmvnorm(sample_size, 
-            mean = population_means, 
+        sample_data <- rmvnorm(sample_size, mean = population_means, 
             sigma = sigma_matrix)
         
         return(sample_data)
     }
-    make_sigma_matrix <- function(corMatrix, 
-        standard_deviation_of_each_sample, 
+    make_sigma_matrix <- function(corMatrix, standard_deviation_of_each_sample, 
         number_of_sample) {
-        sigma_matrix <- cor2cov(corMatrix, 
-            sd = rep(standard_deviation_of_each_sample, 
-                number_of_sample))
+        sigma_matrix <- cor2cov(corMatrix, sd = rep(standard_deviation_of_each_sample, 
+            number_of_sample))
         return(sigma_matrix)
     }
     k = 3
@@ -44,15 +37,13 @@ simRepDat <- function() {
     H <- abs(outer(times, times, "-"))
     V <- sigma * rho^H
     p <- nrow(V)
-    V[cbind(1:p, 1:p)] <- V[cbind(1:p, 
-        1:p)] * sigma  #cov matrix 
+    V[cbind(1:p, 1:p)] <- V[cbind(1:p, 1:p)] * sigma  #cov matrix 
     sigma_matrix <- V  #corMatrix <- cov2cor(V)   
     data <- sim_dependent_samples(sample_size = 100, 
         number_of_sample = k, sigma_matrix = sigma_matrix, 
         eps = 1, power = TRUE)
     data <- data.frame(data)
-    names(data) <- c("repA", "repB", 
-        "repC")
+    names(data) <- c("repA", "repB", "repC")
     return(data)
 }
 
@@ -81,21 +72,18 @@ winvar <- function(x, tr = 0.2, na.rm = FALSE) {
 #' pairwise_meanDiffs()
 getContrast <- function(k, type) {
     if (type == "adjacent") {
-        M <- matrix(0, nrow = k - 1, 
-            ncol = k)
+        M <- matrix(0, nrow = k - 1, ncol = k)
         for (i in 1:k - 1) {
             M[i, i] <- -1
             M[i, i + 1] <- 1
         }
     }
     if (type == "allPW") {
-        M <- matrix(0, nrow = k, ncol = k * 
-            (k - 1)/2)
+        M <- matrix(0, nrow = k, ncol = k * (k - 
+            1)/2)
         comb <- combn(k, 2)
-        M[cbind(comb[1, ], 1:(k * (k - 
-            1)/2))] <- -1
-        M[cbind(comb[2, ], 1:(k * (k - 
-            1)/2))] <- 1
+        M[cbind(comb[1, ], 1:(k * (k - 1)/2))] <- -1
+        M[cbind(comb[2, ], 1:(k * (k - 1)/2))] <- 1
         M <- t(M)
     }
     return(M)
@@ -107,30 +95,25 @@ getContrast <- function(k, type) {
 #' This computes all pairwise mean differences.
 #'
 #' pairwise_meanDiffs()
-pairwise_meanDiffs <- function(sample_means, 
-    allcontrasts) {
+pairwise_meanDiffs <- function(sample_means, allcontrasts) {
     if (!require(plyr)) {
         install.packages(plyr)
         library(plyr)
     }
-    mean_diffs <- t(allcontrasts %*% 
-        sample_means)  #this is the vector of mean differences, ie. mean difference @ k=1, mean of k=2, etc. Matches mean D, pg 245, table 8.5 
+    mean_diffs <- t(allcontrasts %*% sample_means)  #this is the vector of mean differences, ie. mean difference @ k=1, mean of k=2, etc. Matches mean D, pg 245, table 8.5 
     mean_diff_names <- data.frame(mean_diffs)
     v <- 1:length(sample_means)
     allPairs <- combn(length(v), 2)  # choose a pair from 1:length(v)
     names(mean_diff_names) <- plyr::aaply(combn(length(v), 
-        2), 2, function(x) paste0(x[2], 
-        "-", x[1]))  # iterate over all pairs
+        2), 2, function(x) paste0(x[2], "-", x[1]))  # iterate over all pairs
     return(mean_diff_names)
 }
 
 #' 'Internal helper Function' for pairwise IUT based tests
 #' pairwise_sd()
 
-pairwise_sd <- function(allcontrasts, 
-    sigma) {
-    var_covar <- allcontrasts %*% sigma %*% 
-        t(allcontrasts)  #var-covar matrix of intraindiv differences    
+pairwise_sd <- function(allcontrasts, sigma) {
+    var_covar <- allcontrasts %*% sigma %*% t(allcontrasts)  #var-covar matrix of intraindiv differences    
     sqrt_varcovar <- sqrt(diag(var_covar))  #SDs of all possible pairwise mean diffs    
     return(sqrt_varcovar)
 } 

@@ -12,6 +12,7 @@
 \alias{equivint,}
 \alias{na.rm}
 \alias{normality}
+\alias{print.eq.tost}
 \alias{tost}
 \alias{tr}
 \alias{varequiv}
@@ -21,6 +22,8 @@
 \usage{
 eq.tost(x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2,
   alpha = 0.05, na.rm = TRUE, ...)
+
+\method{print}{eq.tost}(x, ...)
 }
 \arguments{
 \item{x}{a numeric vector for first sample}
@@ -39,6 +42,8 @@ or Schuirmann-Welch is performed}
 \item{...}{additional arguments to be passed}
 
 \item{varequal}{logical; If true, equal variances are assumed. Only applicable when tr == 0}
+
+\item{x}{object of class \code{eq.tost}}
 }
 \value{
 returns a \code{list}
