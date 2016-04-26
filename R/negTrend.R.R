@@ -30,6 +30,7 @@ negTrend <- function(ei, slope, se, df, n, alpha = 0.05) {
 
 #' @rdname negTrend
 #' @param x object of class \code{negTrend}
+#' @param ... additional arguments
 #' @export
 print.negTrend <- function(x, ...) {
     cat("-------Two one-sided test for negligible trend------\n\n")

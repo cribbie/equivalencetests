@@ -19,6 +19,8 @@ eq.hotT2(data, repeated, ei, alpha = 0.05)
 \item{alpha}{alpha/significance level}
 
 \item{x}{object of class \code{eq.hotT2}}
+
+\item{...}{additional arguments}
 }
 \description{
 This function does the one sample Hotelling T2 analog for equivalence tests, determining if a sample's 

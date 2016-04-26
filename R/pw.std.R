@@ -55,6 +55,7 @@ pw.std <- function(data, repeated, ei, alpha = 0.05) {
 
 #' @rdname pw.std
 #' @param x object of class \code{pw.std}
+#' @param ... additional arguments
 #' @export
 print.pw.std <- function(x, ...) {
     cat("------Pairwise unstandardized test for overall equivalence------\n\n")

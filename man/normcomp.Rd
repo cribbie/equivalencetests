@@ -43,10 +43,10 @@ sample to determine if they are statistically equivalent.
 }
 \examples{
 \dontrun{
-#In this example the pretest mean was 12, pretest sd was 4, pretest sample size was 100, posttest mean was 8,
-#posttest sd was 5, posttest sample size was 95, normal comparison mean was 7, normal comparison sd was 3,
-#normal comparison sample size was 500. 
-#The desired alpha level is .05, which is the default, so no alpha level is specified
+# In this example the pretest mean was 12, pretest sd was 4, pretest sample size was 100, 
+# posttest mean was 8, posttest sd was 5, posttest sample size was 95, normal comparison 
+# mean was 7, normal comparison sd was 3, normal comparison sample size was 500. 
+# The desired alpha level is .05, which is the default, so no alpha level is specified
 normcomp(12,4,100,8,5,95,7,3,500)
 }
 }

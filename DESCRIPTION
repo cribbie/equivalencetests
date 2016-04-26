@@ -17,6 +17,7 @@ Description: Provides various functions for computing equivalence tests in R.
 Imports:
     plyr,
 	mvtnorm,
+	MBESS,
 	ggplot2
 Suggests:
     testthat,

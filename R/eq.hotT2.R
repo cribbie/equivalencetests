@@ -52,6 +52,7 @@ eq.hotT2 <- function(data, repeated, ei, alpha = 0.05) {
 
 #' @rdname eq.hotT2
 #' @param x object of class \code{eq.hotT2}
+#' @param ... additional arguments
 #' @export
 print.eq.hotT2 <- function(x, ...) {
     cat("-------Hotelling T2 test for overall equivalence------\n\n")

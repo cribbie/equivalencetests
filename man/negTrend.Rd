@@ -19,6 +19,8 @@ negTrend(ei, slope, se, df, n, alpha = 0.05)
 \item{df}{the degrees of freedom obtained from the fitted model}
 
 \item{x}{object of class \code{negTrend}}
+
+\item{...}{additional arguments}
 }
 \description{
 This function takes as input the estimates obtained from a linear mixed model. Specifically, some fixed effect slope for time or some other ordered variable, its standard error, and the approximated degrees of freedom are used. 

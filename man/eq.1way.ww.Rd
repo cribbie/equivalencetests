@@ -19,6 +19,8 @@ eq.1way.ww(dv, group, eps, alpha = 0.05)
 \item{alpha}{the appropriate alpha level}
 
 \item{x}{object of class \code{eq.1way.ww}}
+
+\item{...}{additional arguments}
 }
 \description{
 This function computes the Wellek-Welch equivalence test for k-groups. This addresses the research question about equivalence for means among k independent groups.

@@ -96,6 +96,7 @@ eq.tost.CI <- function(x, y, ei, alpha = 0.05, na.rm = FALSE) {
 
 #' @rdname eq.tost.CI
 #' @param x object of class \code{eq.tost.CI}
+#' @param ... additional arguments
 #' @export
 print.eq.tost.CI <- function(x, ...) {
     cat("-----Equivalence test for confidence interval inclusion principal---\n\n")
@@ -124,6 +125,7 @@ plot.eq.tost.CI <- function(x, y = NULL, ...) {
     equivInfo <- data.frame(name = "mean difference", 
         meanDiff = x$meanDiff, lowCI = x$ciBounds[1], 
         highCI = x$ciBounds[2])
+    name <- meanDiff <- lowCI <- highCI <- NULL
     p <- ggplot(equivInfo, aes(x = name, y = meanDiff)) + 
         geom_pointrange(aes(ymin = lowCI, ymax = highCI)) + 
         xlab("comparison") + geom_hline(yintercept = 

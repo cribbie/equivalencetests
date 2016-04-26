@@ -21,6 +21,8 @@ eq.tost.CI(x, y, ei, alpha = 0.05, na.rm = FALSE)
 
 \item{alpha}{desired alpha level}
 
+\item{...}{additional arguments}
+
 \item{dat}{an N x 3 matrix or data.frame containing raw data used to compute the 
 correlation matrix between variables. The input may also be a 1 x 3 vector of correlations
 (r12, r13, and r23, respectively) and requires a sample size input (N)}

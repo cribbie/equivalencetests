@@ -19,6 +19,8 @@ pw.unstd(data, repeated, ei, alpha = 0.05)
 \item{alpha}{alpha/significance level}
 
 \item{x}{object of class \code{pw.unstd}}
+
+\item{...}{additional arguments}
 }
 \description{
 Equivalence interval is in unstandardized metric. If at least one pairwise mean difference is found not statistically significant (in equivalence), then the whole test fails to reject the null hypothesis.

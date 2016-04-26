@@ -83,6 +83,7 @@ equiv_drs <- function(dat, ei, n = NULL, alpha = 0.05) {
 
 #' @rdname equiv_drs
 #' @param x object of class \code{equiv_drs}
+#' @param ... additional arguments
 #' @export
 print.equiv_drs <- function(x, ...) {
     cat("------Equivalence tests of dependent correlations------\n\n")

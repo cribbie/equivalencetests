@@ -25,7 +25,7 @@ simRepDat <- function() {
     }
     make_sigma_matrix <- function(corMatrix, standard_deviation_of_each_sample, 
         number_of_sample) {
-        sigma_matrix <- cor2cov(corMatrix, sd = rep(standard_deviation_of_each_sample, 
+        sigma_matrix <- MBESS::cor2cov(corMatrix, sd = rep(standard_deviation_of_each_sample, 
             number_of_sample))
         return(sigma_matrix)
     }

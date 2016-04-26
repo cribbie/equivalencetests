@@ -21,6 +21,8 @@ correlation matrix between variables. The input may also be a 1 x 3 vector of co
 \item{alpha}{desired alpha level}
 
 \item{x}{object of class \code{equiv_drs}}
+
+\item{...}{additional arguments}
 }
 \value{
 returns a list containing the p-value, confidence interval, and statistical decision

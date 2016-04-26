@@ -19,6 +19,8 @@ pw.std(data, repeated, ei, alpha = 0.05)
 \item{alpha}{alpha/significance level}
 
 \item{x}{object of class \code{pw.std}}
+
+\item{...}{additional arguments}
 }
 \description{
 An equivalence test for repeated measures. Tests the null hypothesis that at least one pairwise mean difference 
