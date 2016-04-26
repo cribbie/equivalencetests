@@ -12,7 +12,6 @@ Authors@R:  c(person('Victoria', 'Ng',
     person('Rob', 'Cribbie',
     email='cribbie@yorku.ca',
     role=c('ctb')))
-Maintainer: Rob Cribbie <cribbie@yorku.ca>
 Description: Provides various functions for computing equivalence tests in R.
 Imports:
     plyr,
