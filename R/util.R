@@ -63,7 +63,6 @@ pairwise_meanDiffs <- function(sample_means, allcontrasts) {
 #' pairwise_sd()
 
 pairwise_sd <- function(allcontrasts, sigma) {
-    
     var_covar <- allcontrasts %*% sigma %*% t(allcontrasts)  #var-covar matrix of intraindiv differences    
     sqrt_varcovar <- sqrt(diag(var_covar))  #SDs of all possible pairwise mean diffs    
     return(sqrt_varcovar)
@@ -94,7 +93,6 @@ simRepDat <- function() {
         
         return(sample_data)
     }
-    
     make_sigma_matrix <- function(corMatrix, standard_deviation_of_each_sample, 
         number_of_sample) {
         sigma_matrix <- cor2cov(corMatrix, sd = rep(standard_deviation_of_each_sample, 
