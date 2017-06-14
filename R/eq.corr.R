@@ -1,4 +1,4 @@
-#' Test for lack of association: Equivalence-based correlation tests
+#' Test for Lack of Association between Two Continuous Normally Distributed Variables: Equivalence-based correlation tests
 #' 
 #' Function performs a traditional Pearson correlation test, an equivalence based test of lack
 #' of association, an equivalence based test of lack of association using a Fisher's z 
@@ -42,7 +42,7 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
     pvalue_tradt <- 1 - pt(abs(t), n - 2)
     ifelse(pvalue_tradt <= alpha, decis_tradt <- "The null hypothesis that there is no correlation between x and y can be rejected.", 
         decis_tradt <- "The null hypothesis that there is no correlation between x and y cannot be rejected.")
-    #### Running an original two t-test procedure for
+    #### Running an original TOST procedure for
     #### equivalence #######
     equivt1 <- (corxy - ei)/sqrt((1 - corxy^2)/(n - 
         2))
