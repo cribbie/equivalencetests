@@ -22,3 +22,4 @@ install_github('cribbie/equivalencetests')
 ```r
 library(equivalencetests)
 ```
+"Hi" 
