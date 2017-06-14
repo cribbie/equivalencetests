@@ -21,7 +21,7 @@
 #' \dontrun{
 #' #equivalence correlation test between v1 and v2 with an interval of .2
 #' v1 <- rnorm(100)
-#' v2 <- v1 + rnorm(100, 2)
+#' v2 <- rnorm(100)
 #' dat <- data.frame(v1, v2)
 #' plot(dat)
 #' cor(dat)
