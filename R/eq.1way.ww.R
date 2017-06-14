@@ -1,7 +1,7 @@
 #' Wellek-Welch equivalence test for k-groups 
 #' 
 #' This function computes the Wellek-Welch equivalence test for k-groups. This addresses the research question about equivalence for means among k independent groups.
-#' The Welch adjustment provides a robust correction for unequal vairances among the k groups.
+#' The Welch adjustment provides a robust correction for unequal variances among the k groups.
 #' 
 #' @aliases eq.1way.ww
 #' @param dv a numeric vector for the continous dependent variable
