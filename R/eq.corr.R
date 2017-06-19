@@ -19,13 +19,14 @@
 #' @export eq.corr
 #' @examples
 #' \dontrun{
-#' #equivalence correlation test between v1 and v2 with an interval of .2
+#' #equivalence correlation test between v1 and v2 
+#' with an interval of ei=(-.2.2)
 #' v1 <- rnorm(50)
 #' v2 <- rnorm(50)
 #' dat <- data.frame(v1, v2)
 #' plot(dat)
 #' cor(dat)
-#' eq.corr(dat, .2)
+#' eq.corr(dat=dat, ei=.2)
 #' }
 eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, 
     ...) {
