@@ -28,10 +28,10 @@
 #' cor(dat)
 #' eq.corr(dat=dat, ei=.2)
 #' }
-eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, 
+eq.corr <- function(x,y, ei, alpha = 0.05, na.rm = TRUE, 
     ...) {
+    dat <- data.frame(x,y)  
     dat <- na.omit(dat)
-    plot(dat)
     var1 <- x <- dat[, 1]
     var2 <- y <- dat[, 2]
     corxy <- cor(var1, var2)
@@ -96,6 +96,25 @@ eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE,
     q2posei <- q2 + ei
     ifelse(q2negei < 0 & q1posei > 0, decis_rs <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval can be rejected.", 
         decis_rs <- "The null hypothesis that the correlation between var1 and var2 falls outside of the equivalence interval cannot be rejected.")
+    #### Plots ####
+    plot(dat)
+    plot(x=0,y=0,xlim=c(min(c(ei*-1,q1)-.1),max(c(ei,q2)+.1)),
+         ylim=c(-1.5,1.5),axes=FALSE,xlab="",ylab="")
+    yline(0,lwd=2)
+    segments(x0=corxy,y0=-.6,x1=corxy,y1=.6,col="forestgreen")
+    segments(x0=q1,y0=-.5,x1=q1,y1=.5,col="red")
+    segments(x0=q2,y0=-.5,x1=q2,y1=.5,col="red")
+    segments(x0=ei,y0=-.5,x1=ei,y1=.5,col="blue")
+    segments(x0=ei*(-1),y0=-.5,x1=ei*(-1),y1=.5,col="blue")
+    text(x=corxy,y=-.8,paste("r=",round(corxy,3),sep=""),col="forestgreen")
+    text(x=q1,y=-.7,paste("CI(l)=",round(q1,3),sep=""),col="red")
+    text(x=q2,y=-.7,paste("CI(u)=",round(q2,3),sep=""),col="red")
+    text(x=ei,y=.7,paste("EI(u)=",ei,sep=""),col="blue")
+    text(x=(-1)*ei,y=.7,paste("EI(l)=",(-1)*ei,sep=""),col="blue")
+    text(x=min(q1,-1*ei),y=-1.25,adj=c(0,NA),"The Bootrapped CI [CI(l),CI(u)] must be contained completely 
+within the Equivalence Interval [EI(l),EI(u)] to conclude a Lack of Correlation")
+    #legend("topleft", legend=c("r","Equivalence Interval", 
+    #                           "Bootstrapped CI"), lty=c(1,1,1),col=c("forestgreen","blue","red"))
     #### Summary #####
     title1 <- "Traditional Test of Correlation, Ho: rho=0"
     title2 <- "Equivalence Based Test of Lack of Association"
