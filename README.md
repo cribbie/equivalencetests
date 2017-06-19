@@ -2,7 +2,7 @@
 
 R package for equivalence based tests. 
 
-##Installation
+##Install the Package
 
 1) Install the `devtools` package (if necessary). In R, paste the following into the console:
 
