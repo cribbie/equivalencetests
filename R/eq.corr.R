@@ -100,7 +100,7 @@ eq.corr <- function(x,y, ei, alpha = 0.05, na.rm = TRUE,
     plot(dat)
     plot(x=0,y=0,xlim=c(min(c(ei*-1,q1)-.1),max(c(ei,q2)+.1)),
          ylim=c(-1.5,1.5),axes=FALSE,xlab="",ylab="")
-    yline(0,lwd=2)
+    abline(h=0,lwd=2)
     segments(x0=corxy,y0=-.6,x1=corxy,y1=.6,col="forestgreen")
     segments(x0=q1,y0=-.5,x1=q1,y1=.5,col="red")
     segments(x0=q2,y0=-.5,x1=q2,y1=.5,col="red")
