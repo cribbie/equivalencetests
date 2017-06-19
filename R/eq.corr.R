@@ -28,9 +28,8 @@
 #' cor(dat)
 #' eq.corr(dat=dat, ei=.2)
 #' }
-eq.corr <- function(x,y, ei, alpha = 0.05, na.rm = TRUE, 
+eq.corr <- function(dat, ei, alpha = 0.05, na.rm = TRUE, 
     ...) {
-    dat <- data.frame(x,y)  
     dat <- na.omit(dat)
     var1 <- x <- dat[, 1]
     var2 <- y <- dat[, 2]
