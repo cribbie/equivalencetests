@@ -11,7 +11,7 @@ Authors@R:  c(person('Victoria', 'Ng',
     role=c('aut')),
     person('Rob', 'Cribbie',
     email='cribbie@yorku.ca',
-    role=c('ctb')))
+    role=c('aut')))
 Description: Provides various functions for computing equivalence tests in R.
 Imports:
     plyr,

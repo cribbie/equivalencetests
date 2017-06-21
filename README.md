@@ -1,8 +1,8 @@
-#equivalencetests
+# equivalencetests
 
 R package for equivalence based tests. 
 
-##Install the Package
+## Install the Package
 
 1) Install the `devtools` package (if necessary). In R, paste the following into the console:
 
@@ -10,7 +10,7 @@ R package for equivalence based tests.
 install.packages('devtools')
 ```
 
-2) Load the `devtools` package and install from the github source code. 
+2) Load the `devtools` package and install from the Github source code. 
  
 ```r
 library('devtools')
@@ -22,4 +22,3 @@ install_github('cribbie/equivalencetests')
 ```r
 library(equivalencetests)
 ```
-"Hi" 
