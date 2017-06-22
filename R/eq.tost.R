@@ -1,7 +1,10 @@
-#' Robust and Non-Robust Variants for the two one-sided equivalence tests (TOST): Test equivalence between 2 independent groups
+#' Robust and Non-Robust Variants of the Two Independent Groups Equivalence Test using the two one-sided tests (TOST) methodology. 
 #' 
-#' This R function allows for the computation of the original Schuirmann two-sided t-test (TOST) for equivalence, the modified Schuirmann-Welch test (which does not require the variances to be equal), or the Schuirmann-Yuen test (if normality cannot be assumed), 
-#' depending on the arguments specified. The original Schuirmann assumes equal variances and normality. The Schuirmann-Welch assumes normality but not equal variances. The Schuirmann-Yuen accounts for unequal variances and nonnormality using trimmed means and Winsorized variances.
+#' This R function allows for the computation of the original Schuirmann TOST for the equivalence of two 
+#' independent groups, the modified Schuirmann-Welch test (which does not require the variances to be equal), 
+#' or the Schuirmann-Yuen test (if normality cannot be assumed), depending on the arguments specified. The original Schuirmann assumes 
+#' equal variances and normality. The Schuirmann-Welch assumes normality but not equal variances. The Schuirmann-Yuen accounts for 
+#' unequal variances and nonnormality using trimmed means and Winsorized variances.
 #' @aliases tost
 #' 
 #' x, y, equivint, varequiv = FALSE, normality = FALSE, tr = 0.2, alpha = 0.05,  na.rm = TRUE, ...
@@ -22,7 +25,9 @@
 #' @export eq.tost
 #' @references 
 #' 
-#' Schuirmann, D. J. (1987). A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability. \emph{Journal of pharmacokinetics and biopharmaceutics}, 15(6), 657-680.
+#' Schuirmann, D. J. (1987). A comparison of the two one-sided tests procedure and the power approach for assessing the equivalence of average bioavailability. \emph{Journal of pharmacokinetics and biopharmaceutics, 15(6)}, 657-680.
+#' van Wieringen, K. & Cribbie, R. A. (2014). Robust normative comparison tests for evaluating clinical significance. \emph{British Journal of Mathematical and Statistical Psychology, 67}, 213-230.
+#' Gruman, J., Cribbie, R. A., & Arpin-Cribbie, C. A. (2007). The effects of heteroscedasticity on tests of equivalence. \emph{Journal of Modern Applied Statistical Methods, 6}, 133-140. 
 # 
 #' @examples
 #' \dontrun{
