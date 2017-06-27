@@ -9,7 +9,7 @@
 #' @param ei equivalence interval, in terms of the magnitude of a correlation
 #' @param alpha desired alpha level
 #' @param na.rm logical; remove missing values?
-#' @param print whether or not to print graphics of the results
+#' @param plot whether or not to print graphics of the results
 #' @param ... additional arguments to be passed
 #' 
 #' @return returns a \code{list} containing each analysis and their respective statistics
